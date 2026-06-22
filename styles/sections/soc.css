@@ -1,0 +1,411 @@
+/* ─── LAYOUT ─── */
+#soc {
+  position: relative;
+}
+
+.soc-inner {
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: var(--sp) 2rem;
+}
+
+.soc-header {
+  margin-bottom: 2.5rem;
+}
+
+.soc-sub {
+  font-family: var(--fu);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--t2);
+  margin-top: 0.5rem;
+}
+
+/* 4-column grid — map is wider */
+.soc-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* ─── PANELS ─── */
+.soc-panel {
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  border-radius: 2px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle top-left accent gradient — same as service cards */
+.soc-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--accent-glow) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.soc-panel:hover {
+  border-color: var(--accent-border);
+  transition: border-color 0.3s ease;
+}
+
+/* ─── PANEL HEADER ─── */
+.soc-panel-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.soc-panel-label {
+  font-family: var(--fu);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t2);
+}
+
+/* ─── LIVE BADGE ─── */
+.soc-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--fm);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #28a86a;
+}
+
+.soc-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #28a86a;
+  flex-shrink: 0;
+  animation: soc-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes soc-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(40,168,106,0.5); }
+  50%       { opacity: 0.7; box-shadow: 0 0 0 5px rgba(40,168,106,0); }
+}
+
+/* ─── MAP PANEL ─── */
+.soc-map-wrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+#soc-map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  min-height: 160px;
+}
+
+.soc-origins {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--bc);
+  flex-shrink: 0;
+}
+
+.soc-origins-title {
+  font-family: var(--fu);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 0.4rem;
+}
+
+.soc-origins-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.soc-origins-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  color: var(--t2);
+}
+
+.soc-origin-pct {
+  margin-left: auto;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ─── DONUT PANEL ─── */
+.soc-donut-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+  flex-shrink: 0;
+}
+
+#soc-donut-canvas {
+  width: 120px;
+  height: 120px;
+}
+
+.soc-donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.soc-donut-num {
+  font-family: var(--fd);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--t1);
+  line-height: 1;
+}
+
+.soc-donut-sub {
+  font-family: var(--fm);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* Legend */
+.soc-legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.soc-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  color: var(--t2);
+}
+
+.soc-leg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.soc-leg-name {
+  flex: 1;
+}
+
+.soc-leg-val {
+  color: var(--t1);
+  font-weight: 500;
+  font-family: var(--fm);
+}
+
+/* ─── VULNERABILITY PANEL ─── */
+.soc-vuln-score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.soc-vuln-num {
+  font-family: var(--fd);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--t1);
+  line-height: 1;
+  transition: color 0.6s ease;
+}
+
+.soc-vuln-num.risk-low    { color: #28a86a; }
+.soc-vuln-num.risk-medium { color: #c8a820; }
+.soc-vuln-num.risk-high   { color: #e05252; }
+
+.soc-vuln-denom {
+  font-family: var(--fm);
+  font-size: 0.9rem;
+  color: var(--t3);
+}
+
+.soc-vuln-risk {
+  font-family: var(--fu);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c8a820;
+  margin-bottom: 0.75rem;
+  flex-shrink: 0;
+}
+
+.soc-spark-wrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+#soc-spark-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  min-height: 60px;
+}
+
+.soc-vuln-delta {
+  font-family: var(--fm);
+  font-size: 0.65rem;
+  color: #28a86a;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ─── INCIDENTS PANEL ─── */
+.soc-incidents {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.soc-inc-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--bc);
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.soc-inc-row:last-child {
+  border-bottom: none;
+}
+
+.soc-inc-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.soc-inc-icon.sev-critical { background: rgba(224,82,82,0.15); }
+.soc-inc-icon.sev-high     { background: rgba(224,120,32,0.15); }
+.soc-inc-icon.sev-medium   { background: rgba(200,168,32,0.15); }
+.soc-inc-icon.sev-low      { background: rgba(40,168,106,0.15); }
+
+.soc-inc-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.soc-inc-name {
+  font-family: var(--fu);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--t1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.soc-inc-time {
+  font-family: var(--fm);
+  font-size: 0.58rem;
+  color: var(--t3);
+  margin-top: 1px;
+}
+
+/* Severity badges */
+.soc-badge {
+  font-family: var(--fm);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+
+.soc-badge.sev-critical {
+  color: #e05252;
+  border-color: rgba(224,82,82,0.35);
+  background: rgba(224,82,82,0.08);
+  animation: soc-badge-blink 2s ease-in-out infinite;
+}
+.soc-badge.sev-high {
+  color: #e07820;
+  border-color: rgba(224,120,32,0.35);
+  background: rgba(224,120,32,0.08);
+}
+.soc-badge.sev-medium {
+  color: #c8a820;
+  border-color: rgba(200,168,32,0.35);
+  background: rgba(200,168,32,0.08);
+}
+.soc-badge.sev-low {
+  color: #28a86a;
+  border-color: rgba(40,168,106,0.35);
+  background: rgba(40,168,106,0.08);
+}
+
+@keyframes soc-badge-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1200px) {
+  .soc-grid {
+    grid-template-columns: 1.8fr 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .soc-panel--map       { grid-column: 1; grid-row: 1 / 3; }
+  .soc-panel--donut     { grid-column: 2; grid-row: 1; }
+  .soc-panel--vuln      { grid-column: 3; grid-row: 1; }
+  .soc-panel--incidents { grid-column: 2 / 4; grid-row: 2; }
+}
+
+@media (max-width: 768px) {
+  .soc-grid { grid-template-columns: 1fr; }
+  .soc-panel--map,
+  .soc-panel--donut,
+  .soc-panel--vuln,
+  .soc-panel--incidents { grid-column: 1; grid-row: auto; }
+  #soc-map-svg { min-height: 200px; }
+}

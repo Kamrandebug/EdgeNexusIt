@@ -1,0 +1,4 @@
+/* Entry transitions */
+.hero-staffaug { opacity: 0; }
+.hero-staffaug.is-ready { opacity: 1; transition: opacity 0.3s ease; }
+body { background: var(--bg); }

@@ -1,0 +1,89 @@
+/* ── Status Bar Component ────────────────────────── */
+.status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  background: var(--accent-glow);
+  border-bottom: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 2001; /* Above navbar */
+  font-family: var(--fd);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  overflow: hidden;
+  transition: height 0.2s var(--ease-expo), transform 0.3s var(--ease-expo);
+  backdrop-filter: blur(8px);
+  transform: translateY(-100%);
+}
+
+.status-bar.visible {
+  transform: translateY(0);
+}
+
+.status-bar.collapsed {
+  height: 0;
+  border-bottom-color: transparent;
+}
+
+.status-bar__left,
+.status-bar__center,
+.status-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-bar__pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+  animation: status-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+@media (max-width: 768px) {
+  .status-bar__center {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-bar {
+    padding: 0 12px;
+  }
+  .status-bar__left .text-label,
+  .status-bar__right .text-label {
+    display: none;
+  }
+  .status-bar__left {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .status-bar {
+    padding: 0 8px;
+  }
+  .status-bar__pulse {
+    width: 4px;
+    height: 4px;
+  }
+  .status-bar__left .status-bar__pulse + .text-label {
+    display: none; /* Hide "LIVE" label at mobile-sm, keep pulse dot + clock */
+  }
+  .status-bar__right .status-clock {
+    font-size: 9px;
+  }
+}

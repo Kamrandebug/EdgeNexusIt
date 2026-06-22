@@ -1,0 +1,90 @@
+:root {
+  /* ── Backgrounds ─────────────────────────────── */
+  --bg:      #020508;
+  --surface: #070c16;
+  --panel:   #090e1c;
+
+  /* ── Accent System ───────────────────────────── */
+  --accent:          #00aaff;
+  --accent-dim:      rgba(0, 170, 255, 0.12);
+  --accent-glow:     rgba(0, 170, 255, 0.05);
+  --accent-border:   rgba(0, 170, 255, 0.30);
+  --accent-strong:   rgba(0, 170, 255, 0.6);
+
+  --brand-blue:      #00B0E0;    /* sampled dominant cyan from logo swirl */
+  --brand-glow:      #63FFFF;    /* highlight peak — logo mark glow */
+
+  --accent-2:       #ff6b00;
+  --accent-2-dim:   rgba(255, 107, 0, 0.12);
+  --accent-3:       #ff2d55;
+  --grid-line:      rgba(255, 255, 255, 0.035);
+
+  /* ── Text Hierarchy ──────────────────────────── */
+  --t1: #e2e8f0;
+  --t2: rgba(226, 232, 240, 0.50);
+  --t3: rgba(226, 232, 240, 0.25);
+
+  /* ── Border Tokens ───────────────────────────── */
+  --bh: rgba(0, 170, 255, 0.08);    /* hairline: grid, section borders */
+  --bc: rgba(255, 255, 255, 0.06);  /* card borders */
+  --ba: rgba(0, 170, 255, 0.35);    /* active/hover borders */
+
+  /* ── Typography Stacks ───────────────────────── */
+  --fd: 'Outfit', sans-serif;
+  --fm: 'DM Mono', monospace;
+  --fu: 'Barlow Condensed', sans-serif;
+
+  /* ── Spacing ─────────────────────────────────── */
+  --sp: clamp(56px, 7vw, 100px);    /* section vertical padding */
+  --cw: 1280px;                      /* max content width (was 1400px) */
+  --nh: 56px;                        /* navbar height */
+
+  /* ── Breakpoints (Reference) ────────────────── */
+  /* --bp-mobile:  480px   Small phones */
+  /* --bp-sm:      640px   Large phones / small landscape */
+  /* --bp-md:      768px   iPad portrait */
+  /* --bp-lg:      1024px  iPad landscape / small laptop */
+  /* --bp-xl:      1280px  Standard laptop */
+  /* --bp-2xl:     1536px  Large desktop */
+
+  /* ── Fluid Typography Scale ──────────────────── */
+  --text-eyebrow:   clamp(0.625rem, 1.5vw, 0.75rem);
+  --text-body:      clamp(0.875rem, 2vw, 1rem);
+  --text-h3:        clamp(1.125rem, 3vw, 1.5rem);
+  --text-h2:        clamp(1.75rem, 5vw, 3rem);
+  --text-h1:        clamp(2.25rem, 7vw, 5rem);
+  --text-display:   clamp(2.75rem, 9vw, 80px);
+
+  /* ── Viewport Units (landscape-safe) ─────────── */
+  --vh: 1dvh;  /* Use dynamic viewport height on supporting browsers — avoids iOS Safari top/bottom bar issues */
+
+  /* ── Fluid Spacing ───────────────────────────── */
+  --space-section:  clamp(4rem, 10vw, 8rem);
+  --space-card-gap: clamp(1rem, 3vw, 2rem);
+
+  /* ── Motion Easing Curves ────────────────────── */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-back:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Motion Durations ────────────────────────── */
+  --dur-fast:   0.3s;
+  --dur-base:   0.6s;
+  --dur-slow:   1.2s;
+
+  /* ── Clip Reveal Timing (for JS reference) ───── */
+  --reveal-stagger-ms: 60;
+
+  /* IT Support — severity colors */
+  --severity-p0:           #ff2d55;
+  --severity-p0-dim:       rgba(255,45,85,0.15);
+  --severity-p1:           #ff6b00;
+  --severity-p1-dim:       rgba(255,107,0,0.12);
+  --severity-p2:           #00aaff;
+  --severity-p2-dim:       rgba(0,170,255,0.12);
+  --severity-p3:           rgba(226,232,240,0.35);
+  --severity-p3-dim:       rgba(226,232,240,0.06);
+  --ticket-open:           rgba(0,170,255,0.10);
+  --ticket-resolved:       rgba(0,230,120,0.10);
+  --ticket-resolved-color: rgba(0,230,120,0.7);
+}

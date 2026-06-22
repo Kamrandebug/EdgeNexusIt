@@ -1,0 +1,352 @@
+/* ── PIPELINE SECTION ───────────────────────────────── */
+.section-pipeline {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.section-inner {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 80px 0; /* Add some vertical breathing room within the centered box */
+}
+
+/* 2. Reduce gap between header and track */
+.pipeline-header {
+  margin-bottom: 24px;
+  padding: 0 60px;
+}
+
+.pipeline-title {
+  font-family: var(--fd);
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--t1);
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* 3. Tighter wrapper padding */
+.pipeline-track-wrapper {
+  padding: 0 24px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* 4. Shrink track height */
+.pipeline-track {
+  position: relative;
+  width: 100%;
+  height: 80px; /* Increased from 72px */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+/* 9. Recalculate track line for smaller nodes */
+.track-line-bg,
+.track-line-fill {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 19px; /* Radius of 38px node */
+  width: calc(100% - 38px);
+  height: 2px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.track-line-bg {
+  background: rgba(255, 255, 255, 0.15); /* Slightly brighter */
+}
+
+.track-line-fill {
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow), 0 0 5px var(--accent); /* Enhanced glow */
+  transform-origin: left center;
+  transform: translateY(-50%) scaleX(0);
+}
+
+/* 5. Smaller nodes */
+.track-node {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--bc);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  cursor: default;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+/* 6. Adjust node number font */
+.track-node .node-number {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+  transition: color 0.3s ease;
+}
+
+/* 7. Node label spacing below node */
+.track-node .node-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--fm);
+  font-size: 8px;
+  color: var(--t2);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 8. Active node — smaller pulse, no scale */
+.track-node.active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  animation: node-pulse 1.4s ease-out infinite;
+}
+
+.track-node.active .node-number {
+  color: var(--accent);
+}
+
+.track-node.active .node-label {
+  color: var(--accent);
+}
+
+@keyframes node-pulse {
+  0%   { box-shadow: 0 0 0 0px var(--accent-dim); }
+  60%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0px transparent; }
+}
+
+/* CONNECTOR DOTS — match new track height */
+.track-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--bc);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.15s ease;
+}
+
+.track-dot.lit {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent), 0 0 4px var(--accent);
+}
+
+/* 10. Reduce gap between track and detail panel */
+.pipeline-detail {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 28px auto 0;
+  padding: 0 24px;
+  box-sizing: border-box;
+  min-height: 200px; /* Reduced from 280px */
+  position: relative;
+}
+
+.stage-panel {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.stage-panel:not([hidden]) {
+  position: relative;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 11. Shrink stage title font */
+.stage-title {
+  font-family: var(--fd);
+  font-size: clamp(24px, 3.2vw, 44px);
+  color: var(--t1);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.stage-meta {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.pipeline-terminal {
+  max-width: 600px;
+  margin-bottom: 32px;
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pipeline-terminal__bar {
+  background: rgba(255,255,255,0.03);
+  padding: 8px 12px;
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--bc);
+}
+
+.pipeline-terminal__bar .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.pipeline-terminal__bar .dot.red { background: #ff5f56; }
+.pipeline-terminal__bar .dot.yellow { background: #ffbd2e; }
+.pipeline-terminal__bar .dot.green { background: #27c93f; }
+
+.pipeline-terminal__output {
+  padding: 16px;
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1.6;
+  min-height: 40px;
+}
+
+/* 12. Hide any orphan floating elements */
+#pipeline .scroll-indicator,
+#pipeline > .section-inner > .pipeline-header::after,
+#pipeline .pipeline-track-wrapper::before {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .track-node {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .track-node:hover {
+    border-color: var(--accent-border);
+  }
+
+  .node-label {
+    display: none;
+  }
+
+  .track-node.active .node-label {
+    display: block;
+  }
+
+  .stage-title {
+    font-size: clamp(30px, 5vw, 54px);
+  }
+}
+
+@media (max-width: 768px) {
+  .pipeline-header {
+    padding: 0 24px;
+  }
+
+  .section-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-pipeline .section-inner {
+    padding: 0 24px;
+  }
+
+  /* Hide the horizontal track entirely on mobile */
+  .pipeline-track-wrapper {
+    display: none;
+  }
+
+  .pipeline-track {
+    display: none;
+  }
+
+  .track-line-bg,
+  .track-line-fill {
+    display: none;
+  }
+
+  .track-dot {
+    display: none;
+  }
+
+  /* Stack all 5 stage panels vertically */
+  .pipeline-detail {
+    padding: 0;
+    margin-top: 24px;
+    position: relative;
+    counter-reset: pipeline-stage;
+  }
+
+  .stage-panel {
+    position: relative;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 48px;
+    counter-increment: pipeline-stage;
+  }
+
+  .stage-panel[hidden] {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .stage-panel::before {
+    content: "0" counter(pipeline-stage) " —";
+    display: block;
+    font-family: var(--fm);
+    font-size: 10px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .stage-panel::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .pipeline-header { padding: 0 16px; }
+  .pipeline-header .text-eyebrow { font-size: 9px; }
+  .pipeline-title { font-size: clamp(24px, 7vw, 36px); }
+  .stage-panel { padding: 0; margin-bottom: 36px; }
+  .stage-panel::before { font-size: 9px; }
+  .stage-title { font-size: clamp(20px, 6vw, 30px); }
+  .stage-meta { font-size: 10px; margin-bottom: 16px; }
+  .pipeline-terminal { margin-bottom: 20px; }
+  .pipeline-terminal__output { padding: 12px; font-size: 10px; }
+}

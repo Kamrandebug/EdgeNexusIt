@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DevOps & Cloud Automation — EdgeNexus IT</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <!-- CSS: tokens FIRST, always -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+
+  <!-- Shared components -->
+  <link rel="stylesheet" href="../styles/components/preloader.css">
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cards.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+
+  <!-- Shared sections (CTA + footer only) -->
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="../styles/pages/devops/hero-devops.css">
+  <link rel="stylesheet" href="../styles/pages/devops/pipeline.css">
+  <link rel="stylesheet" href="../styles/pages/devops/stack-interop.css">
+  <link rel="stylesheet" href="../styles/pages/devops/zero-downtime.css">
+
+  <!-- Fix: force scroll to top on refresh -->
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+  <canvas id="grid-pulse" aria-hidden="true"></canvas>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1: HERO — DEVOPS
+    ════════════════════════════════════════ -->
+    <section id="hero-devops" class="hero-devops">
+      <div class="hero-devops__inner">
+
+        <!-- LEFT COLUMN -->
+        <div class="hero-devops__left">
+          <!-- DEVOPS HERO EYEBROW REMOVED -->
+          <h1 class="hero-devops__headline">
+            DEPLOY<br>
+            WITHOUT<br>
+            <span class="headline-accent">FEAR.</span>
+          </h1>
+          <p class="hero-devops__body">
+            Zero-drama deployments. Pipelines that self-heal. Infrastructure that provisions in minutes. We run the engine — you ship the product.
+          </p>
+          <div class="hero-devops__cta">
+            <button class="btn btn-primary" aria-label="Initialize deployment">
+              <span>INIT_DEPLOY ▶</span>
+            </button>
+            <button class="btn btn-ghost" aria-label="View stack script">
+              <span>./view_stack.sh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Pipeline Dashboard -->
+        <div class="hero-devops__right">
+          <div class="pipeline-dashboard-wrap">
+            <div class="dashboard-header">
+              <span class="text-mono">┌─ NEXUS_PIPELINE / BUILD #4847 ──────────────────────────────┐</span>
+            </div>
+            <div class="dashboard-rows">
+              <div class="dashboard-row" data-stage="BUILD">
+                <span class="row-label">BUILD</span>
+                <div class="row-progress"><div class="progress-fill"></div></div>
+                <span class="row-status">✓</span>
+                <span class="row-time">1.8s</span>
+              </div>
+              <div class="dashboard-row" data-stage="TEST">
+                <span class="row-label">TEST</span>
+                <div class="row-progress"><div class="progress-fill"></div></div>
+                <span class="row-status">✓</span>
+                <span class="row-time">12.4s</span>
+              </div>
+              <div class="dashboard-row active" data-stage="SCAN">
+                <span class="row-label">SCAN</span>
+                <div class="row-progress"><div class="progress-fill"></div></div>
+                <span class="row-status">▶</span>
+                <span class="row-time">RUNNING... <span class="counter">0.0</span>s</span>
+              </div>
+              <div class="dashboard-row pending" data-stage="STAGE">
+                <span class="row-label">STAGE</span>
+                <div class="row-progress"><div class="progress-fill"></div></div>
+                <span class="row-status">◌</span>
+                <span class="row-time">QUEUED</span>
+              </div>
+              <div class="dashboard-row pending" data-stage="DEPLOY">
+                <span class="row-label">DEPLOY</span>
+                <div class="row-progress"><div class="progress-fill"></div></div>
+                <span class="row-status">◌</span>
+                <span class="row-time">QUEUED</span>
+              </div>
+            </div>
+            <div class="dashboard-footer">
+              <span class="text-mono">├──────────────────────────────────────────────────────────────┤</span>
+              <div class="footer-stats">
+                <span class="stat-item"><span class="dot-healthy">●</span> 3 NODES HEALTHY</span>
+                <span class="stat-item">◌ 0 ALERTS</span>
+                <span class="stat-item">↑ 99.97% UPTIME</span>
+              </div>
+              <span class="text-mono">└──────────────────────────────────────────────────────────────┘</span>
+            </div>
+            <!-- Terminal overlay bottom strip (updated) -->
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__output" id="terminal-output">
+                <!-- JS injects lines here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2: THE PIPELINE
+    ════════════════════════════════════════ -->
+    <section id="pipeline" class="section-pipeline">
+      <div class="section-inner">
+
+        <!-- Section header -->
+        <div class="pipeline-header">
+          <p class="text-eyebrow">END-TO-END AUTOMATION FLOW</p>
+          <h2 class="pipeline-title">THE PIPELINE</h2>
+        </div>
+
+        <!-- Track wrapper: handles horizontal padding -->
+        <div class="pipeline-track-wrapper">
+
+          <!-- The horizontal track -->
+          <div class="pipeline-track">
+
+            <!-- Background line (full width, grey) -->
+            <div class="track-line-bg"></div>
+
+            <!-- Animated fill line (accent, scaleX driven by GSAP) -->
+            <div class="track-line-fill"></div>
+
+            <!-- Connector dots: 3 between each pair of nodes = 12 total -->
+            <!-- Position each with inline left: % values -->
+            <!-- Between 01→02: left 22%, 27%, 32% -->
+            <!-- Between 02→03: left 47%, 52%, 57% -->
+            <!-- Between 03→04: left 64%, 69%, 74% -->
+            <!-- Between 04→05: left 81%, 86%, 91% -->
+            <span class="track-dot" style="left:22%"></span>
+            <span class="track-dot" style="left:27%"></span>
+            <span class="track-dot" style="left:32%"></span>
+            <span class="track-dot" style="left:47%"></span>
+            <span class="track-dot" style="left:52%"></span>
+            <span class="track-dot" style="left:57%"></span>
+            <span class="track-dot" style="left:64%"></span>
+            <span class="track-dot" style="left:69%"></span>
+            <span class="track-dot" style="left:74%"></span>
+            <span class="track-dot" style="left:81%"></span>
+            <span class="track-dot" style="left:86%"></span>
+            <span class="track-dot" style="left:91%"></span>
+
+            <!-- 5 stage nodes -->
+            <div class="track-node active" data-stage="0">
+              <span class="node-number">01</span>
+              <span class="node-label">COMPILE</span>
+            </div>
+            <div class="track-node" data-stage="1">
+              <span class="node-number">02</span>
+              <span class="node-label">TEST</span>
+            </div>
+            <div class="track-node" data-stage="2">
+              <span class="node-number">03</span>
+              <span class="node-label">SCAN</span>
+            </div>
+            <div class="track-node" data-stage="3">
+              <span class="node-number">04</span>
+              <span class="node-label">STAGE</span>
+            </div>
+            <div class="track-node" data-stage="4">
+              <span class="node-number">05</span>
+              <span class="node-label">DEPLOY</span>
+            </div>
+
+          </div><!-- /.pipeline-track -->
+        </div><!-- /.pipeline-track-wrapper -->
+
+        <!-- Detail panel: swaps content per active stage -->
+        <div class="pipeline-detail" data-current="0">
+
+          <!-- One panel per stage, only active one is visible -->
+          <div class="stage-panel" data-stage="0">
+            <h3 class="stage-title">COMPILE</h3>
+            <p class="stage-meta">avg 1.8s · 4,200 runs/day · 0.0% fail</p>
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="pipeline-terminal__output"
+                   data-cmd="nexus build --target=prod --parallel=8 --cache=warm">
+              </div>
+            </div>
+            <div class="stage-stats" style="display:none">
+              <div class="stat-item">
+                <span class="stat-label">CACHE HIT RATE</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="94"></div></div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">PARALLEL WORKERS</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="80"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel" data-stage="1" hidden>
+            <h3 class="stage-title">TEST</h3>
+            <p class="stage-meta">avg 12s · 847 tests · 99.3% pass rate</p>
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="pipeline-terminal__output"
+                   data-cmd="nexus test --suite=full --coverage --bail=false">
+              </div>
+            </div>
+            <div class="stage-stats" style="display:none">
+              <div class="stat-item">
+                <span class="stat-label">PASS RATE</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="99"></div></div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">COVERAGE</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="87"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel" data-stage="2" hidden>
+            <h3 class="stage-title">SCAN</h3>
+            <p class="stage-meta">avg 6s · CVE: 0 critical · SBOM: clean</p>
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="pipeline-terminal__output"
+                   data-cmd="nexus audit --depth=critical --sbom --license-check">
+              </div>
+            </div>
+            <div class="stage-stats" style="display:none">
+              <div class="stat-item">
+                <span class="stat-label">VULNERABILITIES</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="0"></div></div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">LICENSE COMPLIANCE</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="100"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel" data-stage="3" hidden>
+            <h3 class="stage-title">STAGE</h3>
+            <p class="stage-meta">avg 45s · canary: 1% · observe: 300s</p>
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="pipeline-terminal__output"
+                   data-cmd="nexus stage --env=canary --traffic=1% --observe=300s">
+              </div>
+            </div>
+            <div class="stage-stats" style="display:none">
+              <div class="stat-item">
+                <span class="stat-label">CANARY TRAFFIC</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="1"></div></div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">ERROR BUDGET</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="98"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-panel" data-stage="4" hidden>
+            <h3 class="stage-title">DEPLOY</h3>
+            <p class="stage-meta">avg 0.8s · 840 runs/day · Zero downtime</p>
+            <div class="pipeline-terminal">
+              <div class="pipeline-terminal__bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="pipeline-terminal__output"
+                   data-cmd="nexus deploy --strategy=blue-green --rollback=auto">
+              </div>
+            </div>
+            <div class="stage-stats" style="display:none">
+              <div class="stat-item">
+                <span class="stat-label">PROD REPLICATION</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="100"></div></div>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">AUTO-ROLLBACK ENABLED</span>
+                <div class="stat-bar"><div class="stat-fill" data-width="100"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.pipeline-detail -->
+      </div><!-- /.section-inner -->
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3: STACK INTEROPERABILITY
+    ════════════════════════════════════════ -->
+    <section id="stack" class="section-stack-interop">
+      <div class="container">
+        <div class="stack-header">
+          <h2 class="stack-headline">INTEGRATED STACK</h2>
+          <span class="stack-meta">13 TOOLS · 3 CLOUD PROVIDERS · 1 NEXUS</span>
+        </div>
+
+        <div class="stack-orbit-wrap">
+          <canvas id="stack-orbit-canvas" aria-label="Stack integration orbit diagram"></canvas>
+          <div class="stack-tooltip" id="stack-tooltip"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4: ZERO-DOWNTIME PROTOCOL
+    ════════════════════════════════════════ -->
+    <section id="zdt" class="section-zero-downtime">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <h2 class="text-title" style="font-family:var(--fd); font-weight:900;">
+            ZERO <span style="color:var(--accent)">/</span> DOWNTIME.
+          </h2>
+          <div class="title-underline-full" style="width:100%; height:1px; background:var(--bc); position:relative; margin:16px auto 0;">
+            <div class="title-underline-accent" style="position:absolute; left:0; top:0; height:100%; background:var(--accent); transform:scaleX(0); transform-origin:left;"></div>
+          </div>
+        </div>
+
+        <div class="zdt-grid">
+
+          <div class="zdt-card" data-protocol="blue-green">
+            <div class="zdt-card__eyebrow">01 BLUE-GREEN SWAP</div>
+            <div class="zdt-card__icon-wrap" style="width:100%;height:200px;">
+              <svg class="zdt-icon-svg zdt-animated" viewBox="0 0 200 120" data-anim="bluegreen">
+                <rect class="bg-group" x="15" y="30" width="65" height="60" rx="4"
+                      fill="none" stroke="#0066cc" stroke-width="2"/>
+                <rect class="gg-group" x="120" y="30" width="65" height="60" rx="4"
+                      fill="none" stroke="#22c55e" stroke-width="2"/>
+                <text class="bg-label" x="47" y="66" text-anchor="middle"
+                      font-size="9" fill="#0066cc" font-family="monospace">v1.2 LIVE</text>
+                <text class="gg-label" x="152" y="66" text-anchor="middle"
+                      font-size="9" fill="#22c55e" font-family="monospace">v1.3 READY</text>
+                <path class="traffic-arrow" d="M82 60 L118 60"
+                      fill="none" stroke="#00aaff" stroke-width="1" stroke-linecap="round"/>
+                <polygon class="arrow-head" points="118,56 126,60 118,64" fill="#00aaff"/>
+                <text class="traffic-label" x="100" y="50" text-anchor="middle"
+                      font-size="7" fill="#00aaff" font-family="monospace">0%</text>
+              </svg>
+            </div>
+            <h4 class="zdt-card__title">PARALLEL DEPLOY</h4>
+            <p class="zdt-card__desc">
+              Switch production traffic between identical stacks instantly. Zero risk, instantaneous cutover with full verification.
+            </p>
+          </div>
+
+          <div class="zdt-card" data-protocol="canary">
+            <div class="zdt-card__eyebrow">02 CANARY RELEASE</div>
+            <div class="zdt-card__icon-wrap" style="width:100%;height:200px;">
+              <svg class="zdt-icon-svg zdt-animated" viewBox="0 0 200 120" data-anim="canary">
+                <circle cx="30" cy="60" r="14" fill="none" stroke="#00aaff" stroke-width="2"/>
+                <text x="30" y="64" text-anchor="middle" font-size="7" fill="#00aaff" font-family="monospace">NEXUS</text>
+                <path class="stable-path" d="M44 60 L80 60 L120 96"
+                      fill="none" stroke="var(--t3)" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="100" y="82" text-anchor="middle" font-size="7" fill="var(--t3)" font-family="monospace">99% → STABLE</text>
+                <path class="canary-path" d="M44 60 L80 60 L120 24"
+                      fill="none" stroke="#ff6b00" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="100" y="38" text-anchor="middle" font-size="7" fill="#ff6b00" font-family="monospace">1% → CANARY</text>
+                <rect x="120" y="88" width="50" height="20" rx="3"
+                      fill="none" stroke="#22c55e" stroke-width="1.5"/>
+                <rect x="120" y="14" width="50" height="20" rx="3"
+                      fill="none" stroke="#ff6b00" stroke-width="1"/>
+              </svg>
+            </div>
+            <h4 class="zdt-card__title">GRADUAL ROLLOUT</h4>
+            <p class="zdt-card__desc">
+              Expose new features to a 1% subset of users. Monitor telemetry before expanding the blast radius to 100%.
+            </p>
+          </div>
+
+          <div class="zdt-card" data-protocol="rollback">
+            <div class="zdt-card__eyebrow">03 INSTANT ROLLBACK</div>
+            <div class="zdt-card__icon-wrap" style="width:100%;height:200px;">
+              <svg class="zdt-icon-svg zdt-animated" viewBox="0 0 200 120" data-anim="rollback">
+                <circle cx="100" cy="60" r="50" fill="none" stroke="var(--t3)" stroke-width="2"/>
+                <path class="progress-ring" d="M100 10 A 50 50 0 1 1 99.9 10"
+                      fill="none" stroke="#ff6b00" stroke-width="4" stroke-linecap="round"
+                      stroke-dasharray="314" stroke-dashoffset="0"/>
+                <text class="counter-text" x="100" y="56" text-anchor="middle"
+                      font-size="18" fill="var(--t1)" font-family="monospace">90s</text>
+                <text class="sub-text" x="100" y="76" text-anchor="middle"
+                      font-size="7" fill="var(--t3)" font-family="monospace">DETECTING...</text>
+              </svg>
+            </div>
+            <h4 class="zdt-card__title">ONE-CLICK REVERT</h4>
+            <p class="zdt-card__desc">
+              Fail-safe protocols triggered by automated alerts. Restore previous stable state in under 90 seconds.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 6: CTA — "INITIATE PIPELINE"
+    ════════════════════════════════════════ -->
+    <section id="cta-devops" aria-labelledby="cta-devops-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+        <div class="text-eyebrow reveal-clip">EDGENEXUS DEVOPS-INTAKE</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="cta-devops-heading" class="text-title reveal-clip">
+          READY TO<br>
+          <span style="color:var(--accent)">NEVER PAGE AT 3AM</span> AGAIN?
+        </h2>
+        <p class="text-body reveal-fade">
+          Tell us what's breaking. We'll make sure it never does again.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form" aria-labelledby="cta-devops-heading">
+
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input class="term-input" id="inp-name" type="text" placeholder="Enter your name" autocomplete="name" aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-email">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input class="term-input" id="inp-email" type="email" placeholder="Enter your email" autocomplete="email" aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-issue">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea class="term-input" id="inp-issue" rows="4" placeholder="How can we help?" aria-required="true"></textarea>
+          </div>
+
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" aria-label="Submit pipeline initialization" data-page="devops">
+            <span>SEND MESSAGE</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <!-- SCRIPTS: CDN first, module last -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script type="module" src="../js/pages/devops/page-main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.pre-network-wrap {
+  margin-bottom: 32px;
+  opacity: 0.9;
+  max-width: 80vw;
+}
+
+#pre-svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.pre-logo {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: 16px;
+  color: white;
+  letter-spacing: 0.12em;
+  margin-bottom: 32px;
+}
+.pre-logo span { color: var(--accent); }
+
+.pre-bar-container {
+  width: min(200px, 60vw);
+  height: 1px;         /* thinner = more premium */
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.pre-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  box-shadow: 0 0 8px var(--accent);
+  transition: width 0.05s linear;
+}
+
+.pre-status {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.pre-counter {
+  font-family: var(--fm);
+  font-size: 48px;
+  color: rgba(255,255,255,0.15);
+  font-weight: 500;
+  line-height: 1;
+}

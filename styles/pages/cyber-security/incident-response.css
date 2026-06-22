@@ -1,0 +1,262 @@
+/* ── INCIDENT RESPONSE SECTION ─────────────────────────── */
+.section-incident-response {
+  position: relative;
+  background: var(--surface);
+  padding: var(--sp) 0;
+  border-top: 1px solid var(--bc);
+  border-bottom: 1px solid var(--bc);
+  perspective: 1200px;
+}
+
+.section-header--center { text-align: center; margin-bottom: 48px; }
+
+.ir-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  transform-style: preserve-3d;
+}
+
+.ir-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.ir-card__eyebrow {
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ir-card__icon-wrap {
+  width: 100%; height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ir-card__title {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.ir-card__desc {
+  font-family: var(--fu);
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.5;
+}
+
+/* ── Power-on Micro-sequence Flash ── */
+.ir-flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Card 1 — Log Panel ── */
+.log-panel {
+  height: 120px;
+  overflow: hidden;
+  font-family: var(--fm);
+  font-size: 10px;
+  line-height: 1.7;
+  position: relative;
+}
+
+.log-panel__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-panel__inner.animating {
+  animation: log-scroll 8s linear infinite;
+}
+
+.log-panel:hover .log-panel__inner.animating {
+  animation-play-state: paused;
+}
+
+.log-line {
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.log-time {
+  color: var(--t3);
+}
+
+.log-keyword {
+  color: var(--accent);
+}
+
+@keyframes log-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* ── Card 2 — Disconnect Diagram ── */
+.disconnect-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.disconnect-svg .node-circle {
+  fill: var(--accent-dim);
+  stroke: var(--accent-border);
+  stroke-width: 1.5;
+  transition: fill 0.3s;
+}
+
+.disconnect-svg .connection {
+  stroke: var(--accent-border);
+  stroke-width: 1.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s;
+}
+
+.disconnect-svg .node-label {
+  fill: var(--t2);
+  font-family: var(--fm);
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.disconnect-svg .disconnected .node-circle {
+  fill: var(--bh);
+}
+
+/* ── Card 3 — Checklist ── */
+.checklist-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.checklist-row-label {
+  fill: var(--t2);
+  font-family: var(--fm);
+  font-size: 8px;
+}
+
+.checklist-checkbox {
+  fill: none;
+  stroke: var(--accent-border);
+  stroke-width: 1.5;
+}
+
+.checklist-checkmark {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.checklist-counter {
+  fill: var(--accent);
+  font-family: var(--fm);
+  font-size: 11px;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+/* ── Title Underline ── */
+.title-underline-full { width:100%; height:1px; background:var(--bc); position:relative; margin:16px auto 0; }
+.title-underline-accent { position:absolute; left:0; top:0; height:100%; background:var(--accent); transform:scaleX(0); transform-origin:left; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) { .ir-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .ir-card__icon-wrap { height: 180px; } }
+
+/* ── IR RESPONSIVE ADDITIONS ─────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .section-incident-response {
+    padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 60px);
+  }
+}
+
+@media (max-width: 900px) {
+  .ir-grid {
+    perspective: none !important;
+    transform: none !important;
+  }
+  .ir-card {
+    transform: none !important;
+    translateZ: 0 !important;
+    opacity: 1 !important;
+    rotateY: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ir-card {
+    padding: 20px 18px;
+  }
+  .log-panel {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .disconnect-svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .checklist-row-label {
+    font-size: 7px;
+  }
+  .checklist-counter {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-title {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+  .ir-card__icon-wrap {
+    height: 160px;
+  }
+  .log-panel__inner.animating {
+    animation: none;
+  }
+  .log-panel__inner .log-line:nth-child(n+5) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-incident-response {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .ir-card {
+    padding: 16px 14px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .log-panel__inner.animating {
+    animation: none;
+  }
+}

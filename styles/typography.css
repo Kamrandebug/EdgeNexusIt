@@ -1,0 +1,58 @@
+/* Google Fonts loaded via <link> in index.html head for faster discovery */
+
+/* ── Display Scale ───────────────────────── */
+.text-display {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(30px, 5.5vw, 80px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: white;
+}
+
+.text-title {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(22px, 3.5vw, 52px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: white;
+}
+
+.text-heading {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: white;
+}
+
+/* ── Mono / Label Scale ──────────────────── */
+.text-eyebrow {
+  font-family: var(--fm);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.text-label {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--t2);
+}
+
+/* ── Body Text ───────────────────────────── */
+.text-body {
+  font-family: var(--fu);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+.text-caption {
+  font-family: var(--fu);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--t3);
+}

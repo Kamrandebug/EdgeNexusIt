@@ -1,0 +1,327 @@
+/* ── DEVOPS HERO SECTION ─────────────────────────────── */
+.hero-devops {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+  padding-top: var(--nh);
+}
+
+.hero-devops__inner {
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  width: 100%;
+}
+
+/* LEFT COLUMN */
+.hero-devops__left {
+  max-width: 560px;
+}
+
+.hero-devops__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-family: var(--fm);
+  font-size: 11px;
+}
+
+.hero-devops__headline {
+  font-family: var(--fd);
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.hero-devops__headline .headline-accent {
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 20px rgba(0, 170, 255, 0.3),
+               0 0 40px rgba(0, 170, 255, 0.15);
+}
+
+.hero-devops__headline .headline-accent::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(var(--underline-scale, 0));
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.hero-devops__body {
+  font-family: var(--fu);
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.6;
+  max-width: 460px;
+  margin-bottom: 28px;
+}
+
+.hero-devops__cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+/* RIGHT COLUMN: Pipeline Dashboard */
+.pipeline-dashboard-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  padding: 20px;
+  font-family: var(--fm);
+  color: var(--t2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.dashboard-header {
+  margin-bottom: 20px;
+  color: var(--t3);
+  font-size: 11px;
+}
+
+.dashboard-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 20px 80px;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+}
+
+.row-label {
+  color: var(--t2);
+}
+
+.row-progress {
+  height: 2px;
+  background: var(--bc);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.dashboard-row[data-stage="BUILD"] .progress-fill,
+.dashboard-row[data-stage="TEST"] .progress-fill {
+  width: 100%;
+}
+
+.dashboard-row.active .progress-fill {
+  background: var(--accent-2);
+}
+
+.dashboard-row.pending .progress-fill {
+  background: var(--bc);
+}
+
+.row-status {
+  text-align: center;
+}
+
+.dashboard-row .row-status { color: var(--accent); }
+.dashboard-row.active .row-status { color: var(--accent-2); animation: status-blink 1s infinite; }
+.dashboard-row.pending .row-status { color: var(--t3); }
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.row-time {
+  text-align: right;
+  color: var(--t3);
+}
+
+.dashboard-row.active .row-time {
+  color: var(--accent-2);
+}
+
+.dashboard-footer {
+  margin-top: 14px;
+}
+
+.footer-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 10px;
+  color: var(--t2);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot-healthy {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+.pipeline-terminal {
+  margin-top: 8px;
+  border-top: 1px solid var(--bc);
+  padding-top: 12px;
+}
+
+.pipeline-terminal__output {
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--accent);
+  line-height: 1.6;
+  height: 60px;
+  overflow: hidden;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero-devops__inner {
+    grid-template-columns: 1fr;
+  }
+  .pipeline-canvas-wrap {
+    aspect-ratio: 16 / 9;
+  }
+  .hero-devops__left {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero-devops {
+    min-height: auto;
+    padding: 100px 0 40px;
+  }
+  .hero-devops__inner {
+    gap: 32px;
+  }
+  .hero-devops__headline {
+    font-size: clamp(36px, 8vw, 56px);
+  }
+  .hero-devops__body {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .dashboard-row {
+    grid-template-columns: 60px 1fr 16px minmax(60px, auto);
+    gap: 8px;
+    font-size: 10px;
+  }
+  .row-time {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .hero-devops__cta {
+    flex-direction: column;
+  }
+  .hero-devops__cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-devops__right {
+    margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero-devops {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+  .hero-devops__inner {
+    padding: 0 16px;
+    gap: 32px;
+  }
+  .hero-devops__headline {
+    font-size: clamp(28px, 10vw, 42px);
+  }
+  .hero-devops__eyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+  }
+  .hero-devops__body {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .pipeline-dashboard-wrap {
+    padding: 12px;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .dashboard-header {
+    font-size: 9px;
+    margin-bottom: 12px;
+  }
+  .dashboard-row {
+    grid-template-columns: 50px 1fr 14px minmax(50px, auto);
+    gap: 6px;
+    font-size: 9px;
+  }
+  .row-time {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .footer-stats {
+    font-size: 9px;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pipeline-terminal__output {
+    font-size: 9px;
+    height: 48px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .dashboard-rows {
+    min-width: 0;
+    width: 100%;
+  }
+}

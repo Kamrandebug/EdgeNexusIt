@@ -1,0 +1,31 @@
+/* ── Custom Scrollbar ─────────────────────── */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-dim);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-border);
+  }
+}
+
+/* ── Text Selection ───────────────────────── */
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+::-moz-selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}

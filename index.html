@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>EdgeNexus IT — Enterprise Infrastructure</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-48.png">
+
+  <!-- Google Fonts: preconnect + preload (faster than @import) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;700;900&family=Barlow+Condensed:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <!-- Critical styles (loaded first, render-blocking by design) -->
+  <!-- Google Fonts stylesheet (swap ensures text visible during load) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;700;900&family=Barlow+Condensed:wght@400;600&display=swap">
+
+  <!-- Critical styles — these affect the first paint (preloader + global) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/components/preloader.css">
+
+  <!-- Non-critical styles — load asynchronously --->
+  <link rel="stylesheet" href="styles/typography.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/utilities.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/scrollbar.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/components/nav.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/components/buttons.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/components/cards.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/components/terminal.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/components/cursor.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/hero.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/services.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/process.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/soc.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/cta.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/sections/footer.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="styles/typography.css">
+    <link rel="stylesheet" href="styles/utilities.css">
+    <link rel="stylesheet" href="styles/scrollbar.css">
+    <link rel="stylesheet" href="styles/components/nav.css">
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/cards.css">
+    <link rel="stylesheet" href="styles/components/terminal.css">
+    <link rel="stylesheet" href="styles/components/cursor.css">
+    <link rel="stylesheet" href="styles/sections/hero.css">
+    <link rel="stylesheet" href="styles/sections/services.css">
+    <link rel="stylesheet" href="styles/sections/process.css">
+    <link rel="stylesheet" href="styles/sections/soc.css">
+    <link rel="stylesheet" href="styles/sections/cta.css">
+    <link rel="stylesheet" href="styles/sections/footer.css">
+  </noscript>
+
+  <!-- Critical JS: inline, non-blocking -->
+  <script>history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+
+  <!-- Defer heavy CDN libs — loaded after first paint -->
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js">
+  <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js">
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader" role="status" aria-label="Loading EdgeNexus IT">
+    <!-- JS builds inner HTML -->
+  </div>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════ -->
+    <section id="hero" aria-labelledby="hero-headline">
+      <canvas id="hero-canvas" aria-hidden="true" role="presentation"></canvas>
+      <div class="mobile-globe-fallback" aria-hidden="true"></div>
+
+      <!-- Bracket corners -->
+      <div class="hero-brackets" aria-hidden="true">
+        <span class="bracket bracket--tl"></span>
+        <span class="bracket bracket--tr"></span>
+        <span class="bracket bracket--bl"></span>
+        <span class="bracket bracket--br"></span>
+      </div>
+
+      <div class="hero-content">
+        <div class="text-eyebrow reveal-clip">EDGE INFRASTRUCTURE</div>
+        <div class="divider reveal-divider"></div>
+        <h1 id="hero-headline" class="hero-headline reveal-clip">
+          Predictive IT Management.<br><span class="hero-headline-accent">Total Business Continuity.</span>
+        </h1>
+        <p class="text-body reveal-fade">
+          Enterprise-grade networks. Zero-downtime architecture.<br>
+          Built for businesses that cannot afford to stop.
+        </p>
+        <div id="typer" class="text-mono reveal-fade" aria-live="polite"></div>
+        <div class="hero-cta reveal-fade">
+          <button class="btn btn-primary" aria-label="Deploy now">
+            <span>DEPLOY NOW</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" 
+                    stroke-width="1.5" fill="none"/>
+            </svg>
+          </button>
+          <button class="btn btn-ghost" aria-label="View infrastructure details">
+            <span>VIEW INFRASTRUCTURE</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SERVICES SECTION
+    ════════════════════════════════════════ -->
+    <section id="services" aria-labelledby="services-heading">
+      <div class="services-header container">
+        <div class="text-eyebrow reveal-clip">OUR SERVICES</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="services-heading" class="text-title reveal-clip">
+          FIVE STREAMS.<br>ONE NEXUS.
+        </h2>
+        <p class="text-body reveal-fade">
+          Every service engineered to eliminate failure at scale.
+        </p>
+      </div>
+
+      <!-- Horizontal scroll track (JS pins and drives) -->
+      <div class="services-track" aria-label="Services list">
+        <div class="services-container reveal-group" role="list">
+
+          <article class="service-card reveal-fade" role="listitem"
+                   aria-label="MSP service">
+            <div class="card-corner card-corner--tl" aria-hidden="true"></div>
+            <div class="card-corner card-corner--br" aria-hidden="true"></div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="8"  r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="6"  cy="24" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="26" cy="24" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <path d="M16 11L6 21M16 11L26 21M6 24h20" 
+                      stroke="#00aaff" stroke-width="1" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="service-num text-label">01</div>
+            <h3 class="text-heading">MANAGED<br>SERVICE PROVIDER</h3>
+            <p class="text-body">
+              End-to-end IT management. Proactive monitoring, 
+              maintenance, and strategic IT roadmapping.
+            </p>
+            <div class="card-scanline" aria-hidden="true"></div>
+            <div class="card-overlay">
+              <button class="explore-btn">EXPLORE SERVICE &rarr;</button>
+            </div>
+            <div class="card-accent-line" aria-hidden="true"></div>
+            <span class="card-hint" aria-hidden="true">EXPLORE →</span>
+          </article>
+
+          <article class="service-card reveal-fade" role="listitem"
+                   aria-label="DevOps service">
+            <div class="card-corner card-corner--tl" aria-hidden="true"></div>
+            <div class="card-corner card-corner--br" aria-hidden="true"></div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 22a6 6 0 010-12 8 8 0 0116 2 5 5 0 010 10H8z" 
+                      stroke="#00aaff" stroke-width="1.5"/>
+                <path d="M16 17v-6M13 14l3-3 3 3" stroke="#00aaff" 
+                      stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="service-num text-label">02</div>
+            <h3 class="text-heading">DEVOPS</h3>
+            <p class="text-body">
+              CI/CD pipelines, container orchestration, 
+              and infrastructure-as-code at enterprise scale.
+            </p>
+            <div class="card-scanline" aria-hidden="true"></div>
+            <div class="card-overlay">
+              <button class="explore-btn">EXPLORE SERVICE &rarr;</button>
+            </div>
+            <div class="card-accent-line" aria-hidden="true"></div>
+            <span class="card-hint" aria-hidden="true">EXPLORE →</span>
+          </article>
+
+          <article class="service-card reveal-fade" role="listitem"
+                   aria-label="Cyber Security service">
+            <div class="card-corner card-corner--tl" aria-hidden="true"></div>
+            <div class="card-corner card-corner--br" aria-hidden="true"></div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 3L5 8v8c0 6.627 4.925 12.822 11 14 
+                         6.075-1.178 11-7.373 11-14V8L16 3z" 
+                      stroke="#00aaff" stroke-width="1.5"/>
+                <path d="M11 16l3 3 7-7" stroke="#00aaff" 
+                      stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="service-num text-label">03</div>
+            <h3 class="text-heading">CYBER<br>SECURITY</h3>
+            <p class="text-body">
+              Zero-trust frameworks, real-time threat intelligence, 
+              and autonomous incident response.
+            </p>
+            <div class="card-scanline" aria-hidden="true"></div>
+            <div class="card-overlay">
+              <button class="explore-btn">EXPLORE SERVICE &rarr;</button>
+            </div>
+            <div class="card-accent-line" aria-hidden="true"></div>
+            <span class="card-hint" aria-hidden="true">EXPLORE →</span>
+          </article>
+
+          <article class="service-card reveal-fade" role="listitem"
+                   aria-label="IT Support and Infrastructure service">
+            <div class="card-corner card-corner--tl" aria-hidden="true"></div>
+            <div class="card-corner card-corner--br" aria-hidden="true"></div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect x="4"  y="4"  width="24" height="16" rx="2" 
+                      stroke="#00aaff" stroke-width="1.5"/>
+                <path d="M10 28h12M16 20v8" stroke="#00aaff" 
+                      stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="16" cy="12" r="3" stroke="#00aaff" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="service-num text-label">04</div>
+            <h3 class="text-heading">IT SUPPORT &amp;<br>INFRASTRUCTURE</h3>
+            <p class="text-body">
+              24/7 helpdesk, on-site support, and infrastructure 
+              design with sub-15-minute response SLA.
+            </p>
+            <div class="card-scanline" aria-hidden="true"></div>
+            <div class="card-overlay">
+              <button class="explore-btn">EXPLORE SERVICE &rarr;</button>
+            </div>
+            <div class="card-accent-line" aria-hidden="true"></div>
+            <span class="card-hint" aria-hidden="true">EXPLORE →</span>
+          </article>
+
+          <article class="service-card reveal-fade" role="listitem"
+                   aria-label="Staff Augmentation service">
+            <div class="card-corner card-corner--tl" aria-hidden="true"></div>
+            <div class="card-corner card-corner--br" aria-hidden="true"></div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="12" cy="10" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="20" cy="10" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="8" cy="22" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="16" cy="22" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <circle cx="24" cy="22" r="3" stroke="#00aaff" stroke-width="1.5"/>
+                <line x1="12" y1="13" x2="8" y2="19" stroke="#00aaff" stroke-width="1" stroke-dasharray="2 2"/>
+                <line x1="20" y1="13" x2="16" y2="19" stroke="#00aaff" stroke-width="1" stroke-dasharray="2 2"/>
+                <line x1="20" y1="13" x2="24" y2="19" stroke="#00aaff" stroke-width="1" stroke-dasharray="2 2"/>
+                <line x1="12" y1="10" x2="20" y2="10" stroke="#00aaff" stroke-width="1" stroke-dasharray="2 2"/>
+              </svg>
+            </div>
+            <div class="service-num text-label">05</div>
+            <h3 class="text-heading">STAFF<br>AUGMENTATION</h3>
+            <p class="text-body">
+              On-demand engineering talent deployed with the precision of infrastructure. Scale your team without scaling your overhead.
+            </p>
+            <div class="card-scanline" aria-hidden="true"></div>
+            <div class="card-overlay">
+              <button class="explore-btn">EXPLORE SERVICE &rarr;</button>
+            </div>
+            <div class="card-accent-line" aria-hidden="true"></div>
+            <span class="card-hint" aria-hidden="true">EXPLORE →</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PROCESS SECTION
+    ════════════════════════════════════════ -->
+    <section id="process" aria-labelledby="process-heading">
+
+      <div class="process-split">
+
+        <!-- LEFT: Sticky panel -->
+        <div class="process-left" id="process-left">
+          <div class="process-left-inner">
+
+            <p class="process-eyebrow label-mono">THE BLUEPRINT</p>
+
+            <h2 id="process-heading" class="process-headline text-display">
+              <span class="word">STRATEGIC</span><br>
+              <span class="word">EXECUTION.</span>
+            </h2>
+
+            <div class="process-pipeline-track" aria-hidden="true">
+              <div class="pipeline-line-bg"></div>
+              <div class="pipeline-line-fill" id="pipeline-fill"></div>
+
+              <div class="pipeline-node" data-node="0">
+                <div class="node-dot"></div>
+                <span class="node-label label-mono">DISCOVER</span>
+              </div>
+              <div class="pipeline-node" data-node="1">
+                <div class="node-dot"></div>
+                <span class="node-label label-mono">DESIGN</span>
+              </div>
+              <div class="pipeline-node" data-node="2">
+                <div class="node-dot"></div>
+                <span class="node-label label-mono">DEPLOY</span>
+              </div>
+              <div class="pipeline-node" data-node="3">
+                <div class="node-dot"></div>
+                <span class="node-label label-mono">MONITOR</span>
+              </div>
+              <div class="pipeline-node" data-node="4">
+                <div class="node-dot"></div>
+                <span class="node-label label-mono">OPTIMIZE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: Scrolling cards -->
+        <div class="process-right" id="process-right">
+
+          <div class="process-card" data-card="0">
+            <div class="card-inner">
+              <p class="card-number label-mono">01 / DISCOVERY</p>
+              <h3 class="card-title">Auditing current infrastructure.</h3>
+              <p class="card-body">Complete situational awareness before a single line of config is changed.</p>
+            </div>
+          </div>
+
+          <div class="process-card" data-card="1">
+            <div class="card-inner">
+              <p class="card-number label-mono">02 / DESIGN</p>
+              <h3 class="card-title">Engineering the roadmap.</h3>
+              <p class="card-body">Zero-failure topology tailored to your exact scale, growth trajectory, and compliance requirements.</p>
+            </div>
+          </div>
+
+          <div class="process-card" data-card="2">
+            <div class="card-inner">
+              <p class="card-number label-mono">03 / DEPLOYMENT</p>
+              <h3 class="card-title">Execution with precision.</h3>
+              <p class="card-body">Seamless migration and system integration. Zero downtime. Zero surprises.</p>
+            </div>
+          </div>
+
+          <div class="process-card" data-card="3">
+            <div class="card-inner">
+              <p class="card-number label-mono">04 / MONITORING</p>
+              <h3 class="card-title">Constant vigilance.</h3>
+              <p class="card-body">24/7 observation via our global NOC network. Threats neutralised before they become incidents.</p>
+            </div>
+          </div>
+
+          <div class="process-card" data-card="4">
+            <div class="card-inner">
+              <p class="card-number label-mono">05 / OPTIMIZATION</p>
+              <h3 class="card-title">Continuous improvement.</h3>
+              <p class="card-body">Performance benchmarking and quarterly audits. Your infrastructure evolves as your business does.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SOC / SECURITY OPERATIONS CENTER
+    ════════════════════════════════════════ -->
+    <section id="soc" aria-label="Security Operations Center">
+      <div class="soc-inner">
+
+        <div class="soc-header">
+          <span class="text-eyebrow reveal-clip">THREAT INTELLIGENCE</span>
+          <div class="divider reveal-divider"></div>
+          <h2 class="text-title reveal-clip">SECURITY OPERATIONS CENTER.</h2>
+          <p class="soc-sub reveal-fade">
+            Real-time monitoring. Rapid response. Maximum protection.
+          </p>
+        </div>
+
+        <div class="soc-grid">
+
+          <!-- PANEL 1: Threat Map -->
+          <div class="soc-panel soc-panel--map">
+            <div class="soc-panel-hdr">
+              <span class="soc-panel-label">Threat Map</span>
+              <span class="soc-live-badge">
+                <span class="soc-live-dot" aria-hidden="true"></span>LIVE
+              </span>
+            </div>
+            <div class="soc-map-wrap">
+              <svg id="soc-map-svg" aria-label="Live world threat map with animated attack arcs"></svg>
+            </div>
+            <div class="soc-origins">
+              <p class="soc-origins-title">Top Attack Origins</p>
+              <ul class="soc-origins-list" id="soc-origins-list"></ul>
+            </div>
+          </div>
+
+          <!-- PANEL 2: Threat Overview -->
+          <div class="soc-panel soc-panel--donut">
+            <div class="soc-panel-hdr">
+              <span class="soc-panel-label">Threat Overview</span>
+            </div>
+            <div class="soc-donut-wrap">
+              <canvas id="soc-donut-canvas"
+                aria-label="Donut chart: 32 total threats. Critical 8, High 12, Medium 9, Low 3.">
+              </canvas>
+              <div class="soc-donut-center">
+                <span class="soc-donut-num" id="soc-threat-total">0</span>
+                <span class="soc-donut-sub">Total Threats</span>
+              </div>
+            </div>
+            <ul class="soc-legend" id="soc-legend">
+              <li>
+                <span class="soc-leg-dot" style="background:#e05252"></span>
+                <span class="soc-leg-name">Critical</span>
+                <b class="soc-leg-val" id="leg-critical">0</b>
+              </li>
+              <li>
+                <span class="soc-leg-dot" style="background:#e07820"></span>
+                <span class="soc-leg-name">High</span>
+                <b class="soc-leg-val" id="leg-high">0</b>
+              </li>
+              <li>
+                <span class="soc-leg-dot" style="background:#c8a820"></span>
+                <span class="soc-leg-name">Medium</span>
+                <b class="soc-leg-val" id="leg-medium">0</b>
+              </li>
+              <li>
+                <span class="soc-leg-dot" style="background:#28a86a"></span>
+                <span class="soc-leg-name">Low</span>
+                <b class="soc-leg-val" id="leg-low">0</b>
+              </li>
+            </ul>
+          </div>
+
+          <!-- PANEL 3: Vulnerability Score -->
+          <div class="soc-panel soc-panel--vuln">
+            <div class="soc-panel-hdr">
+              <span class="soc-panel-label">Vulnerability Score</span>
+            </div>
+            <div class="soc-vuln-score-row">
+              <span class="soc-vuln-num" id="soc-vuln-num">0</span>
+              <span class="soc-vuln-denom">/100</span>
+            </div>
+            <p class="soc-vuln-risk" id="soc-vuln-risk">Scanning...</p>
+            <div class="soc-spark-wrap">
+              <canvas id="soc-spark-canvas"
+                aria-label="Vulnerability trend sparkline"></canvas>
+            </div>
+            <p class="soc-vuln-delta">+12% vs last week</p>
+          </div>
+
+          <!-- PANEL 4: Recent Incidents -->
+          <div class="soc-panel soc-panel--incidents" aria-live="polite">
+            <div class="soc-panel-hdr">
+              <span class="soc-panel-label">Recent Incidents</span>
+            </div>
+            <ul class="soc-incidents" id="soc-incidents"></ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CTA / CONTACT SECTION
+    ════════════════════════════════════════ -->
+    <section id="cta" aria-labelledby="cta-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <!-- Centered header -->
+      <div class="cta-header">
+        <div class="text-eyebrow reveal-clip">ESTABLISH LINK</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="cta-heading" class="text-title reveal-clip">
+          READY TO BUILD<br>
+          SOMETHING <span style="color:var(--accent)">UNBREAKABLE?</span>
+        </h2>
+        <p class="text-body reveal-fade">
+          Tell us about your infrastructure challenge.<br>
+          We'll tell you exactly how to fix it.
+        </p>
+      </div>
+
+      <!-- Centered terminal -->
+      <div class="terminal reveal-fade"
+           role="form"
+           aria-labelledby="cta-heading">
+
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div class="term-body">
+          <!-- Field 1: Name -->
+          <div class="term-field">
+            <label class="term-label" for="inp-name">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input
+              class="term-input"
+              id="inp-name"
+              type="text"
+              placeholder="Enter your name"
+              autocomplete="name"
+              aria-required="true"
+            >
+          </div>
+
+          <!-- Field 2: Email -->
+          <div class="term-field">
+            <label class="term-label" for="inp-email">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input
+              class="term-input"
+              id="inp-email"
+              type="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              aria-required="true"
+            >
+          </div>
+
+          <!-- Field 3: Issue -->
+          <div class="term-field">
+            <label class="term-label" for="inp-issue">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea
+              class="term-input"
+              id="inp-issue"
+              rows="4"
+              placeholder="How can we help?"
+              aria-required="true"
+            ></textarea>
+          </div>
+
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <!-- Submit -->
+          <button
+            class="btn btn-primary term-submit"
+            type="button"
+            aria-label="Submit contact form"
+            data-page="index"
+          >
+            <span>SEND MESSAGE</span>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS: deferred CDN + module
+  ════════════════════════════════════════ -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <!-- D3 + TopoJSON: deferred (was in <head> — render-blocking) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

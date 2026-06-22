@@ -1,0 +1,11 @@
+{
+    "name": "edgenexus/website",
+    "description": "EdgeNexus IT — lead capture backend",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^7.1"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

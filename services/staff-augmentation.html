@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Augmentation — EdgeNexus IT</title>
+  <meta name="description" content="On-demand engineering talent deployed with the precision of infrastructure. Scale your team without scaling your overhead.">
+
+  <script>history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=DM+Mono:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+  <link rel="stylesheet" href="../styles/components/preloader.css">
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cards.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+  <link rel="stylesheet" href="../styles/pages/staff-augmentation/hero-staffaug.css">
+  <link rel="stylesheet" href="../styles/pages/staff-augmentation/page-transitions-staffaug.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+  <canvas id="grid-pulse" aria-hidden="true"></canvas>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ════════════ HERO ════════════ -->
+    <section id="hero-staffaug" class="hero-staffaug" data-section="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero-foreground">
+        <p class="hero-eyebrow">EDGENEXUS :: STAFF-AUG · TALENT_POOL ONLINE</p>
+
+        <div class="hero-headline">
+          <span class="hero-line">YOUR TEAM.</span>
+          <span class="hero-line">DEPLOYED</span>
+          <span class="hero-line accent">INSTANTLY.</span>
+        </div>
+
+        <p class="hero-sub">
+          On-demand engineering talent deployed with the precision of infrastructure.<br>
+          48-hour deployment. Zero bloat.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" data-scroll-to="#staffaug-contact"><span>DEPLOY YOUR TEAM</span></button>
+          <button class="btn btn-ghost" data-scroll-to="#talent-pool"><span>VIEW TALENT POOL →</span></button>
+        </div>
+      </div>
+
+      <div class="hero-metric-badge">
+        <div class="badge-label"><span class="badge-dot"></span> LIVE</div>
+        <div class="badge-value">1,240 ENGINEERS</div>
+        <div class="badge-sub">AVAILABLE NOW</div>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span>SCROLL</span>
+        <span class="hero-scroll-arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- ════════════ TALENT POOL ════════════ -->
+    <section id="talent-pool" class="talent-pool">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="section-eyebrow">02 TALENT POOL</p>
+          <h2 class="section-title">500+ ENGINEERS.<br><span class="title-accent">READY TO DEPLOY.</span></h2>
+          <p class="section-desc">Pre-vetted. Battle-tested. Across every layer of the modern stack. Filter by discipline. Deploy in 48 hours.</p>
+        </div>
+        <div class="pool-filter-bar">
+          <button class="pool-filter active" data-filter="all">ALL</button>
+          <button class="pool-filter" data-filter="backend">BACKEND</button>
+          <button class="pool-filter" data-filter="frontend">FRONTEND</button>
+          <button class="pool-filter" data-filter="devops">DEVOPS</button>
+          <button class="pool-filter" data-filter="cloud">CLOUD</button>
+          <button class="pool-filter" data-filter="security">SECURITY</button>
+          <button class="pool-filter" data-filter="data">DATA/ML</button>
+        </div>
+        <div class="pool-grid">
+          <div class="role-card" data-discipline="backend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">BACKEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Sr. Backend Engineer</h3>
+              <p class="role-card-exp">5+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Node.js</span><span class="skill-chip">PostgreSQL</span><span class="skill-chip">Redis</span><span class="skill-chip">Docker</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $85/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="backend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">BACKEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Python/Django Dev</h3>
+              <p class="role-card-exp">4+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Python</span><span class="skill-chip">Django</span><span class="skill-chip">DRF</span><span class="skill-chip">Celery</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $75/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="backend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">BACKEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Go/Rust Engineer</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Go</span><span class="skill-chip">Rust</span><span class="skill-chip">gRPC</span><span class="skill-chip">Kafka</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $95/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="frontend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">FRONTEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">React Tech Lead</h3>
+              <p class="role-card-exp">8+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">React</span><span class="skill-chip">TypeScript</span><span class="skill-chip">Next.js</span><span class="skill-chip">GraphQL</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $90/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="frontend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">FRONTEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Vue.js Developer</h3>
+              <p class="role-card-exp">5+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Vue 3</span><span class="skill-chip">Pinia</span><span class="skill-chip">Vite</span><span class="skill-chip">Tailwind</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $80/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="frontend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">FRONTEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Angular Specialist</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Angular</span><span class="skill-chip">RxJS</span><span class="skill-chip">NgRx</span><span class="skill-chip">SCSS</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $85/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="devops">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DEVOPS</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">DevOps Engineer</h3>
+              <p class="role-card-exp">7+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Kubernetes</span><span class="skill-chip">Terraform</span><span class="skill-chip">AWS</span><span class="skill-chip">CI/CD</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $88/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="devops">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DEVOPS</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Platform Engineer</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">ArgoCD</span><span class="skill-chip">Helm</span><span class="skill-chip">Istio</span><span class="skill-chip">Prometheus</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $90/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="devops">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DEVOPS</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">SRE</h3>
+              <p class="role-card-exp">8+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">SLI/SLO</span><span class="skill-chip">Grafana</span><span class="skill-chip">PagerDuty</span><span class="skill-chip">Chaos Eng</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $100/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="cloud">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">CLOUD</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Cloud Architect</h3>
+              <p class="role-card-exp">10+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">AWS</span><span class="skill-chip">GCP</span><span class="skill-chip">Azure</span><span class="skill-chip">Serverless</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $110/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="cloud">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">CLOUD</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">GCP Specialist</h3>
+              <p class="role-card-exp">5+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">GCP</span><span class="skill-chip">BigQuery</span><span class="skill-chip">GKE</span><span class="skill-chip">Cloud Run</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $88/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="cloud">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">CLOUD</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">AWS Solutions Arch</h3>
+              <p class="role-card-exp">9+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">AWS</span><span class="skill-chip">Lambda</span><span class="skill-chip">DynamoDB</span><span class="skill-chip">CDK</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $105/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="security">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">SECURITY</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Security Analyst</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Pentest</span><span class="skill-chip">SIEM</span><span class="skill-chip">Zero Trust</span><span class="skill-chip">SOC</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $95/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="security">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">SECURITY</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">AppSec Engineer</h3>
+              <p class="role-card-exp">5+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">OWASP</span><span class="skill-chip">SAST</span><span class="skill-chip">DAST</span><span class="skill-chip">Burp Suite</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $90/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="security">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">SECURITY</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Cloud Security Eng</h3>
+              <p class="role-card-exp">7+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">CSPM</span><span class="skill-chip">IAM</span><span class="skill-chip">KMS</span><span class="skill-chip">GuardDuty</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $100/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="data">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DATA/ML</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">ML Engineer</h3>
+              <p class="role-card-exp">5+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">PyTorch</span><span class="skill-chip">Spark</span><span class="skill-chip">Python</span><span class="skill-chip">MLflow</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $100/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="data">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DATA/ML</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Data Engineer</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Airflow</span><span class="skill-chip">dbt</span><span class="skill-chip">Snowflake</span><span class="skill-chip">Kafka</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $95/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="data">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DATA/ML</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Data Scientist</h3>
+              <p class="role-card-exp">4+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">TensorFlow</span><span class="skill-chip">R</span><span class="skill-chip">SQL</span><span class="skill-chip">Tableau</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $90/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="backend">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">BACKEND</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">Java Spring Boot Dev</h3>
+              <p class="role-card-exp">7+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Java</span><span class="skill-chip">Spring</span><span class="skill-chip">Hibernate</span><span class="skill-chip">Microservices</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $90/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+          <div class="role-card" data-discipline="devops">
+            <div class="role-card-inner">
+              <div class="role-card-header">
+                <span class="role-card-badge">DEVOPS</span>
+                <span class="role-card-status available">● AVAILABLE</span>
+              </div>
+              <h3 class="role-card-title">K8s Specialist</h3>
+              <p class="role-card-exp">6+ YRS EXP</p>
+              <div class="role-card-skills">
+                <span class="skill-chip">Kubernetes</span><span class="skill-chip">Helm</span><span class="skill-chip">ArgoCD</span><span class="skill-chip">Istio</span>
+              </div>
+              <div class="role-card-footer">
+                <span class="role-card-rate">FROM $88/HR</span>
+                <button class="role-card-cta">REQUEST →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ CTA ════════════ -->
+    <section id="staffaug-contact" aria-labelledby="staffaug-contact-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+        <div class="text-eyebrow reveal-clip">EDGENEXUS TALENT-REQUEST</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="staffaug-contact-heading" class="text-title reveal-clip">
+          READY TO ADD A<br>
+          <span style="color:var(--accent)">SENIOR ENGINEER</span> BY FRIDAY?
+        </h2>
+        <p class="text-body reveal-fade">
+          Tell us what you need. We'll deploy the right talent within 48 hours.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form">
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name"><span class="term-arrow">$</span> NAME:</label>
+            <input class="term-input" id="inp-name" type="text" placeholder="Enter your name" autocomplete="name" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-email"><span class="term-arrow">$</span> EMAIL:</label>
+            <input class="term-input" id="inp-email" type="email" placeholder="Enter your email" autocomplete="email" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-issue"><span class="term-arrow">$</span> ROLE NEEDED:</label>
+            <textarea class="term-input" id="inp-issue" rows="4" placeholder="Describe the role, stack, and timeline..." aria-required="true"></textarea>
+          </div>
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" data-page="staff-augmentation"><span>SEND REQUEST</span></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+    <!-- footer injected by shared-layout.js -->
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+
+  <!-- Page entry point -->
+  <script type="module" src="../js/pages/staff-augmentation/page-main.js"></script>
+
+</body>
+</html>

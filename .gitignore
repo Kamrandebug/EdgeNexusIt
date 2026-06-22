@@ -1,0 +1,28 @@
+# Dependencies
+vendor/
+node_modules/
+
+# Environment & Secrets — NEVER commit these
+api/config.php
+.env
+.env.local
+
+# Exception: .env.example IS committed as a template
+!.env.example
+*.env
+
+# Storage (rate-limit files, logs)
+api/storage/*
+!api/storage/.gitkeep
+!api/storage/.htaccess
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

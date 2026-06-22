@@ -1,0 +1,172 @@
+/* ── PERIMETER SECTION ─────────────────────────── */
+.section-perimeter {
+  position: relative;
+  background: var(--surface);
+  padding: var(--sp) 0;
+  border-top: 1px solid var(--bc);
+  border-bottom: 1px solid var(--bc);
+}
+
+.perimeter-header { text-align: center; margin-bottom: 48px; }
+.perimeter-header .text-eyebrow { margin-bottom: 8px; }
+
+.perimeter-title {
+  font-family: var(--fd);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.perimeter-orbit-wrap {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── Radar Scope Canvas ──────────────────────── */
+#perimeter-canvas {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── Defense Layer Cards ─────────────────────── */
+.defense-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 640px;
+  margin: 28px auto 0;
+}
+
+.defense-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--accent-border);
+  border-left: 2px solid var(--accent-border);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t2);
+  line-height: 1.5;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.defense-card__label {
+  display: block;
+  font-family: var(--fm);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.defense-card__name {
+  display: block;
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.defense-card__stat {
+  display: block;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* Hover state */
+.defense-card:hover {
+  border-color: var(--accent-border);
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--panel) 85%, var(--accent));
+  box-shadow: 0 0 12px rgba(0, 170, 255, 0.08);
+}
+
+.defense-card:hover .defense-card__name {
+  color: var(--accent);
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .defense-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 420px;
+  }
+
+  #perimeter-canvas {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defense-cards {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 320px;
+  }
+
+  .defense-card {
+    padding: 12px;
+  }
+
+  .defense-card__name {
+    font-size: 11px;
+  }
+
+  .defense-card__stat {
+    font-size: 10px;
+  }
+}
+
+/* ── PERIMETER RESPONSIVE ADDITIONS ──────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .section-perimeter {
+    padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .perimeter-header {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .defense-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #perimeter-canvas {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+  }
+
+  .perimeter-header .text-eyebrow {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-perimeter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

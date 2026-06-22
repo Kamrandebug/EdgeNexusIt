@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>IT Support — EdgeNexus IT</title>
+  <meta name="description" content="Enterprise IT helpdesk and support services. 18-minute average response. 99.97% SLA uptime. Human-scale speed, machine-scale detection.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <!-- Google Fonts: preconnect + preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=DM+Mono:wght@400;600&family=Barlow+Condensed:wght@400;600&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=DM+Mono:wght@400;600&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <!-- CSS: tokens FIRST -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+
+  <!-- Shared components -->
+  <link rel="stylesheet" href="../styles/components/preloader.css">
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cards.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+  <link rel="stylesheet" href="../styles/components/status-bar.css">
+
+  <!-- Shared sections -->
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="../styles/pages/it-support/hero-itsupport.css">
+  <link rel="stylesheet" href="../styles/pages/it-support/sla-stats.css">
+  <link rel="stylesheet" href="../styles/pages/it-support/response-tiers.css">
+  <link rel="stylesheet" href="../styles/pages/it-support/team-bench.css">
+
+  <!-- Fix: force scroll to top on refresh -->
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+</head>
+
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+  <canvas id="grid-pulse" aria-hidden="true"></canvas>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 1: HERO — IT SUPPORT
+    ════════════════════════════════════════════════ -->
+    <section id="hero-itsupport" class="hero-itsupport" aria-label="IT Support hero">
+      <div class="hero-itsupport-inner">
+
+        <!-- LEFT: Copy column -->
+        <div class="hero-itsupport-copy">
+          <p class="hero-eyebrow">EDGENEXUS IT-SUPPORT</p>
+          <h1 class="hero-headline text-display" aria-label="Every second offline costs. We don't give you seconds.">
+            <span class="flap-line" data-text="EVERY SECOND"></span>
+            <br>
+            <span class="flap-line" data-text="OFFLINE"></span>
+            <br>
+            <span class="flap-line flap-accent" data-text="COSTS."></span>
+          </h1>
+          <p class="hero-body">Human-scale response. Machine-scale detection. Every ticket opened is a clock started — and we race it.</p>
+          <div class="hero-cta-row">
+            <a href="#cta-itsupport" class="btn btn-primary"><span>REQUEST SUPPORT &#9654;</span></a>
+            <a href="#response-tiers" class="btn btn-ghost"><span>./view_sla</span></a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Live Ticket Board panel -->
+        <div class="hero-itsupport-panel" id="itsupport-panel">
+          <canvas id="flow-field-canvas" aria-hidden="true"></canvas>
+
+          <div class="panel-header">
+            <span class="panel-dot"></span>
+            <span class="panel-dot"></span>
+            <span class="panel-dot"></span>
+            <span class="panel-title font-mono">NEXUS_HELPDESK</span>
+            <span class="panel-status">&#9679; LIVE</span>
+          </div>
+
+          <div class="ticket-list" id="ticket-list" aria-live="polite" aria-label="Live support tickets">
+            <div class="ticket-row ticket-open" data-severity="p1">
+              <span class="ticket-sev font-mono">P1</span>
+              <span class="ticket-type">VPN ACCESS</span>
+              <span class="ticket-status">OPEN</span>
+              <span class="ticket-timer font-mono" data-seconds="243">4:03</span>
+            </div>
+            <div class="ticket-row ticket-open" data-severity="p2">
+              <span class="ticket-sev font-mono">P2</span>
+              <span class="ticket-type">NETWORK LATENCY</span>
+              <span class="ticket-status">OPEN</span>
+              <span class="ticket-timer font-mono" data-seconds="83">1:23</span>
+            </div>
+            <div class="ticket-row ticket-resolved" data-severity="p2">
+              <span class="ticket-sev font-mono">P2</span>
+              <span class="ticket-type">EMAIL SYNC</span>
+              <span class="ticket-status resolved">RESOLVED</span>
+              <span class="ticket-timer font-mono resolved">8:11</span>
+            </div>
+            <div class="ticket-row ticket-open" data-severity="p0">
+              <span class="ticket-sev font-mono">P0</span>
+              <span class="ticket-type">SERVER UNREACHABLE</span>
+              <span class="ticket-status">OPEN</span>
+              <span class="ticket-timer font-mono" data-seconds="48">0:48</span>
+            </div>
+            <div class="ticket-row ticket-open" data-severity="p3">
+              <span class="ticket-sev font-mono">P3</span>
+              <span class="ticket-type">PRINTER OFFLINE</span>
+              <span class="ticket-status">QUEUED</span>
+              <span class="ticket-timer font-mono" data-seconds="1820">30:20</span>
+            </div>
+          </div>
+
+          <div class="panel-footer-stat">
+            <span class="pf-label font-mono">AVG FIRST RESPONSE</span>
+            <div class="pf-bar-track">
+              <div class="pf-bar-fill" id="response-bar"></div>
+            </div>
+            <span class="pf-value font-mono">18 MIN</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 2: SLA STATS
+    ════════════════════════════════════════════════ -->
+    <section id="sla-stats" class="sla-stats" aria-label="SLA performance statistics">
+      <div class="sla-stats-inner">
+        <div class="sla-eyebrow font-label">MEASURED. PUBLISHED. GUARANTEED.</div>
+        <h2 class="sla-heading text-title">Numbers don't lie.</h2>
+
+        <div class="sla-grid" role="list">
+          <div class="sla-stat-card" role="listitem" aria-label="Uptime SLA: 99.97 percent">
+            <div class="drum-counter" data-target="9997" data-suffix="%" data-display="99.97" data-decimals="2" id="drum-uptime">
+              <div class="drum-digits"></div>
+            </div>
+            <div class="sla-stat-label font-label">UPTIME SLA</div>
+            <div class="sla-stat-sub">12-month rolling average</div>
+          </div>
+
+          <div class="sla-stat-card" role="listitem" aria-label="Average MTTR: 18 minutes">
+            <div class="drum-counter" data-target="18" data-suffix=" MIN" data-display="18" data-decimals="0" id="drum-mttr">
+              <div class="drum-digits"></div>
+            </div>
+            <div class="sla-stat-label font-label">AVG MTTR</div>
+            <div class="sla-stat-sub">Mean time to resolution</div>
+          </div>
+
+          <div class="sla-stat-card" role="listitem" aria-label="Tickets per month: 2847">
+            <div class="drum-counter" data-target="2847" data-suffix="" data-display="2847" data-decimals="0" id="drum-tickets">
+              <div class="drum-digits"></div>
+            </div>
+            <div class="sla-stat-label font-label">TICKETS / MO</div>
+            <div class="sla-stat-sub">Last 30 days, all severity</div>
+          </div>
+
+          <div class="sla-stat-card" role="listitem" aria-label="P1 SLA: under 4 hours">
+            <div class="drum-counter" data-target="4" data-suffix=" HRS" data-display="&lt;4" data-decimals="0" id="drum-p1">
+              <div class="drum-digits"></div>
+            </div>
+            <div class="sla-stat-label font-label">P1 SLA TARGET</div>
+            <div class="sla-stat-sub">Resolution, not just response</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 3: RESPONSE TIERS
+    ════════════════════════════════════════════════ -->
+    <section id="response-tiers" class="response-tiers" aria-label="Support response tier levels">
+      <div class="response-tiers-inner">
+        <div class="rt-eyebrow font-label">ESCALATION PROTOCOL</div>
+        <h2 class="rt-heading text-title">Priority zero exists.</h2>
+        <p class="rt-subhead">Not every ticket is equal. Our SLA tiers are engineered around how much downtime actually costs you.</p>
+
+        <div class="tiers-grid" id="tiers-magnetic-zone" role="list">
+
+          <div class="tier-card" data-tier="p0" role="listitem" tabindex="0"
+               aria-label="Priority 0: Critical. Under 15 minute response. 24/7 on-site.">
+            <div class="tier-card-inner">
+              <div class="tier-bg-shape"></div>
+              <div class="tier-severity font-mono">P0</div>
+              <div class="tier-name font-label">CRITICAL</div>
+              <div class="tier-divider"></div>
+              <div class="tier-response font-mono">&lt; 15 MIN</div>
+              <div class="tier-response-label">Response SLA</div>
+              <ul class="tier-details">
+                <li>Business halted</li>
+                <li>24/7 on-site dispatch</li>
+                <li>Dedicated war-room</li>
+                <li>Executive escalation</li>
+              </ul>
+              <div class="tier-footer">
+                <span class="tier-availability">24/7/365</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier-card" data-tier="p1" role="listitem" tabindex="0"
+               aria-label="Priority 1: High. Under 2 hour response. Remote first.">
+            <div class="tier-card-inner">
+              <div class="tier-bg-shape"></div>
+              <div class="tier-severity font-mono">P1</div>
+              <div class="tier-name font-label">HIGH</div>
+              <div class="tier-divider"></div>
+              <div class="tier-response font-mono">&lt; 2 HRS</div>
+              <div class="tier-response-label">Response SLA</div>
+              <ul class="tier-details">
+                <li>Business impaired</li>
+                <li>Remote-first response</li>
+                <li>On-site if unresolved 4h</li>
+                <li>Manager notification</li>
+              </ul>
+              <div class="tier-footer">
+                <span class="tier-availability">24/7</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier-card" data-tier="p2" role="listitem" tabindex="0"
+               aria-label="Priority 2: Medium. Under 8 hour response. Remote support.">
+            <div class="tier-card-inner">
+              <div class="tier-bg-shape"></div>
+              <div class="tier-severity font-mono">P2</div>
+              <div class="tier-name font-label">MEDIUM</div>
+              <div class="tier-divider"></div>
+              <div class="tier-response font-mono">&lt; 8 HRS</div>
+              <div class="tier-response-label">Response SLA</div>
+              <ul class="tier-details">
+                <li>Degraded service</li>
+                <li>Remote support</li>
+                <li>Workaround provided</li>
+                <li>Next-day on-site</li>
+              </ul>
+              <div class="tier-footer">
+                <span class="tier-availability">Business hours</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tier-card" data-tier="p3" role="listitem" tabindex="0"
+               aria-label="Priority 3: Low. Under 24 hour response. Remote support.">
+            <div class="tier-card-inner">
+              <div class="tier-bg-shape"></div>
+              <div class="tier-severity font-mono">P3</div>
+              <div class="tier-name font-label">LOW</div>
+              <div class="tier-divider"></div>
+              <div class="tier-response font-mono">&lt; 24 HRS</div>
+              <div class="tier-response-label">Response SLA</div>
+              <ul class="tier-details">
+                <li>Minor inconvenience</li>
+                <li>Scheduled resolution</li>
+                <li>Self-service guide first</li>
+                <li>Batch triage weekly</li>
+              </ul>
+              <div class="tier-footer">
+                <span class="tier-availability">Business hours</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 4: TEAM BENCH
+    ════════════════════════════════════════════════ -->
+    <section id="team-bench" class="team-bench" aria-label="Support team specializations">
+      <div class="team-bench-inner">
+        <div class="tb-eyebrow font-label">THE BENCH</div>
+        <h2 class="tb-heading text-title">Real humans. Real fast.</h2>
+        <p class="tb-subhead">Four specialist teams. One unified queue. Your ticket lands with the right engineer automatically.</p>
+
+        <div class="tb-grid" role="list">
+
+          <!-- Card 1: Network -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Network engineering team. 3 engineers. Average 22 minute resolution.">
+            <div class="flip-card-inner">
+              <div class="flip-front" aria-hidden="false">
+                <div class="flip-icon-wrap">
+                  <svg class="flip-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <circle cx="24" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="10" cy="34" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="38" cy="34" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="24" y1="14" x2="10" y2="30" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="24" y1="14" x2="38" y2="30" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="14" y1="34" x2="34" y2="34" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="flip-discipline font-label">NETWORK</div>
+                <div class="flip-tagline">Connectivity &amp; Infrastructure</div>
+                <div class="flip-hint font-mono">hover to meet the team &#8594;</div>
+              </div>
+              <div class="flip-back" aria-hidden="true">
+                <div class="fb-team-count font-mono">3 <span>ENGINEERS</span></div>
+                <div class="fb-stat-row">
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">22 MIN</div>
+                    <div class="fb-stat-lbl">Avg resolution</div>
+                  </div>
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">94%</div>
+                    <div class="fb-stat-lbl">First-call fix</div>
+                  </div>
+                </div>
+                <div class="fb-online-indicator">
+                  <span class="fb-dot online"></span>
+                  <span class="fb-online-label font-mono">3/3 ONLINE NOW</span>
+                </div>
+                <div class="fb-coverage">Routing, switching, firewalls, VPN, Wi-Fi</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Systems -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Systems engineering team. 4 engineers. Average 31 minute resolution.">
+            <div class="flip-card-inner">
+              <div class="flip-front" aria-hidden="false">
+                <div class="flip-icon-wrap">
+                  <svg class="flip-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <rect x="8" y="8" width="32" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="8" y="22" width="32" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="34" cy="13" r="2" fill="currentColor" opacity="0.5"/>
+                    <circle cx="34" cy="27" r="2" fill="currentColor" opacity="0.5"/>
+                    <rect x="8" y="36" width="32" height="6" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="flip-discipline font-label">SYSTEMS</div>
+                <div class="flip-tagline">Servers &amp; Operating Systems</div>
+                <div class="flip-hint font-mono">hover to meet the team &#8594;</div>
+              </div>
+              <div class="flip-back" aria-hidden="true">
+                <div class="fb-team-count font-mono">4 <span>ENGINEERS</span></div>
+                <div class="fb-stat-row">
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">31 MIN</div>
+                    <div class="fb-stat-lbl">Avg resolution</div>
+                  </div>
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">91%</div>
+                    <div class="fb-stat-lbl">First-call fix</div>
+                  </div>
+                </div>
+                <div class="fb-online-indicator">
+                  <span class="fb-dot online"></span>
+                  <span class="fb-online-label font-mono">4/4 ONLINE NOW</span>
+                </div>
+                <div class="fb-coverage">Windows, Linux, Active Directory, backup, patching</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Security -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Security team. 2 engineers. Average 44 minute resolution.">
+            <div class="flip-card-inner">
+              <div class="flip-front" aria-hidden="false">
+                <div class="flip-icon-wrap">
+                  <svg class="flip-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <path d="M24 6L8 12V24C8 33 16 40 24 43C32 40 40 33 40 24V12L24 6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M17 24L21 28L31 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="flip-discipline font-label">SECURITY</div>
+                <div class="flip-tagline">Endpoint &amp; Access Control</div>
+                <div class="flip-hint font-mono">hover to meet the team &#8594;</div>
+              </div>
+              <div class="flip-back" aria-hidden="true">
+                <div class="fb-team-count font-mono">2 <span>ENGINEERS</span></div>
+                <div class="fb-stat-row">
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">44 MIN</div>
+                    <div class="fb-stat-lbl">Avg resolution</div>
+                  </div>
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">88%</div>
+                    <div class="fb-stat-lbl">First-call fix</div>
+                  </div>
+                </div>
+                <div class="fb-online-indicator">
+                  <span class="fb-dot online"></span>
+                  <span class="fb-online-label font-mono">2/2 ONLINE NOW</span>
+                </div>
+                <div class="fb-coverage">MFA, MDM, endpoint protection, access reviews</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Cloud -->
+          <div class="flip-card" role="listitem" tabindex="0"
+               aria-label="Cloud team. 5 engineers. Average 18 minute resolution.">
+            <div class="flip-card-inner">
+              <div class="flip-front" aria-hidden="false">
+                <div class="flip-icon-wrap">
+                  <svg class="flip-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <path d="M34 34H14C10 34 7 31 7 27C7 23.5 9.5 20.5 13 20C13 15 17 11 22 11C26.5 11 30.5 14 31.5 18C35.5 18 39 21.5 39 25.5C39 30 37 34 34 34Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="flip-discipline font-label">CLOUD</div>
+                <div class="flip-tagline">AWS, Azure &amp; GCP</div>
+                <div class="flip-hint font-mono">hover to meet the team &#8594;</div>
+              </div>
+              <div class="flip-back" aria-hidden="true">
+                <div class="fb-team-count font-mono">5 <span>ENGINEERS</span></div>
+                <div class="fb-stat-row">
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">18 MIN</div>
+                    <div class="fb-stat-lbl">Avg resolution</div>
+                  </div>
+                  <div class="fb-stat">
+                    <div class="fb-stat-val font-mono">97%</div>
+                    <div class="fb-stat-lbl">First-call fix</div>
+                  </div>
+                </div>
+                <div class="fb-online-indicator">
+                  <span class="fb-dot online"></span>
+                  <span class="fb-online-label font-mono">5/5 ONLINE NOW</span>
+                </div>
+                <div class="fb-coverage">IAM, compute, storage, cost optimization, migrations</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 5: CTA
+    ════════════════════════════════════════════════ -->
+    <section id="cta-itsupport" aria-labelledby="cta-itsupport-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+        <div class="text-eyebrow reveal-clip">NEXUS_HELPDESK IT-SUPPORT-INTAKE</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="cta-itsupport-heading" class="text-title reveal-clip">
+          NEED SOMEONE WHO<br>PICKS UP THE<br>
+          <span style="color:var(--accent)">PHONE</span>?
+        </h2>
+        <p class="text-body reveal-fade">
+          Open a ticket. A real engineer reads it. No chatbot, no queue shuffling.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form" aria-labelledby="cta-itsupport-heading">
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name-itsupport">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input class="term-input" id="inp-name-itsupport" type="text" placeholder="Enter your name" autocomplete="name" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-email-itsupport">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input class="term-input" id="inp-email-itsupport" type="email" placeholder="Enter your email" autocomplete="email" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-issue-itsupport">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea class="term-input" id="inp-issue-itsupport" rows="4" placeholder="Describe your issue" aria-required="true"></textarea>
+          </div>
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" aria-label="Open support ticket" data-page="it-support">
+            <span>OPEN TICKET</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div id="light-sweep" aria-hidden="true"></div>
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+  <script type="module" src="../js/pages/it-support/page-main.js"></script>
+
+</body>
+</html>

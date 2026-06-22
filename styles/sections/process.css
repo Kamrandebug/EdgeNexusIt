@@ -1,0 +1,426 @@
+/* ============================================================
+   PROCESS SECTION — SPLIT PANEL LAYOUT
+   Left: sticky headline + vertical pipeline
+   Right: scrolling card stack
+   Fully responsive: mobile-sm → mobile → tablet → desktop → desktop-lg
+   ============================================================ */
+
+#process {
+  position: relative;
+  background: var(--bg);
+}
+
+/* ── SPLIT CONTAINER ── */
+.process-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+  min-height: 100vh;
+  /* Section height = right column content height.
+     min-height ensures sticky left has room before cards are rendered.
+     On large screens where all cards fit < 100vh, the section will be
+     at least 100vh tall, giving enough scroll distance for all nodes. */
+}
+
+/* Ensure section always scrollable — right column extends far enough
+   to drive the pipeline through all 5 nodes. */
+@media (min-height: 1000px) {
+  .process-right {
+    padding-bottom: 40vh; /* extra scroll room on tall viewports */
+  }
+}
+
+/* ── LEFT COLUMN — STICKY ── */
+.process-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 60px 80px 0;
+}
+
+.process-left-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+.process-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.process-headline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+  margin: 0;
+}
+
+.process-headline .word {
+  display: block;
+}
+
+/* ── VERTICAL PIPELINE TRACK ── */
+.process-pipeline-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 20px;
+}
+
+.pipeline-line-bg {
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--bh);
+}
+
+.pipeline-line-fill {
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 1px;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: top center;
+  transform: scaleY(0);
+  box-shadow: 0 0 8px rgba(0, 170, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.pipeline-node {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.node-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--bc);
+  background: var(--bg);
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.node-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--t3);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+/* ACTIVE STATE */
+.pipeline-node.active .node-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(0, 170, 255, 0.15), 0 0 12px rgba(0, 170, 255, 0.4);
+  animation: node-pulse-left 1.4s ease-out infinite;
+}
+
+.pipeline-node.active .node-label {
+  color: var(--accent);
+}
+
+/* COMPLETED STATE */
+.pipeline-node.done .node-dot {
+  border-color: var(--accent);
+  background: rgba(0, 170, 255, 0.2);
+}
+
+.pipeline-node.done .node-label {
+  color: var(--t2);
+}
+
+@keyframes node-pulse-left {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.5), 0 0 8px rgba(0, 170, 255, 0.3); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 170, 255, 0), 0 0 16px rgba(0, 170, 255, 0.2); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 170, 255, 0), 0 0 8px rgba(0, 170, 255, 0.3); }
+}
+
+/* ── RIGHT COLUMN — SCROLLING CARDS ── */
+.process-right {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 0 80px 60px;
+  gap: 24px;
+  border-left: 1px solid var(--bh);
+}
+
+.process-card {
+  position: relative;
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: opacity, transform;
+}
+
+.card-inner {
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  border-radius: 2px;
+  padding: clamp(28px, 3vw, 48px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
+
+  --bracket-size: 12px;
+  --bracket-color: rgba(0, 170, 255, 0.25);
+}
+
+.card-inner::before,
+.card-inner::after {
+  content: '';
+  position: absolute;
+  width: var(--bracket-size);
+  height: var(--bracket-size);
+  border-color: var(--bracket-color);
+  border-style: solid;
+  transition: border-color 0.3s ease;
+}
+
+.card-inner::before {
+  top: 8px;
+  left: 8px;
+  border-width: 1px 0 0 1px;
+}
+
+.card-inner::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1px 1px 0;
+}
+
+.process-card.active .card-inner {
+  border-color: rgba(0, 170, 255, 0.35);
+  background: rgba(0, 170, 255, 0.03);
+}
+
+.process-card.active .card-inner::before,
+.process-card.active .card-inner::after {
+  border-color: rgba(0, 170, 255, 0.5);
+}
+
+.card-number {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.card-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--t2);
+  margin: 0;
+}
+
+/* ── RESPONSIVE: Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .process-split {
+    gap: 0;
+  }
+  .process-left {
+    padding: 60px 32px 60px 0;
+  }
+  .process-right {
+    padding: 60px 0 60px 32px;
+  }
+  .process-headline {
+    font-size: clamp(28px, 4.5vw, 56px);
+  }
+  .process-pipeline-track {
+    padding-left: 16px;
+  }
+  .pipeline-node {
+    gap: 12px;
+    padding: 14px 0;
+  }
+}
+
+/* ── RESPONSIVE: Mobile (≤768px) — stack vertically ── */
+@media (max-width: 768px) {
+  .process-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .process-left {
+    position: static;
+    height: auto;
+    padding: 60px 0 0 0;
+    align-items: flex-start;
+  }
+
+  .process-left-inner {
+    gap: 32px;
+  }
+
+  .process-headline {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+
+  .process-right {
+    padding: 32px 0 60px 0;
+    border-left: none;
+    border-top: 1px solid var(--bh);
+    gap: 16px;
+  }
+
+  .process-pipeline-track {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 0;
+    padding-top: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    margin: 0 -20px;
+    padding: 0 20px 8px;
+  }
+
+  .pipeline-line-bg,
+  .pipeline-line-fill {
+    top: 6px;
+    left: 28px;
+    right: 28px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    transform-origin: left center;
+  }
+
+  .pipeline-line-fill {
+    transform: scaleX(0);
+  }
+
+  .pipeline-node {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    min-width: 64px;
+  }
+
+  .node-label {
+    white-space: nowrap;
+    font-size: 9px;
+  }
+
+  /* Cards: reveal all at once on mobile */
+  .process-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── RESPONSIVE: Small Phones (≤480px) ── */
+@media (max-width: 480px) {
+  .process-left {
+    padding: 40px 0 0 0;
+  }
+
+  .process-left-inner {
+    gap: 24px;
+  }
+
+  .process-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+
+  .process-headline {
+    font-size: clamp(26px, 9vw, 36px);
+  }
+
+  .process-right {
+    padding: 24px 0 40px 0;
+    gap: 12px;
+  }
+
+  .process-pipeline-track {
+    margin: 0 -16px;
+    padding: 0 16px 8px;
+  }
+
+  .pipeline-line-bg,
+  .pipeline-line-fill {
+    left: 24px;
+    right: 24px;
+  }
+
+  .pipeline-node {
+    padding: 0 12px;
+    min-width: 56px;
+    gap: 6px;
+  }
+
+  .node-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .node-label {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .card-inner {
+    padding: 20px;
+    --bracket-size: 8px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-body {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
+
+/* ── RESPONSIVE: Large Desktop (>1440px) ── */
+@media (min-width: 1441px) {
+  .process-left {
+    padding: 100px 80px 100px 0;
+  }
+  .process-right {
+    padding: 100px 0 100px 80px;
+  }
+  .process-right {
+    padding-bottom: 50vh; /* plenty of scroll room */
+  }
+  .process-headline {
+    font-size: clamp(48px, 5vw, 80px);
+  }
+}

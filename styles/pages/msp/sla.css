@@ -1,0 +1,251 @@
+/* ── SLA ARCHITECTURE SECTION ─────────────────────── */
+.sla-section {
+  padding: var(--sp) 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top separator line */
+.sla-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,170,255,0.25), transparent);
+}
+
+/* Radial glow — right side */
+.sla-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 45% 55% at 85% 50%, rgba(0,80,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sla-inner {
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+  position: relative;
+  z-index: 1;
+}
+
+/* HEADER */
+.sla-header { margin-bottom: clamp(44px, 5vw, 68px); }
+
+.sla-title {
+  font-family: var(--fd);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 12px 0 16px;
+}
+.sla-accent { color: var(--accent); }
+
+.sla-sub {
+  font-family: var(--fu);
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--t2);
+  max-width: 560px;
+  line-height: 1.65;
+}
+
+/* TIERS */
+.sla-tiers {
+  display: flex;
+  flex-direction: column;
+}
+
+.sla-tier {
+  display: grid;
+  grid-template-columns: 100px 1fr 180px;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 28px);
+  padding: clamp(20px, 2.5vw, 30px) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  cursor: default;
+}
+.sla-tier:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+
+/* BADGE */
+.sla-badge {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  font-family: var(--fm);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.sla-tier-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sla-severity {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Priority colour tokens */
+.p1 .sla-badge   { border-color: rgba(255,60,60,0.55);  color: #ff3c3c; background: rgba(255,60,60,0.07); }
+.p1 .sla-severity{ color: rgba(255,60,60,0.55); }
+.p1 .sla-time    { color: #ff3c3c; }
+
+.p2 .sla-badge   { border-color: rgba(255,160,0,0.55);  color: #ffa000; background: rgba(255,160,0,0.07); }
+.p2 .sla-severity{ color: rgba(255,160,0,0.55); }
+.p2 .sla-time    { color: #ffa000; }
+
+.p3 .sla-badge   { border-color: var(--accent-border);  color: var(--accent); background: var(--accent-dim); }
+.p3 .sla-severity{ color: var(--accent-border); }
+.p3 .sla-time    { color: var(--accent); }
+
+.p4 .sla-badge   { border-color: rgba(0,220,150,0.5);   color: #00dc96; background: rgba(0,220,150,0.07); }
+.p4 .sla-severity{ color: rgba(0,220,150,0.5); }
+.p4 .sla-time    { color: #00dc96; }
+
+/* BAR */
+.sla-bar-wrap {
+  position: relative;
+  height: 52px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.sla-bar-fill {
+  height: 100%;
+  width: 0;               /* animated by JS from 0 → data-width% */
+  transition: none;       /* JS controls this */
+}
+
+/* Bar fill colors */
+.p1 .sla-bar-fill { background: linear-gradient(90deg, rgba(255,60,60,0.65), rgba(255,60,60,0.15)); }
+.p2 .sla-bar-fill { background: linear-gradient(90deg, rgba(255,160,0,0.65), rgba(255,160,0,0.12)); }
+.p3 .sla-bar-fill { background: linear-gradient(90deg, rgba(0,170,255,0.55), rgba(0,170,255,0.08)); }
+.p4 .sla-bar-fill { background: linear-gradient(90deg, rgba(0,220,150,0.45), rgba(0,220,150,0.06)); }
+
+.sla-bar-label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--t1);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.sla-bar-sub {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* VALUE */
+.sla-tier-value {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.sla-time {
+  display: block;
+  font-family: var(--fm);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sla-time-label {
+  display: block;
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* STAT STRIP */
+.sla-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 40px;
+}
+
+.sla-stat {
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  padding: clamp(18px, 2vw, 24px) clamp(20px, 2.5vw, 28px);
+}
+
+.sla-stat-val {
+  display: block;
+  font-family: var(--fm);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.sla-stat-lbl {
+  display: block;
+  font-family: var(--fm);
+  font-size: 10px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 6px;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .sla-tier { grid-template-columns: 80px 1fr; gap: 14px; }
+  .sla-tier-value { display: none; }   /* show only on desktop */
+  .sla-bar-sub { display: none; }
+  .sla-stats { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .sla-title { font-size: clamp(32px, 8vw, 48px); }
+  .sla-sub { font-size: 14px; }
+  .sla-tier { padding: 16px 0; }
+  .sla-bar-label { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .sla-title { font-size: 28px; }
+  .sla-header { margin-bottom: 32px; }
+  .sla-tier { grid-template-columns: 50px 1fr; gap: 10px; padding: 14px 0; }
+  .sla-badge { width: 34px; height: 34px; font-size: 10px; }
+  .sla-severity { font-size: 8px; }
+  .sla-bar-label { font-size: 9px; left: 10px; }
+  .sla-stats { grid-template-columns: 1fr; gap: 1px; margin-top: 24px; }
+  .sla-stat { padding: 14px 16px; }
+  .sla-stat-val { font-size: 18px; }
+  .sla-stat-lbl { font-size: 9px; }
+}

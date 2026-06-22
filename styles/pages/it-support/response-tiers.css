@@ -1,0 +1,181 @@
+.response-tiers {
+  padding: var(--sp) 0;
+  position: relative;
+}
+
+.response-tiers-inner {
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.rt-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.rt-heading {
+  font-family: 'Outfit', sans-serif;
+  color: var(--t1);
+  margin-bottom: 12px;
+}
+
+.rt-subhead {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: var(--t2);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 20px);
+}
+
+.tier-card {
+  position: relative;
+  will-change: transform;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.tier-card-inner {
+  background: var(--surface);
+  border: 1px solid var(--bh);
+  padding: 28px 20px 24px;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  transition: border-color 0.2s;
+}
+
+.tier-card:hover .tier-card-inner,
+.tier-card:focus .tier-card-inner {
+  border-color: var(--accent-border);
+  outline: none;
+}
+
+.tier-bg-shape {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  transition: clip-path 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.tier-card[data-tier="p0"] .tier-bg-shape { background: var(--severity-p0); }
+.tier-card[data-tier="p1"] .tier-bg-shape { background: var(--severity-p1); }
+.tier-card[data-tier="p2"] .tier-bg-shape { background: var(--severity-p2); }
+.tier-card[data-tier="p3"] .tier-bg-shape { background: var(--t2); }
+
+.tier-card:hover .tier-bg-shape,
+.tier-card:focus .tier-bg-shape {
+  opacity: 0.12;
+  clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+}
+
+.tier-card[data-tier="p0"]:hover .tier-bg-shape {
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.tier-severity {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.tier-card[data-tier="p0"] .tier-severity { color: var(--severity-p0); }
+.tier-card[data-tier="p1"] .tier-severity { color: var(--severity-p1); }
+.tier-card[data-tier="p2"] .tier-severity { color: var(--severity-p2); }
+.tier-card[data-tier="p3"] .tier-severity { color: var(--severity-p3); }
+
+.tier-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--t1);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.tier-divider {
+  height: 1px;
+  background: var(--bh);
+  margin-bottom: 16px;
+}
+
+.tier-response {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--t1);
+  margin-bottom: 4px;
+}
+.tier-card[data-tier="p0"] .tier-response {
+  color: var(--severity-p0);
+  text-shadow: 0 0 20px rgba(255,45,85,0.3);
+}
+
+.tier-response-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+.tier-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.tier-details li {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.6;
+  padding-left: 14px;
+  position: relative;
+}
+.tier-details li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--t3);
+  font-size: 10px;
+}
+
+.tier-footer {
+  border-top: 1px solid var(--bh);
+  padding-top: 12px;
+  margin-top: auto;
+}
+.tier-availability {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 1024px) {
+  .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .tiers-grid { grid-template-columns: 1fr; }
+}
+
+@media (hover: none) {
+  .tier-card .tier-bg-shape { opacity: 0.08; }
+}

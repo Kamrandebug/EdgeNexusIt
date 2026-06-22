@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Managed Service Provider — EdgeNexus IT</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <!-- CSS: tokens FIRST, always -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+
+  <!-- Shared components -->
+  <link rel="stylesheet" href="../styles/components/preloader.css">
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cards.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+
+  <!-- Shared sections (CTA + footer only) -->
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="../styles/pages/msp/hero-msp.css">
+  <link rel="stylesheet" href="../styles/pages/msp/coverage.css">
+  <link rel="stylesheet" href="../styles/pages/msp/sla.css">
+  <link rel="stylesheet" href="../styles/pages/msp/coverage-map.css">
+
+  <!-- Fix: force scroll to top on refresh -->
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1: HERO — MSP
+    ════════════════════════════════════════ -->
+    <section id="hero-msp" aria-labelledby="hero-msp-heading">
+      <div class="hero-scanlines" aria-hidden="true"></div>
+      <div class="hero-msp-inner">
+
+        <!-- Copy column -->
+        <div class="hero-msp-copy">
+          <!-- SERVICE #01 -->
+          <h1 class="hero-title hero-msp-headline">
+            NETWORKS<br>
+            THAT NEVER <span class="headline-accent">SLEEPS.</span>
+          </h1>
+          <p class="hero-msp-body">
+            Observatory-grade managed services for mission-critical enterprise environments. We eliminate downtime through predictive orchestration and clinical precision.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#cta-msp" class="btn btn-primary">
+              <span>DEPLOY NOW</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none" />
+              </svg>
+            </a>
+            <a href="#sla" class="btn btn-ghost">
+              <span>VIEW SLA</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Network Canvas (right column) -->
+        <div class="hero-msp-topology-col">
+          <div class="topology-panel" aria-hidden="true">
+            <canvas id="network-canvas"></canvas>
+            <div class="topology-label">LIVE_TOPOLOGY_FEED_V4.2</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2: THE COVERAGE
+    ════════════════════════════════════════ -->
+    <section class="cov-section" id="coverage" aria-label="MSP Coverage">
+      <div class="cov-inner">
+
+        <header class="cov-header">
+          <span class="text-eyebrow reveal-clip">MSP Coverage Matrix</span>
+          <div class="divider reveal-divider"></div>
+          <h2 class="cov-title">THE <span class="accent">COVERAGE</span></h2>
+          <p class="cov-sub">Six disciplines. One throat to choke. Zero gaps in your infrastructure perimeter.</p>
+        </header>
+
+        <div class="cov-top">
+
+          <!-- FEATURED CARD -->
+          <article class="cov-featured" data-cov-card>
+            <span class="cov-feat-num">01 — PRIMARY</span>
+            <div class="cov-feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M2 12h3M19 12h3M12 2v3M12 19v3"/>
+                <circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>
+              </svg>
+            </div>
+            <h3 class="cov-feat-title">24/7 Monitoring</h3>
+            <p class="cov-feat-body">Deep-packet inspection and real-time observability across all hybrid cloud endpoints. Every packet. Every anomaly. Every second.</p>
+            <span class="cov-feat-tag">Always Active ›</span>
+          </article>
+
+          <!-- MINI GRID 2×2 -->
+          <div class="cov-mini-grid" role="list">
+
+            <article class="cov-mini" data-cov-card role="listitem">
+              <span class="cov-mini-num">02</span>
+              <div class="cov-mini-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>
+                </svg>
+              </div>
+              <h3 class="cov-mini-title">Patch Management</h3>
+              <p class="cov-mini-body">Automated vulnerability remediation and zero-day threat suppression at scale.</p>
+            </article>
+
+            <article class="cov-mini" data-cov-card role="listitem">
+              <span class="cov-mini-num">03</span>
+              <div class="cov-mini-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3 class="cov-mini-title">Incident Response</h3>
+              <p class="cov-mini-body">Elite tactical teams dispatched instantly for containment and forensic analysis.</p>
+            </article>
+
+            <article class="cov-mini" data-cov-card role="listitem">
+              <span class="cov-mini-num">04</span>
+              <div class="cov-mini-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 7v10M20 7v10"/><rect x="8" y="4" width="8" height="16" rx="1"/><path d="M8 12h8"/>
+                </svg>
+              </div>
+              <h3 class="cov-mini-title">Backup & Recovery</h3>
+              <p class="cov-mini-body">Immutable storage protocols ensuring RTO/RPO targets met with sub-second precision.</p>
+            </article>
+
+            <article class="cov-mini" data-cov-card role="listitem">
+              <span class="cov-mini-num">05</span>
+              <div class="cov-mini-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+              </div>
+              <h3 class="cov-mini-title">Vendor Management</h3>
+              <p class="cov-mini-body">Unified governance of third-party stacks to eliminate supply chain complexity.</p>
+            </article>
+
+          </div>
+        </div><!-- /.cov-top -->
+
+        <!-- BOTTOM BAR ROW -->
+        <div class="cov-bottom">
+
+          <article class="cov-bar" data-cov-card>
+            <div class="cov-bar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4M7 8h2v2H7zM11 8h2v2h-2zM15 8h2v2h-2z"/>
+              </svg>
+            </div>
+            <div class="cov-bar-txt">
+              <h3 class="cov-bar-title">Capacity Planning</h3>
+              <p class="cov-bar-body">Algorithmic forecasting of infrastructure requirements based on transactional flow.</p>
+            </div>
+            <span class="cov-bar-num">06 ›</span>
+          </article>
+
+          <div class="cov-noc" aria-live="polite">
+            <div class="cov-bar-icon cov-noc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="cov-bar-txt">
+              <h3 class="cov-noc-title">Live NOC Status</h3>
+              <p class="cov-noc-body">All systems nominal · <span class="cov-noc-count">847</span> endpoints monitored · <span class="cov-noc-alerts">0</span> critical alerts</p>
+            </div>
+            <span class="cov-noc-dot"></span>
+          </div>
+
+        </div><!-- /.cov-bottom -->
+
+      </div><!-- /.cov-inner -->
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3: SLA ARCHITECTURE
+    ════════════════════════════════════════ -->
+    <section class="sla-section" id="sla" aria-label="SLA Architecture">
+      <div class="sla-inner">
+
+        <header class="sla-header">
+          <span class="text-eyebrow reveal-clip">Service Level Agreement</span>
+          <div class="divider reveal-divider"></div>
+          <h2 class="sla-title">SLA <span class="sla-accent">ARCHITECTURE</span></h2>
+          <p class="sla-sub">Four-tier response framework engineered for zero-ambiguity incident resolution. Response time is a guarantee, not a target.</p>
+        </header>
+
+        <div class="sla-tiers" role="list">
+
+          <div class="sla-tier p1" data-sla-tier role="listitem">
+            <div class="sla-tier-label">
+              <div class="sla-badge">P1</div>
+              <span class="sla-severity">Critical</span>
+            </div>
+            <div class="sla-bar-wrap" aria-label="P1 response bar, narrowest — fastest response">
+              <div class="sla-bar-fill" data-width="8"></div>
+              <span class="sla-bar-label">Immediate Containment</span>
+              <span class="sla-bar-sub">System Down · All-hands response</span>
+            </div>
+            <div class="sla-tier-value">
+              <span class="sla-time">&lt; 15 MIN</span>
+              <span class="sla-time-label">Response SLA</span>
+            </div>
+          </div>
+
+          <div class="sla-tier p2" data-sla-tier role="listitem">
+            <div class="sla-tier-label">
+              <div class="sla-badge">P2</div>
+              <span class="sla-severity">High</span>
+            </div>
+            <div class="sla-bar-wrap" aria-label="P2 response bar — 1 hour SLA">
+              <div class="sla-bar-fill" data-width="25"></div>
+              <span class="sla-bar-label">Same Day Resolution</span>
+              <span class="sla-bar-sub">Degraded Service · Priority queue</span>
+            </div>
+            <div class="sla-tier-value">
+              <span class="sla-time">&lt; 1 HOUR</span>
+              <span class="sla-time-label">Response SLA</span>
+            </div>
+          </div>
+
+          <div class="sla-tier p3" data-sla-tier role="listitem">
+            <div class="sla-tier-label">
+              <div class="sla-badge">P3</div>
+              <span class="sla-severity">Medium</span>
+            </div>
+            <div class="sla-bar-wrap" aria-label="P3 response bar — 4 hour SLA">
+              <div class="sla-bar-fill" data-width="55"></div>
+              <span class="sla-bar-label">Next Business Day</span>
+              <span class="sla-bar-sub">Partial Impact · Standard queue</span>
+            </div>
+            <div class="sla-tier-value">
+              <span class="sla-time">&lt; 4 HOURS</span>
+              <span class="sla-time-label">Response SLA</span>
+            </div>
+          </div>
+
+          <div class="sla-tier p4" data-sla-tier role="listitem">
+            <div class="sla-tier-label">
+              <div class="sla-badge">P4</div>
+              <span class="sla-severity">Low</span>
+            </div>
+            <div class="sla-bar-wrap" aria-label="P4 response bar — widest, 24 hour SLA">
+              <div class="sla-bar-fill" data-width="100"></div>
+              <span class="sla-bar-label">Scheduled Maintenance</span>
+              <span class="sla-bar-sub">Minor Impact · Backlog</span>
+            </div>
+            <div class="sla-tier-value">
+              <span class="sla-time">&lt; 24 HOURS</span>
+              <span class="sla-time-label">Response SLA</span>
+            </div>
+          </div>
+
+        </div><!-- /.sla-tiers -->
+
+        <!-- STAT STRIP -->
+        <div class="sla-stats" role="list">
+          <div class="sla-stat" role="listitem">
+            <span class="sla-stat-val" data-count-target="99.98" data-count-suffix="%">0%</span>
+            <span class="sla-stat-lbl">Uptime SLA</span>
+          </div>
+          <div class="sla-stat" role="listitem">
+            <span class="sla-stat-val">24/7/365</span>
+            <span class="sla-stat-lbl">NOC Coverage</span>
+          </div>
+          <div class="sla-stat" role="listitem">
+            <span class="sla-stat-val">&lt; 8 MIN</span>
+            <span class="sla-stat-lbl">Avg P1 Response</span>
+          </div>
+        </div>
+
+      </div><!-- /.sla-inner -->
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4: GLOBAL NODE REACH
+    ════════════════════════════════════════ -->
+    <section id="coverage-map" aria-labelledby="coverage-map-heading">
+      <div class="cm-grid container">
+
+        <div class="cm-copy">
+          <div class="divider reveal-divider" style="margin-bottom:24px"></div>
+          <h2 id="coverage-map-heading" class="text-title reveal-clip">
+            GLOBAL NODE<br>REACH
+          </h2>
+          <p class="cm-body reveal-fade">
+            Our redundant backbone spans 42 global availability zones, ensuring low-latency management regardless of local infrastructure constraints.
+          </p>
+          <div class="cm-terminal reveal-fade">
+            <div class="cm-term-line">&gt; SCANNING_BACKBONE...</div>
+            <div class="cm-term-line">&gt; US-EAST-01: ONLINE</div>
+            <div class="cm-term-line">&gt; EU-WEST-03: ONLINE</div>
+            <div class="cm-term-line">&gt; AS-PACIFIC-02: OPTIMIZING</div>
+            <div class="cm-term-line">&gt; SYS_HEALTH: 100.00%</div>
+          </div>
+        </div>
+
+        <div class="cm-map-wrap" aria-hidden="true">
+          <div class="cm-map-bg"></div>
+          <div class="cm-map-overlay">
+            <div class="cm-pulse-dot" style="top:25%; left:33%"></div>
+            <div class="cm-pulse-dot" style="top:50%; left:50%; animation-delay:0.5s"></div>
+            <div class="cm-pulse-dot" style="top:33%; right:25%; animation-delay:1.2s"></div>
+            <svg class="cm-arcs" viewBox="0 0 800 500" preserveAspectRatio="none">
+              <path d="M 266 125 Q 400 50 533 125" fill="none" stroke="var(--accent)" stroke-dasharray="4,4" stroke-width="0.5" opacity="0.4"></path>
+              <path d="M 133 250 Q 300 150 466 250" fill="none" stroke="var(--accent)" stroke-dasharray="4,4" stroke-width="0.5" opacity="0.4"></path>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5: CTA — "SYSTEM INITIATION"
+    ════════════════════════════════════════ -->
+    <section id="cta-msp" aria-labelledby="cta-msp-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+        <div class="text-eyebrow reveal-clip">SYSTEM INITIATION</div>
+        <div class="divider reveal-divider"></div>
+        <h2 id="cta-msp-heading" class="text-title reveal-clip">
+          CONTACT<br>
+          <span style="color:var(--accent)">MISSION CONTROL</span>
+        </h2>
+        <p class="text-body reveal-fade">
+          Tell us about your infrastructure requirements.<br>
+          We'll tell you exactly how to secure it.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form" aria-labelledby="cta-msp-heading">
+
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input class="term-input" id="inp-name" type="text" placeholder="Enter your name" autocomplete="name"
+              aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-email">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input class="term-input" id="inp-email" type="email" placeholder="Enter your email" autocomplete="email"
+              aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-issue">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea class="term-input" id="inp-issue" rows="4" placeholder="How can we help?"
+              aria-required="true"></textarea>
+          </div>
+
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" aria-label="Submit deployment request" data-page="msp">
+            <span>SEND MESSAGE</span>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <!-- SCRIPTS: CDN first, module last -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script type="module" src="../js/pages/msp/page-main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+/* ── Service Card ───────────────────────────── */
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--bc);
+  border-radius: 4px;
+  padding: clamp(24px, 3vw, 40px);
+  min-width: 320px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-fast) var(--ease-expo);
+}
+
+.service-card:hover {
+  border-color: var(--accent-border);
+  background: var(--panel);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-expo);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.service-card-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 22px);
+  color: white;
+  margin-bottom: 12px;
+}
+
+.service-card-desc {
+  font-family: var(--fu);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--t2);
+  margin-bottom: 20px;
+}
+
+.service-card-link {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap var(--dur-fast);
+}
+
+.service-card:hover .service-card-link {
+  gap: 12px;
+}
+
+/* ── Stat Item ──────────────────────────────── */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--bc);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-number {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(48px, 6vw, 72px);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* ── Process Node Card ──────────────────────── */
+.process-node {
+  background: var(--surface);
+  border: 1px solid var(--bc);
+  border-radius: 4px;
+  padding: 24px;
+  min-width: 200px;
+  position: relative;
+  transition: all var(--dur-fast) var(--ease-expo);
+}
+
+.process-node.active {
+  border-color: var(--accent);
+  background: var(--panel);
+  box-shadow: 0 0 32px var(--accent-glow);
+}
+
+.process-node-number {
+  font-family: var(--fm);
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.process-node-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.process-node-desc {
+  font-family: var(--fu);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--t2);
+}

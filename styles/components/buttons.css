@@ -1,0 +1,171 @@
+/* ── Base ────────────────────────────────────────── */
+.btn {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 80ms ease,
+              box-shadow var(--dur-fast),
+              color var(--dur-fast);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Primary ─────────────────────────────────────── */
+.btn-primary {
+  background: var(--accent);
+  color: #000000;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  z-index: 1;
+}
+
+.btn-primary:hover {
+  color: #000000;
+}
+
+/* Shake on error (JS adds .btn--shake class) */
+.btn--shake {
+  animation: btn-shake 0.4s ease;
+}
+@keyframes btn-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+/* Sweep layer — pseudo-element that slides in on hover */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #4dccff;
+  clip-path: inherit;
+  transform: translateX(-101%);
+  transition: transform 0.32s var(--ease-expo);
+  pointer-events: none;
+}
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+/* Text sits above sweep via z-index */
+.btn-primary > *,
+.btn-primary .btn-text,
+.btn-primary span {
+  position: relative;
+  z-index: 3;
+}
+
+/* ── Secondary ───────────────────────────────────── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 32px;
+  font-family: var(--fm);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-expo);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+
+/* ── Ghost ───────────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  color: var(--t2);
+  /* SVG border-trace injected by JS; fallback border: */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn-ghost:hover {
+  color: white;
+  border-color: transparent; /* JS SVG takes over */
+}
+.btn-ghost > *,
+.btn-ghost .btn-text,
+.btn-ghost span {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Ghost SVG border trace (injected by buttons.js) */
+.btn-ghost-svg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.btn-ghost-rect {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: var(--perimeter, 9999);
+  stroke-dashoffset: var(--perimeter, 9999);
+  transition: stroke-dashoffset 0.38s var(--ease-expo);
+}
+.btn-ghost:hover .btn-ghost-rect {
+  stroke-dashoffset: 0;
+}
+
+/* ── Icon Inside Buttons ────────────────────────── */
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── TOUCH RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .btn,
+  .btn-primary,
+  .btn-ghost {
+    min-height: 44px;
+    padding: 12px 20px;
+    font-size: 11px;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-cta-row .btn,
+  .hero-cta-row .btn-primary,
+  .hero-cta-row .btn-ghost {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

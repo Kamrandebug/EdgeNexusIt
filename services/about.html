@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About — EdgeNexus IT</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;700;900&family=Barlow+Condensed:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+
+  <link rel="stylesheet" href="../styles/pages/about.css">
+
+  <script>history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="grid-overlay" aria-hidden="true"></div>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <main id="main-content">
+
+    <!-- ════════════ HERO ════════════ -->
+    <section id="about-hero" class="about-hero">
+      <canvas id="about-hero-canvas" aria-hidden="true"></canvas>
+      <div class="about-hero__inner">
+        <p class="about-eyebrow text-eyebrow">EDGENEXUS IT :: ABOUT</p>
+        <h1 class="about-headline text-display">
+          ARCHITECTS OF<br>
+          <span class="headline-accent">INFRASTRUCTURE.</span>
+        </h1>
+        <p class="about-sub text-body-large">
+          We build, secure, and operate the systems that enterprises depend on.
+          Precision engineering. Zero downtime. No excuses.
+        </p>
+        <div class="about-hero-stats">
+          <div class="about-stat">
+            <span class="about-stat-value" data-target="847">0</span>
+            <span class="about-stat-label">DAYS UPTIME</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-value" data-target="12000">0</span>
+            <span class="about-stat-label">NODES MANAGED</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-value" data-target="99.97">0</span>
+            <span class="about-stat-label">SLA PERCENT</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-hero-scroll">
+        <span>SCROLL</span>
+        <span class="about-hero-arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- ════════════ MISSION ════════════ -->
+    <section id="about-mission" class="about-mission">
+      <div class="container">
+        <div class="about-mission-grid">
+          <div class="about-mission-copy reveal-fade">
+            <p class="text-eyebrow">MISSION</p>
+            <h2 class="text-heading">ZERO DOWNTIME.<br><span class="headline-accent">ZERO COMPROMISE.</span></h2>
+            <p class="text-body">
+              EdgeNexus IT was founded on a simple principle: enterprise infrastructure
+              should never fail. Every system we design, every network we monitor,
+              every line of code we deploy — it's built for resilience at scale.
+            </p>
+            <p class="text-body">
+              We combine observatory-grade monitoring with elite engineering talent
+              to deliver uptime, security, and performance that exceeds enterprise
+              standards. Our clients don't think about infrastructure — they think
+              about their business. That's the point.
+            </p>
+          </div>
+          <div class="about-mission-metrics reveal-fade">
+            <div class="about-metric-card">
+              <span class="about-metric-value">14+</span>
+              <span class="about-metric-label">Years in production</span>
+            </div>
+            <div class="about-metric-card">
+              <span class="about-metric-value">500+</span>
+              <span class="about-metric-label">Enterprise clients</span>
+            </div>
+            <div class="about-metric-card">
+              <span class="about-metric-value">99.97%</span>
+              <span class="about-metric-label">Average SLA</span>
+            </div>
+            <div class="about-metric-card">
+              <span class="about-metric-value">24/7</span>
+              <span class="about-metric-label">NOC operations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- ════════════ VALUES (horizontal scroll carousel) ════════════ -->
+    <section id="about-values" class="about-values">
+      <div class="container">
+        <p class="text-eyebrow">PRINCIPLES</p>
+        <h2 class="text-heading">HOW WE <span class="headline-accent">OPERATE.</span></h2>
+      </div>
+      <div class="values-track">
+        <div class="values-container" id="values-container">
+          <article class="about-value" data-value-idx="0">
+            <span class="about-value-number">01</span>
+            <h3 class="about-value-title">OBSERVABILITY FIRST</h3>
+            <p class="about-value-desc">Every metric, every log, every trace — if it moves we measure it. Blind spots are unacceptable.</p>
+          </article>
+          <article class="about-value" data-value-idx="1">
+            <span class="about-value-number">02</span>
+            <h3 class="about-value-title">DEFENSE IN DEPTH</h3>
+            <p class="about-value-desc">Security is not a layer. It&#39;s woven into every decision, from network architecture to code review.</p>
+          </article>
+          <article class="about-value" data-value-idx="2">
+            <span class="about-value-number">03</span>
+            <h3 class="about-value-title">AUTOMATE EVERYTHING</h3>
+            <p class="about-value-desc">Manual processes fail at scale. We automate relentlessly, so our engineers focus on what matters.</p>
+          </article>
+          <article class="about-value" data-value-idx="3">
+            <span class="about-value-number">04</span>
+            <h3 class="about-value-title">NO EGO. JUST UPTIME.</h3>
+            <p class="about-value-desc">Results over opinions. Every decision is measured against one question: does this make the system more resilient?</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<!-- ════════════ CINEMATIC DIVIDER ════════════ -->
+    <section class="about-cinema">
+      <div class="about-cinema-strip">
+        <div class="about-cinema-text">
+          <span>RELIABILITY IS NOT A FEATURE &nbsp;—&nbsp; IT'S THE FOUNDATION.</span>
+          <span>RELIABILITY IS NOT A FEATURE &nbsp;—&nbsp; IT'S THE FOUNDATION.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ HIRE OUR EXPERTS SECTION ════════════ -->
+    <section id="about-experts" class="about-experts">
+      <div class="about-experts__inner">
+        <div class="about-experts__header">
+          <span class="about-experts__eyebrow">THE BENCH</span>
+          <div class="about-experts__divider"></div>
+          <h2 class="about-experts__title">Hire Top IT Experts</h2>
+          <p class="about-experts__subtitle">Access a vetted pool of IT professionals ready to join your team.</p>
+        </div>
+        <div class="about-experts__filters" role="tablist" aria-label="Filter experts by role">
+          <button class="experts-filter experts-filter--active" data-filter="all" role="tab" aria-selected="true">All Roles</button>
+          <button class="experts-filter" data-filter="cybersecurity" role="tab" aria-selected="false">Cybersecurity</button>
+          <button class="experts-filter" data-filter="cloud" role="tab" aria-selected="false">Cloud</button>
+          <button class="experts-filter" data-filter="network" role="tab" aria-selected="false">Network</button>
+          <button class="experts-filter" data-filter="devops" role="tab" aria-selected="false">DevOps</button>
+          <button class="experts-filter" data-filter="support" role="tab" aria-selected="false">Support</button>
+        </div>
+        <div class="about-experts__track" id="experts-track">
+
+          <article class="expert-card" data-category="network" data-status="available">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="Senior Network Engineer" data-expert-img="network-engineer" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">N</span>
+            </div>
+            <span class="expert-card__status expert-card__status--available">Available</span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">Network Engineer</h3>
+              <p class="expert-card__role">Senior Network Engineer</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">Cisco</span><span class="expert-skill">Fortinet</span><span class="expert-skill">VPN</span><span class="expert-skill expert-skill--overflow">+2</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.9 out of 5, 32 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.9 <span class="expert-card__reviews">(32)</span>
+                </span>
+                <span class="expert-card__rate">$25 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+          <article class="expert-card" data-category="devops" data-status="available">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="DevOps and Cloud Architect" data-expert-img="devops-architect" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">D</span>
+            </div>
+            <span class="expert-card__status expert-card__status--available">Available</span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">DevOps Architect</h3>
+              <p class="expert-card__role">DevOps &amp; Cloud Architect</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">Docker</span><span class="expert-skill">Kubernetes</span><span class="expert-skill">Terraform</span><span class="expert-skill expert-skill--overflow">+2</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.8 out of 5, 28 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.8 <span class="expert-card__reviews">(28)</span>
+                </span>
+                <span class="expert-card__rate">$32 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+          <article class="expert-card" data-category="cybersecurity" data-status="available">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="SOC Analyst Tier 2" data-expert-img="soc-analyst" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">S</span>
+            </div>
+            <span class="expert-card__status expert-card__status--available">Available</span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">SOC Analyst</h3>
+              <p class="expert-card__role">SOC Analyst (Tier 2)</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">SIEM</span><span class="expert-skill">Splunk</span><span class="expert-skill">EDR</span><span class="expert-skill expert-skill--overflow">+1</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.9 out of 5, 41 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.9 <span class="expert-card__reviews">(41)</span>
+                </span>
+                <span class="expert-card__rate">$22 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+          <article class="expert-card" data-category="cloud" data-status="busy">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="Cloud Infrastructure Engineer" data-expert-img="cloud-engineer" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">C</span>
+            </div>
+            <span class="expert-card__status expert-card__status--busy">
+              <svg class="expert-card__busy-icon" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+              Busy
+            </span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">Cloud Engineer</h3>
+              <p class="expert-card__role">Cloud Infrastructure Engineer</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">AWS</span><span class="expert-skill">Azure</span><span class="expert-skill">GCP</span><span class="expert-skill expert-skill--overflow">+2</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.8 out of 5, 19 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.8 <span class="expert-card__reviews">(19)</span>
+                </span>
+                <span class="expert-card__rate">$28 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+          <article class="expert-card" data-category="support" data-status="available">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="IT Support Specialist L2 L3" data-expert-img="it-support" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">I</span>
+            </div>
+            <span class="expert-card__status expert-card__status--available">Available</span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">IT Support Spec.</h3>
+              <p class="expert-card__role">IT Support Specialist (L2/L3)</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">Windows</span><span class="expert-skill">Linux</span><span class="expert-skill">VMware</span><span class="expert-skill expert-skill--overflow">+2</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.7 out of 5, 55 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.7 <span class="expert-card__reviews">(55)</span>
+                </span>
+                <span class="expert-card__rate">$20 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+          <article class="expert-card" data-category="cybersecurity" data-status="available">
+            <div class="expert-card__avatar-wrap">
+              <img class="expert-card__avatar" src="" alt="Security Engineer" data-expert-img="security-engineer" aria-hidden="true">
+              <span class="expert-card__monogram" aria-hidden="true">E</span>
+            </div>
+            <span class="expert-card__status expert-card__status--available">Available</span>
+            <div class="expert-card__body">
+              <h3 class="expert-card__name">Security Engineer</h3>
+              <p class="expert-card__role">Security Engineer</p>
+              <div class="expert-card__skills" aria-label="Skills">
+                <span class="expert-skill">Firewall</span><span class="expert-skill">IDS/IPS</span><span class="expert-skill">Nessus</span><span class="expert-skill expert-skill--overflow">+1</span>
+              </div>
+              <div class="expert-card__footer">
+                <span class="expert-card__rating" aria-label="Rating 4.9 out of 5, 27 reviews">
+                  <svg class="expert-card__star" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.5 4.5H12L8.25 7.5 9.75 12 6 9 2.25 12 3.75 7.5 0 4.5h4.5z"/></svg>
+                  4.9 <span class="expert-card__reviews">(27)</span>
+                </span>
+                <span class="expert-card__rate">$27 / hr</span>
+              </div>
+            </div>
+            <a href="#cta" class="expert-card__cta btn btn-primary js-hire-now"><span>Hire Now</span></a>
+          </article>
+
+        </div>
+        <p class="about-experts__scroll-hint" aria-hidden="true">← Swipe to see more →</p>
+      </div>
+    </section>
+
+    <!-- ════════════ CTA / CONTACT ════════════ -->
+    <section id="cta" aria-labelledby="cta-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+        <p class="text-eyebrow reveal-clip">CONTACT</p>
+        <div class="divider reveal-divider"></div>
+        <h2 id="cta-heading" class="text-title reveal-clip">
+          YOUR INFRASTRUCTURE<br>
+          <span style="color:var(--accent)">NEEDS A NEXUS.</span>
+        </h2>
+        <p class="text-body reveal-fade">
+          Drop us a message. Our NOC team will respond within 90 seconds.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form" aria-labelledby="cta-heading">
+        <div class="term-header">
+          <div class="term-header-label">CONTACT_INTAKE</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input class="term-input" id="inp-name" type="text" placeholder="Enter your name" autocomplete="name" aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-email">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input class="term-input" id="inp-email" type="email" placeholder="Enter your email" autocomplete="email" aria-required="true">
+          </div>
+
+          <div class="term-field">
+            <label class="term-label" for="inp-issue">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea class="term-input" id="inp-issue" rows="4" placeholder="How can we help?" aria-required="true"></textarea>
+          </div>
+
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" aria-label="Submit contact form" data-page="about">
+            <span>SEND MESSAGE</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script type="module" src="../js/pages/about.js"></script>
+
+</body>
+</html>

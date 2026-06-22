@@ -1,0 +1,129 @@
+/* ─── COVERAGE MAP: Global Node Reach ──────────────────────────────── */
+
+#coverage-map {
+  padding: var(--sp) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4vw;
+  align-items: center;
+}
+
+.cm-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cm-copy .divider {
+  margin: 0;
+}
+
+.cm-body {
+  font-family: var(--fu);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.7;
+  color: var(--t2);
+  max-width: 480px;
+}
+
+.cm-terminal {
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  padding: 16px 20px;
+  max-width: 380px;
+}
+
+.cm-term-line {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1.8;
+}
+
+/* Map */
+.cm-map-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  overflow: hidden;
+}
+
+.cm-map-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHQYKLl8amOnXYyTx4OP-pfNOq-9a-RzJuCqINeD1UAPyo1OS5-sBDTnM_0jHrHi2Acn_qS0hNj4C-yGpodrg0vDOZgD34nPttoYjrgPzFcbyentVHNkxvEj_8alTEoFkDCBpAGA6WJtbhfVfRX4iFlAwZlbrof1qyhL-LZMxYqCiFu7pMHY8S9bpV_KjeMLwCxAmRsPDmqlLSP820V3irjopR6URmZWbbk7wpYlNxhmP9QNLAY8HK1o88DizN8k2xrG5-J68cHnIY');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: grayscale(1);
+}
+
+.cm-map-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cm-pulse-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: cm-dot-pulse 2s infinite ease-in-out;
+}
+
+@keyframes cm-dot-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.5); }
+  50% { opacity: 0.5; box-shadow: 0 0 0 8px rgba(0, 170, 255, 0); }
+}
+
+.cm-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+@media (max-width: 1024px) {
+  .cm-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .cm-map-wrap {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 768px) {
+  #coverage-map {
+    padding: 60px 0;
+  }
+
+  .cm-copy {
+    text-align: center;
+    align-items: center;
+  }
+
+  .cm-copy .divider {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #coverage-map { padding: 40px 0; }
+  .cm-grid { gap: 32px; }
+  .cm-body { font-size: 14px; }
+  .cm-terminal { padding: 12px 16px; max-width: 100%; }
+  .cm-term-line { font-size: 10px; }
+  .cm-map-wrap { aspect-ratio: 4/3; }
+}

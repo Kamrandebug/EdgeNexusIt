@@ -1,0 +1,23 @@
+# /api/.htaccess
+# Block direct access to PHP files except contact.php
+
+Options -Indexes
+Options -ExecCGI
+
+# Block all PHP files from direct access by default
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Explicitly re-allow only the public entry point
+<Files "contact.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Extra defence: block config.php directly (belt-and-braces)
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>

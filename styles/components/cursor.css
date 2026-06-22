@@ -1,0 +1,51 @@
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  border-radius: 50%;
+  will-change: transform;
+  transition: opacity 0.2s;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent-border);
+  transition: width 0.2s var(--ease-expo),
+              height 0.2s var(--ease-expo),
+              border-color 0.2s,
+              background 0.2s;
+}
+
+/* Hover state */
+.cursor-dot.cursor--hover {
+  transform-origin: center;
+  opacity: 0;
+}
+.cursor-ring.cursor--hover {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(0, 170, 255, 0.6);
+  background: rgba(0, 170, 255, 0.04);
+}
+
+/* Click state */
+.cursor-ring.cursor--click {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 170, 255, 0.15);
+  border-color: var(--accent);
+}
+
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+}

@@ -1,0 +1,315 @@
+#services {
+  padding: clamp(40px, 5vw, 70px) 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+#services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 100%,
+    rgba(0, 170, 255, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.services-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+.services-track {
+  overflow: hidden;
+  width: 100%;
+}
+.services-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding: 16px 40px 20px;
+  width: max-content;     /* JS pins and translates */
+}
+
+/* ── Depth carousel: GSAP controls scale/opacity/y/filter ────────── */
+.service-card {
+  width: 380px; /* Standard desktop width */
+  height: auto;
+  flex-shrink: 0;
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform-origin: center 55%;
+  will-change: transform, opacity, filter;
+  transition:
+    border-color var(--dur-fast),
+    box-shadow   var(--dur-fast);
+}
+
+@media (max-width: 1024px) {
+  .service-card {
+    width: 320px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  #services {
+    padding: 60px 0;
+  }
+
+  .services-track {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .services-track::-webkit-scrollbar { display: none; }
+
+  .services-container {
+    width: max-content;
+    padding: 16px 20px 20px;
+    gap: 14px;
+  }
+
+  .service-card {
+    width: 320px;
+    min-width: 280px;
+    padding: 24px 20px;
+    scroll-snap-align: start;
+  }
+
+  .service-num {
+    top: 20px;
+    left: 20px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+    width: 280px;
+    min-width: 260px;
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+    padding: 24px 20px;
+  }
+  
+  .service-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+.service-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: 0 20px 60px rgba(0, 170, 255, 0.10);
+  /* No transform here — GSAP handles y/scale */
+}
+.service-card.is-active {
+  border-color: var(--accent) !important;
+  box-shadow: 0 20px 60px rgba(0, 170, 255, 0.18) !important;
+}
+
+/* Corner brackets */
+.card-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+  z-index: 20;
+}
+.service-card.is-active .card-corner,
+.service-card:hover      .card-corner { 
+  opacity: 1; 
+  border-color: #00aaff;
+}
+.card-corner--tl {
+  top: 10px; left: 10px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+.card-corner--br {
+  bottom: 10px; right: 10px;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+
+/* Horizontal scanline (CSS hover sweep) */
+.card-scanline {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0, 170, 255, 0.04),
+    transparent);
+  pointer-events: none;
+  transition: left 0.6s var(--ease-expo);
+  z-index: 5;
+}
+.service-card:hover .card-scanline { left: 100%; }
+
+/* Card Hover Overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 10, 6, 0.85) 60%,
+    rgba(0, 170, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+  padding-bottom: 16px;
+  pointer-events: none;
+}
+
+.service-card:hover .card-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Content visibility on hover */
+.service-card .text-body {
+  transition: opacity 0.3s ease;
+}
+.service-card:hover .text-body {
+  opacity: 0;
+}
+
+/* "EXPLORE SERVICE" BUTTON */
+.explore-btn {
+  border: none;
+  border-bottom: 1.5px solid #00aaff;
+  color: #00aaff;
+  background: transparent;
+  padding: 0 0 4px 0;
+  font-family: var(--fm);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease 0.1s,
+    transform 0.4s ease 0.1s,
+    letter-spacing 0.2s ease;
+  position: relative;
+}
+
+.service-card:hover .explore-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.explore-btn:hover {
+  letter-spacing: 4px;
+}
+
+/* GREEN ACCENT LINE */
+.card-accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #00aaff;
+  transition: width 0.4s ease;
+  z-index: 15;
+}
+
+.service-card:hover .card-accent-line {
+  width: 100%;
+}
+
+/* ── Clickable hint "EXPLORE →" ────────────────────── */
+.card-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 10px;
+  color: rgba(0, 170, 255, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  pointer-events: none;
+  z-index: 6;
+}
+.service-card:hover .card-hint {
+  color: rgba(0, 170, 255, 0);
+}
+
+/* ── Border pulse on appear ─────────────────────────── */
+@keyframes card-border-pulse {
+  0%   { border-color: var(--bc); }
+  30%  { border-color: #00aaff; }
+  100% { border-color: var(--bc); }
+}
+.service-card {
+  animation: card-border-pulse 1.5s ease-in-out 1;
+}
+
+/* Vertical scanline — sweeps top→bottom on card becoming active */
+.card-scanline-v {
+  position: absolute;
+  top: -35%;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0, 170, 255, 0.07) 50%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+.service-card.is-active .card-scanline-v {
+  animation: scanline-v-sweep 0.55s var(--ease-expo) forwards;
+}
+@keyframes scanline-v-sweep {
+  from { top: -35%; }
+  to   { top: 105%; }
+}
+
+.service-icon {
+  margin-bottom: 8px;
+  color: var(--accent);
+  position: relative;
+  z-index: 12;
+}
+.service-num {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--accent);
+  opacity: 0.5;
+  position: relative;
+  z-index: 12;
+}
+.service-card .text-heading {
+  font-size: 18px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  position: relative;
+  z-index: 12;
+}
+.service-card .text-body {
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 5; /* Below overlay so it can be blurred/hidden */
+}

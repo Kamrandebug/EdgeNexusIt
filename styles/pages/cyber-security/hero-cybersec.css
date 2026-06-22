@@ -1,0 +1,554 @@
+/* ═══════════════════════════════════════════════════════════════════
+   HERO v4 — CYBER SECURITY — FIXED
+   Fixes: B1 padding, B2 eyebrow, B3 headline size, B4 counter font,
+          B5 stat alignment, B6 overflow, B7 panel align, B8 centering,
+          B9 max-width, B10 grid ratio
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── SECTION WRAPPER ──────────────────────────────────────────────── */
+
+.hero-cybersec {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  overflow: hidden;
+  padding-top: var(--nh);
+}
+
+/* Atmospheric grid */
+.hero-cybersec::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--bh) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bh) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Radial vignette */
+.hero-cybersec::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    transparent 35%,
+    var(--bg) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grain canvas */
+.hero-noise-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── INNER CONTAINER ──────────────────────────────────────────────── */
+
+.hero-cybersec-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--cw, 1280px);
+  margin: 0 auto;
+  /* CHANGED: reduced top padding from nh+80px → nh+28px */
+  padding: calc(var(--nh, 56px) + 28px) clamp(32px, 5vw, 80px) 80px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+
+/* ── LEFT COLUMN ──────────────────────────────────────────────────── */
+
+.hero-cybersec-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* ── HEADLINE ─────────────────────────────────────────────────────── */
+
+.hero-headline-cs {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.hero-headline-cs .hw {
+  display: inline-block;
+}
+
+.hero-headline-cs .headline-accent {
+  color: var(--accent);
+  text-shadow:
+    0 0 24px rgba(0, 170, 255, 0.35),
+    0 0 56px rgba(0, 170, 255, 0.12);
+}
+
+/* ── BODY TEXT ────────────────────────────────────────────────────── */
+
+.hero-body-cs {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: clamp(13px, 1.4vw, 16px);
+  line-height: 1.68;
+  color: var(--t2);
+  max-width: 440px;
+}
+
+/* ── CTA ROW ──────────────────────────────────────────────────────── */
+
+.hero-cta-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── RIGHT COLUMN — PANEL ─────────────────────────────────────────── */
+
+.hero-cybersec-panel {
+  min-width: 0;
+  align-self: center;
+}
+
+.surface-panel-frame {
+  position: relative;
+  background: rgba(7, 12, 22, 0.94);
+  border: 1px solid var(--accent-border);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(0, 170, 255, 0.35);
+}
+
+.surface-panel-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    var(--accent) 50%,
+    transparent 95%
+  );
+  opacity: 0.45;
+  z-index: 1;
+}
+
+/* ── PANEL HEADER ─────────────────────────────────────────────────── */
+
+.surface-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--bh);
+  background: rgba(0, 170, 255, 0.03);
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.sph-title {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sph-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sph-live-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 6px rgba(0, 255, 136, 0.7);
+  flex-shrink: 0;
+  animation: cs-live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes cs-live-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── CANVAS WRAP ──────────────────────────────────────────────────── */
+
+.surface-canvas-wrap {
+  position: relative;
+  padding: 20px 16px 12px;
+}
+
+#surface-hex-canvas {
+  display: block;
+  width: 100%;
+  /* Explicit z-index so it's never covered by siblings */
+  position: relative;
+  z-index: 2;
+}
+
+/* ── CANVAS VISIBILITY ───────────────────────────────────────────── */
+/* Canvas container starts at opacity 1 in CSS so the canvas can size
+   and draw before the GSAP entry timeline fades the panel in.
+   GSAP's fromTo() will animate opacity from 0→1 during entry. */
+.hero-cybersec-panel {
+  /* opacity: 1 is the default — NOT set to 0 here, NOT !important,
+     so GSAP fromTo() can animate it freely. The canvas draws
+     underneath while the panel is still at opacity 0 (set by GSAP). */
+}
+
+/* Blue border SVG sits above canvas but doesn't block interactions */
+.surface-border-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* Scan sweep overlay */
+.surface-scanline-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 170, 255, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 100% 80px;
+  animation: cs-sweep 4s linear infinite;
+}
+
+@keyframes cs-sweep {
+  0%   { background-position: 0 -80px; }
+  100% { background-position: 0 calc(100% + 80px); }
+}
+
+/* ── LEGEND ───────────────────────────────────────────────────────── */
+
+.surface-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 8px 16px 10px;
+  border-top: 1px solid var(--bh);
+}
+
+.sl-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.sl-hex {
+  width: 10px;
+  height: 9px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  flex-shrink: 0;
+}
+
+.sl-hex--clear    { background: rgba(0, 170, 255, 0.06); }
+.sl-hex--low      { background: rgba(0, 170, 255, 0.22); }
+.sl-hex--medium   { background: rgba(0, 170, 255, 0.45); }
+.sl-hex--high     { background: rgba(0, 200, 255, 0.70); }
+.sl-hex--critical { background: rgba(0, 220, 255, 0.95); }
+
+/* ── BOTTOM STAT STRIP ────────────────────────────────────────────── */
+
+.surface-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--bh);
+}
+
+.sss-item {
+  padding: 10px 14px;
+  border-right: 1px solid var(--bh);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sss-item:last-child {
+  border-right: none;
+}
+
+.sss-value {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: clamp(12px, 2vw, 18px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--t1);
+  line-height: 1;
+  word-break: break-word;
+}
+
+.sss-value.accent {
+  color: var(--accent);
+}
+
+.sss-label {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: clamp(7px, 1.2vw, 8px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t3);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1024px: laptop ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-cybersec-inner {
+    padding: calc(var(--nh, 56px) + 20px) clamp(28px, 4vw, 60px) 60px;
+    gap: clamp(32px, 4vw, 56px);
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .hero-headline-cs {
+    font-size: clamp(32px, 4.5vw, 62px);
+  }
+
+}
+
+/* ── 900px: tablet landscape ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-cybersec-inner {
+    grid-template-columns: 1fr;
+    padding: calc(var(--nh, 56px) + 40px) clamp(24px, 4vw, 48px) 56px;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .hero-cybersec-copy {
+    align-items: center;
+  }
+
+  .hero-body-cs {
+    max-width: 100%;
+  }
+
+  .hero-cta-row {
+    justify-content: center;
+  }
+
+  .hero-cybersec-panel {
+    max-height: none;
+    overflow: visible;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: auto;
+  }
+
+  .surface-canvas-wrap {
+    min-height: auto;
+    padding: 14px 14px 10px;
+  }
+
+  .surface-panel-header {
+    padding: 8px 14px;
+  }
+
+  .hero-headline-cs {
+    font-size: clamp(30px, 7vw, 52px);
+  }
+}
+
+/* ── 768px: tablet portrait ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-cybersec-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero-cybersec-panel {
+    min-height: auto;
+    width: 100%;
+  }
+
+  .surface-canvas-wrap {
+    min-height: auto;
+    padding: 12px 12px 8px;
+  }
+
+  .surface-panel-header {
+    padding: 8px 12px;
+  }
+
+  .surface-legend {
+    padding: 6px 12px 8px;
+    gap: 10px;
+  }
+
+  .sss-item {
+    padding: 8px 10px;
+  }
+
+  .surface-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sss-item:nth-child(2) { border-right: none; }
+  .sss-item:nth-child(3) {
+    border-top: 1px solid var(--bh);
+    border-right: 1px solid var(--bh);
+  }
+  .sss-item:nth-child(4) {
+    border-top: 1px solid var(--bh);
+    border-right: none;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+/* ── 480px: phone ────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero-cybersec-inner {
+    padding-top: calc(var(--nh, 56px) + 12px);
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 24px;
+    gap: 24px;
+  }
+
+  .hero-headline-cs {
+    font-size: clamp(26px, 9vw, 36px);
+  }
+
+  .hero-body-cs {
+    font-size: 13px;
+  }
+
+  .sph-status {
+    display: none;
+  }
+
+  .surface-panel-frame {
+    border-left: none;
+    border-right: none;
+  }
+
+  .surface-canvas-wrap {
+    padding: 8px 8px 6px;
+  }
+
+  .surface-panel-header {
+    padding: 6px 10px;
+  }
+
+  .sph-title {
+    font-size: 8px;
+  }
+
+  .surface-legend {
+    padding: 4px 10px 6px;
+    gap: 8px;
+  }
+
+  .sl-item {
+    font-size: 7px;
+  }
+
+  .sl-hex {
+    width: 8px;
+    height: 7px;
+  }
+
+  .sss-item {
+    padding: 6px 8px;
+  }
+
+  .sss-value {
+    font-size: 11px;
+  }
+
+  .sss-label {
+    font-size: 6px;
+  }
+}
+
+/* ── 375px: small phone ──────────────────────────────────────────── */
+@media (max-width: 375px) {
+  .hero-headline-cs {
+    font-size: clamp(22px, 9vw, 30px);
+  }
+
+  .surface-canvas-wrap {
+    padding: 6px 6px 4px;
+  }
+
+  .surface-panel-header {
+    padding: 4px 8px;
+  }
+
+  .surface-legend {
+    padding: 3px 8px 5px;
+    gap: 6px;
+  }
+
+  .sss-item {
+    padding: 4px 6px;
+  }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sph-live-dot,
+  .surface-scanline-sweep {
+    animation: none !important;
+  }
+}

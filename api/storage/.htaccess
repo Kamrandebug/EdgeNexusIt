@@ -1,0 +1,3 @@
+# /api/storage/.htaccess
+# Block all direct web access to the storage directory
+Deny from all

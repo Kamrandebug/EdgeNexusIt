@@ -1,0 +1,242 @@
+/* ── DEVOPS ZERO-DOWNTIME PROTOCOL SECTION ─────────────────────────────── */
+.section-zero-downtime {
+  padding: var(--section-gap, var(--sp)) 0;
+  background: var(--surface);
+  position: relative;
+}
+
+.section-zero-downtime .container {
+  max-width: var(--max-width, var(--cw));
+  margin: 0 auto;
+  padding: 0 var(--gutter, clamp(20px, 5vw, 80px));
+}
+
+.section-header--center {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header--center .text-title {
+  font-family: var(--fd);
+  font-size: clamp(28px, 3.5vw, 52px);
+  font-weight: 900;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.title-underline {
+  width: 120px;
+  height: 4px;
+  background: var(--accent);
+  margin: 16px auto 0;
+}
+
+/* Full-width underline with scroll accent fill */
+.title-underline-full {
+  width: 100%;
+  height: 1px;
+  background: var(--bc);
+  position: relative;
+  margin: 16px auto 0;
+}
+
+.title-underline-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.zdt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+}
+
+.zdt-card {
+  background: var(--panel);
+  border: 1px solid var(--bc);
+  border-right: 1px solid var(--bc);
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.zdt-card:last-child {
+  border-right: none;
+}
+
+.zdt-card__eyebrow {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--t3);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.zdt-card__icon-wrap {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.zdt-icon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ═══ ZDT Animated SVGs ═══════════════════ */
+.zdt-animated {
+  /* default: paused; play class toggled by ScrollTrigger */
+  animation-play-state: paused;
+}
+
+.zdt-animated.playing {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zdt-animated {
+    animation: none !important;
+  }
+}
+
+/* ── Blue-Green keyframes ── */
+@keyframes bg-traffic-shift {
+  0%   { stroke-width: 1; }
+  45%  { stroke-width: 8; stroke: #22c55e; }
+  50%  { stroke-width: 8; stroke: #22c55e; }
+  95%  { stroke-width: 8; stroke: #22c55e; }
+  100% { stroke-width: 1; stroke: #00aaff; }
+}
+@keyframes bg-label-swap {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes bg-label-swap-in {
+  0%, 49% { opacity: 0; }
+  50%, 100% { opacity: 1; }
+}
+@keyframes bg-traffic-text {
+  0%   { content: "0%"; }
+  50%  { content: "100%"; }
+  100% { content: "0%"; }
+}
+
+[data-anim="bluegreen"] .traffic-arrow {
+  animation: bg-traffic-shift 4s ease-in-out infinite;
+}
+[data-anim="bluegreen"] .bg-label {
+  animation: bg-label-swap 4s ease-in-out infinite;
+}
+[data-anim="bluegreen"] .bg-label-swap-in {
+  animation: bg-label-swap-in 4s ease-in-out infinite;
+}
+
+/* ── Canary keyframes ── */
+@keyframes canary-thicken {
+  0%, 10% { stroke-width: 1; }
+  90%, 100% { stroke-width: 4; }
+}
+[data-anim="canary"] .canary-path {
+  animation: canary-thicken 4s ease-in-out infinite;
+}
+
+/* ── Rollback keyframes ── */
+@keyframes rollback-ring {
+  0%   { stroke-dashoffset: 0; stroke: #ff6b00; }
+  60%  { stroke-dashoffset: 314; stroke: #ff2d55; }
+  70%  { stroke-dashoffset: 314; stroke: #ff2d55; }
+  100% { stroke-dashoffset: 0; stroke: #22c55e; }
+}
+@keyframes rollback-countdown {
+  0%   { content: "90s"; }
+  33%  { content: "60s"; }
+  66%  { content: "30s"; }
+  100% { content: "0s"; }
+}
+@keyframes rollback-status {
+  0%, 60% { opacity: 1; }
+  70% { opacity: 0; }
+  71%, 100% { opacity: 0; }
+}
+@keyframes rollback-status2 {
+  0%, 60% { opacity: 0; }
+  61%, 70% { opacity: 1; }
+  71%, 100% { opacity: 0; }
+}
+@keyframes rollback-complete {
+  0%, 71% { opacity: 0; }
+  72%, 100% { opacity: 1; }
+}
+[data-anim="rollback"] .progress-ring {
+  animation: rollback-ring 4s ease-in-out infinite;
+}
+
+.zdt-card__title {
+  font-family: var(--fd);
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 700;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.zdt-card__desc {
+  font-family: var(--fu);
+  font-size: 13px;
+  color: var(--t2);
+  line-height: 1.6;
+}
+
+/* Hover states handled by JS, with CSS fallback */
+.zdt-card:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-glow);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .zdt-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .zdt-grid {
+    grid-template-columns: 1fr;
+  }
+  .zdt-card {
+    border-right: none;
+    border-bottom: 1px solid var(--bc);
+  }
+  .zdt-card:last-child {
+    border-bottom: none;
+  }
+  .section-header--center .text-title {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+  .zdt-card { padding: 24px 20px; }
+  .zdt-card__title { font-size: 14px; }
+  .zdt-card__desc { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .section-header--center { margin-bottom: 32px; }
+  .section-header--center .text-title { font-size: 22px; }
+  .zdt-card { padding: 20px 16px; }
+  .zdt-card__eyebrow { font-size: 8px; margin-bottom: 14px; }
+  .zdt-card__icon-wrap { width: 48px; height: 48px; margin-bottom: 16px; }
+  .zdt-card__title { font-size: 13px; }
+  .zdt-card__desc { font-size: 11px; }
+}
