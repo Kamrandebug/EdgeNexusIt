@@ -49,6 +49,8 @@
 | 2026-06-13 | **Critical analysis performed.** Added DevOps page documentation. Identified 10+ architectural inconsistencies, bugs, and cross-page navigation gaps across all three service subpages. Updated file counts and structure listings. |
 | 2026-06-13 | Redesigned MSP Coverage (asymmetric featured + 2x2 grid + bottom bar) and SLA Architecture (horizontal bar timeline with urgency-encoded widths, P1 ripple, scanline hover). Simplified MSP contact form labels to "Name" and "Email". |
 | 2026-06-12 | Improved MSP page animations: entry choreography with word-by-word headline stagger, SVG topology node entry/continuous pulse/line breathing/parallax, coverage section bidirectional card reveals with hover icon glow and sibling dim, SLA timeline with P1 continuous ripple + 4-stage power-on node activation, coverage map with terminal typewriter and ping rings. Updated hero pin to 150vh with SVG drift. Added `coverage-map.js`. |
+| 2026-06-23 | **Nav Link Font Size Increased** — `.nav-link` font-size bumped from 11px → 13px in `styles/components/nav.css`. Single-property change. No JS, layout, or token changes. Propagates to all 7 pages via shared-layout.js. |
+| 2026-06-23 | **Nav Link Font Size Increased Further** — `.nav-link` font-size bumped from 13px → 15px in `styles/components/nav.css`. |
 
 ---
 
