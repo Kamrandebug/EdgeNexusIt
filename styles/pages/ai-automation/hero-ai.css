@@ -1,0 +1,272 @@
+/* ── HERO AI — 2-Column Layout ─── */
+.hero-ai {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--nh);
+  background: var(--bg);
+}
+
+.hero-ai-inner {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 80px);
+  min-height: 80vh;
+}
+
+/* ─── COPY (left column) ─── */
+.hero-ai-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 2.5vw, 28px);
+}
+
+/* ─── HOLOGRAM PANEL (right column) ─── */
+.hero-ai-hologram-panel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  contain: layout style;
+}
+
+/* Brain PNG image — blended into bg so it doesn't sit as a separate rectangle */
+.brain-hologram-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  display: block;
+  z-index: 1;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  /* Screen blend makes the black bg invisible — only the brain + glow show through */
+  mix-blend-mode: screen;
+  /* Soft radial edge fade so there's no hard rectangular cutoff */
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 50%, transparent 100%);
+  animation: brainFloat 3.8s ease-in-out infinite,
+             brainGlow 2.4s ease-in-out infinite;
+}
+
+/* Ambient FX canvas — draws stars, particles, sweep line ON TOP of PNG */
+#canvas-ambient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Panel label — bottom center of hologram panel */
+.hero-ai-panel-label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(0, 180, 255, 0.55);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;           /* animated in by GSAP entry timeline */
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ─── ATMOSPHERE GLOW (ambient background radial) ─── */
+.hero-ai::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 0;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at 60% 45%,
+    rgba(0, 140, 255, 0.07) 0%,
+    rgba(0, 60, 180, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── COPY CONTENT (keep typography overrides) ─── */
+.hero-ai-eyebrow {
+  font-family: var(--fm);
+  font-size: clamp(9px, 1vw, 11px);
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0; /* JS reveals */
+  clip-path: inset(0 100% 0 0);
+}
+
+/* Headline — 3 words, each on its own line */
+.hero-ai-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+}
+.headline-word {
+  display: block;
+  opacity: 0; /* JS reveals each */
+}
+.headline-accent {
+  position: relative;
+  display: inline-block;
+}
+/* Accent underline — EVOLVE. (scaleX driven by GSAP custom prop) */
+.headline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  /* GSAP owns this — no CSS transition */
+}
+
+.hero-ai-body {
+  font-family: var(--fu);
+  font-size: clamp(13px, 1.2vw, 16px);
+  color: var(--t2);
+  line-height: 1.5;
+  max-width: 40ch;
+  opacity: 0;
+  transform: translateY(20px); /* JS reveals */
+}
+
+/* ── CTAs ────────────────────────────────────────────────────── */
+.hero-ai-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px); /* JS reveals */
+}
+
+/* ── RESPONSIVE ─── */
+
+/* Large desktop: give more room */
+@media (min-width: 1400px) {
+  .hero-ai-inner {
+    grid-template-columns: 42fr 58fr;
+  }
+  .hero-ai-hologram-panel {
+    max-height: 85vh;
+  }
+}
+
+/* Tablet landscape */
+@media (max-width: 1200px) {
+  .hero-ai-inner {
+    grid-template-columns: 48fr 52fr;
+    gap: clamp(24px, 4vw, 48px);
+  }
+}
+
+/* Tablet portrait — stack vertically */
+@media (max-width: 900px) {
+  .hero-ai-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: unset;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 32px;
+  }
+  .hero-ai-copy {
+    order: 1;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-ai-hologram-panel {
+    order: 2;
+    aspect-ratio: 1 / 1;
+    max-height: 55vw;
+    min-height: 260px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero-ai {
+    padding-top: var(--nh);
+    align-items: flex-start;
+  }
+  .hero-ai-inner {
+    padding: 0 20px;
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+  .hero-ai-copy {
+    gap: 14px;
+  }
+  .hero-ai-hologram-panel {
+    aspect-ratio: 1 / 1;
+    max-height: 80vw;
+    min-height: 220px;
+  }
+  .hero-ai-panel-label {
+    font-size: 9px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 380px) {
+  .hero-ai-hologram-panel {
+    max-height: 240px;
+    min-height: 200px;
+  }
+}
+
+/* ─── KEYFRAME ANIMATIONS ─── */
+@keyframes brainFloat {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%      { transform: translate(-50%, calc(-50% - 16px)); }
+}
+
+@keyframes brainGlow {
+  0%, 100% { filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.45)); }
+  50%      { filter: drop-shadow(0 0 34px rgba(0, 210, 255, 0.75)); }
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  .brain-hologram-img {
+    animation: none !important;
+    filter: drop-shadow(0 0 22px rgba(0, 210, 255, 0.55)) !important;
+  }
+}

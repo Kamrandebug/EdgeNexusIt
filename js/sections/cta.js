@@ -8,10 +8,10 @@ const API_BASE = new URL('../../api/contact.php', import.meta.url).href;
 
 export function initCTA() {
   // Support all CTAs — main site + service pages
-  const cta = document.getElementById('cta') || document.getElementById('cta-devops') || document.getElementById('cta-msp') || document.getElementById('cta-webdev') || document.getElementById('cta-cybersec') || document.getElementById('staffaug-contact') || document.getElementById('cta-itsupport');
+  const cta = document.getElementById('cta') || document.getElementById('cta-devops') || document.getElementById('cta-msp') || document.getElementById('cta-webdev') || document.getElementById('cta-cybersec') || document.getElementById('staffaug-contact') || document.getElementById('cta-itsupport') || document.getElementById('cta-ai');
   if (!cta) return;
 
-  const isServicePage = !!document.getElementById('cta-devops') || !!document.getElementById('cta-msp') || !!document.getElementById('cta-webdev') || !!document.getElementById('cta-cybersec') || !!document.getElementById('cta-itsupport');
+  const isServicePage = !!document.getElementById('cta-devops') || !!document.getElementById('cta-msp') || !!document.getElementById('cta-webdev') || !!document.getElementById('cta-cybersec') || !!document.getElementById('cta-itsupport') || !!document.getElementById('cta-ai');
 
   // Fetch CSRF token once on page load
   fetch(API_BASE + '?action=token')
@@ -165,6 +165,7 @@ function setupDeploySubmit(cta, submitBtn, inputName, inputEmail, inputIssue, do
     termBody.appendChild(outputDiv);
 
     const isCyberPage = !!document.getElementById('cta-cybersec');
+    const isAiPage    = !!document.getElementById('cta-ai');
 
     const lines = isCyberPage ? [
       { text: '[00:00] Initializing asset discovery...',                  color: 'var(--t3)' },
@@ -172,6 +173,12 @@ function setupDeploySubmit(cta, submitBtn, inputName, inputEmail, inputIssue, do
       { text: '[00:02] Cross-referencing CVE database...',                color: 'var(--t3)' },
       { text: '[00:03] Compiling findings...',                            color: 'var(--t3)' },
       { text: '[00:04] ✓ AUDIT_QUEUED :: report ETA 24h :: ref 0x8f3a',  color: 'var(--accent)' },
+    ] : isAiPage ? [
+      { text: '[00:00] WORKFLOW_INITIATING...',                            color: 'var(--t3)' },
+      { text: '[00:01] NEURAL_HANDSHAKE_COMPLETE',                         color: 'var(--t3)' },
+      { text: '[00:02] AUTOMATION_QUEUED',                                 color: 'var(--t3)' },
+      { text: '[00:03] AGENT_ASSIGNED',                                    color: 'var(--t3)' },
+      { text: '[00:04] ✓ DEPLOYMENT_SCHEDULED.',                          color: 'var(--accent)' },
     ] : [
       { text: '[00:00] Connecting to NEXUS intake server...',       color: 'var(--t3)' },
       { text: '[00:01] Authenticating request... OK',               color: 'var(--t3)' },
@@ -220,7 +227,7 @@ function setupDeploySubmit(cta, submitBtn, inputName, inputEmail, inputIssue, do
           // Re-enable after delay for UX
           setTimeout(() => {
             submitBtn.style.display = '';
-            submitBtn.querySelector('span').textContent = isCyberPage ? 'REQUEST AUDIT' : 'SEND MESSAGE';
+            submitBtn.querySelector('span').textContent = isCyberPage ? 'REQUEST AUDIT' : isAiPage ? 'DEPLOY AI' : 'SEND MESSAGE';
             submitBtn.disabled = false;
             inputs.forEach(inp => { inp.disabled = false; inp.value = ''; });
             outputDiv.remove();

@@ -47,6 +47,7 @@ function validate_page(string $page): bool {
         'it-support',
         'staff-augmentation',
         'about',
+        'ai-automation',
     ];
     return in_array($page, $allowed, true);
 }

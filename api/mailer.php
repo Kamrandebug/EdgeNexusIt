@@ -20,6 +20,7 @@ function send_lead_email(array $clean): void {
         'it-support'         => 'IT Support Request',
         'staff-augmentation' => 'Staff Aug Inquiry',
         'about'              => 'General Contact',
+        'ai-automation'      => 'AI Automation Inquiry',
     ];
 
     $pageLabel = $pageLabels[$clean['page']] ?? 'General Inquiry';

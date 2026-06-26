@@ -43,6 +43,7 @@ export function injectLayout() {
             <li><a href="${ROOT}/services/cyber-security.html"     class="nav-dropdown-link" data-service="cyber">CYBER SECURITY</a></li>
             <li><a href="${ROOT}/services/it-support.html"         class="nav-dropdown-link" data-service="itsupport">IT SUPPORT</a></li>
             <li><a href="${ROOT}/services/staff-augmentation.html" class="nav-dropdown-link" data-service="staffaug">STAFF AUGMENTATION</a></li>
+            <li><a href="${ROOT}/services/ai-automation.html"        class="nav-dropdown-link" data-service="ai">AI AUTOMATION</a></li>
           </ul>
         </li>
 
@@ -77,6 +78,7 @@ export function injectLayout() {
     <li><a href="${ROOT}/services/cyber-security.html"      class="nav-mobile-link nav-mobile-link--sub">CYBER SECURITY</a></li>
     <li><a href="${ROOT}/services/it-support.html"          class="nav-mobile-link nav-mobile-link--sub">IT SUPPORT</a></li>
     <li><a href="${ROOT}/services/staff-augmentation.html"  class="nav-mobile-link nav-mobile-link--sub">STAFF AUGMENTATION</a></li>
+    <li><a href="${ROOT}/services/ai-automation.html"        class="nav-mobile-link nav-mobile-link--sub">AI AUTOMATION</a></li>
     <li><a href="${ABOUT_PATH}"                        class="nav-mobile-link">ABOUT</a></li>
     <li><a href="#cta"                                      class="nav-mobile-link nav-mobile-link--cta">CONTACT</a></li>
   </ul>

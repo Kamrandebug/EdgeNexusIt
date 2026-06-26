@@ -27,7 +27,7 @@ export function initNav() {
   document.querySelectorAll('[data-navlink="contact"], .nav-mobile-link--cta').forEach(link => {
     link.addEventListener('click', (e) => {
       // Find any CTA section on the current page
-      const ctaSelectors = ['#cta', '#cta-devops', '#cta-msp', '#cta-cybersec', '#cta-itsupport', '#staffaug-contact'];
+      const ctaSelectors = ['#cta', '#cta-devops', '#cta-msp', '#cta-cybersec', '#cta-itsupport', '#staffaug-contact', '#cta-ai'];
       let ctaSection = null;
       for (const sel of ctaSelectors) {
         ctaSection = document.querySelector(sel);
@@ -62,12 +62,12 @@ export function initNav() {
 
     container.addEventListener('mouseenter', () => { cancelClose(); openDropdown(); });
     container.addEventListener('mouseleave', () => {
-      closeTimer = setTimeout(() => { closeDropdown(); }, 200);
+      closeTimer = setTimeout(() => { closeDropdown(); }, 350);
     });
 
     dropdown.addEventListener('mouseenter', () => { cancelClose(); openDropdown(); });
     dropdown.addEventListener('mouseleave', () => {
-      closeTimer = setTimeout(() => { closeDropdown(); }, 200);
+      closeTimer = setTimeout(() => { closeDropdown(); }, 350);
     });
 
     dropdownTrigger.addEventListener('click', (e) => {

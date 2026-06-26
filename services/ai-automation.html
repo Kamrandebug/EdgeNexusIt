@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AI Automation — EdgeNexus IT</title>
+  <meta name="description" content="Intelligent automation powered by AI. Edge Nexus IT deploys learning systems that think, act, and evolve — zero human intervention required.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/favicon-48.png">
+
+  <!-- Google Fonts: preconnect + preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=DM+Mono:wght@400;600&family=Barlow+Condensed:wght@400;600&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=DM+Mono:wght@400;600&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <!-- CSS: tokens FIRST -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+
+  <!-- Shared components -->
+  <link rel="stylesheet" href="../styles/components/preloader.css">
+  <link rel="stylesheet" href="../styles/components/nav.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/cards.css">
+  <link rel="stylesheet" href="../styles/components/cursor.css">
+  <link rel="stylesheet" href="../styles/components/terminal.css">
+  <link rel="stylesheet" href="../styles/components/status-bar.css">
+
+  <!-- Shared sections -->
+  <link rel="stylesheet" href="../styles/sections/cta.css">
+  <link rel="stylesheet" href="../styles/sections/footer.css">
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="../styles/pages/ai-automation/hero-ai.css">
+  <link rel="stylesheet" href="../styles/pages/ai-automation/capabilities.css">
+  <link rel="stylesheet" href="../styles/pages/ai-automation/automation-flow.css">
+  <link rel="stylesheet" href="../styles/pages/ai-automation/impact-metrics.css">
+
+  <!-- Fix: force scroll to top on refresh -->
+  <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
+</head>
+
+<body>
+
+  <!-- SKIP LINK -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GRID OVERLAY -->
+  <div id="grid-overlay" aria-hidden="true"></div>
+  <canvas id="grid-pulse" aria-hidden="true"></canvas>
+
+  <!-- nav injected by shared-layout.js -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 1: HERO — AI AUTOMATION
+    ════════════════════════════════════════════════ -->
+    <section id="hero-ai" class="hero-ai" aria-label="AI Automation Hero">
+      <div class="hero-ai-inner">
+
+        <!-- LEFT: Copy block -->
+        <div class="hero-ai-copy">
+        
+          <h1 class="hero-ai-headline">
+            <span class="headline-word word-1">THINK.</span>
+            <span class="headline-word word-2">AUTOMATE.</span>
+            <span class="headline-word word-3 headline-accent" style="color: #00aaff; text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff;">EVOLVE.</span>
+          </h1>
+
+          <p class="hero-ai-body">
+            Intelligent automation that learns, adapts, and compounds.
+            No scripts, no rigid rules — living AI systems that improve every cycle.
+          </p>
+
+          <!-- Inline stat strip removed by request -->
+
+          <div class="hero-ai-ctas">
+            <button class="btn btn-primary" onclick="document.querySelector('#cta-ai').scrollIntoView({behavior:'smooth'})">
+              <span>DEPLOY AI</span>
+            </button>
+            <button class="btn btn-ghost" onclick="document.querySelector('#capabilities').scrollIntoView({behavior:'smooth'})">
+              <span>./view_stack</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: Hologram Brain Panel — NEW -->
+        <div class="hero-ai-hologram-panel" aria-hidden="true">
+
+          <!-- LAYER 1: The actual Brain.png image (base layer) -->
+          <img
+            id="brain-img"
+            src="../assets/images/brain-hologram.png"
+            class="brain-hologram-img"
+            alt=""
+            draggable="false"
+          >
+
+          <!-- LAYER 2: Canvas overlay — ambient FX only (stars, particles, sweep line) -->
+          <canvas id="canvas-ambient" aria-hidden="true"></canvas>
+
+          <!-- LAYER 3: Panel label -->
+          <span class="hero-ai-panel-label hero-ai-hologram-label">NEURAL · HOLOGRAM</span>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 2: CAPABILITIES
+    ════════════════════════════════════════════════ -->
+    <section id="capabilities" class="section-capabilities" aria-label="AI Capabilities">
+      <div class="cap-inner">
+        <div class="cap-header">
+          <p class="cap-eyebrow">THE INTELLIGENCE LAYER</p>
+          <div class="cap-divider"></div>
+          <h2 class="cap-title">Six systems. One orchestration layer.<br>Zero manual intervention.</h2>
+        </div>
+        <div class="cap-grid">
+
+          <!-- Card 01: LLM INTEGRATION -->
+          <div class="cap-card" data-cap="01">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <rect x="2" y="4" width="16" height="12" rx="3"/>
+                  <rect x="10" y="10" width="16" height="12" rx="3"/>
+                  <circle cx="10" cy="10" r="1.5"/>
+                  <line x1="10" y1="11.5" x2="10" y2="14"/>
+                </svg>
+              </div>
+              <span class="cap-number">01</span>
+              <h3 class="cap-title-card">LLM INTEGRATION</h3>
+              <p class="cap-desc">Drop GPT-4, Claude, or custom fine-tuned models directly into your workflows with zero-latency API orchestration.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Card 02: COMPUTER VISION -->
+          <div class="cap-card" data-cap="02">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <path d="M14 14m-8 0a8 8 0 1 1 16 0 8 8 0 1 1-16 0" stroke-dasharray="4 2"/>
+                  <circle cx="14" cy="14" r="4"/>
+                  <circle cx="14" cy="14" r="1.5"/>
+                </svg>
+              </div>
+              <span class="cap-number">02</span>
+              <h3 class="cap-title-card">COMPUTER VISION</h3>
+              <p class="cap-desc">Real-time object detection, scene understanding, and visual inspection powered by multi-modal transformers.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Card 03: PREDICTIVE ANALYTICS (sparkline hover) -->
+          <div class="cap-card" data-cap="03">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <path class="spark" d="M3 20 Q7 14 10 18 T17 12 T25 8" stroke-dasharray="80" stroke-dashoffset="80"/>
+                  <rect x="20" y="16" width="3" height="6" rx="0.5"/>
+                  <rect x="24" y="12" width="3" height="10" rx="0.5"/>
+                  <path d="M22 10 L25 12 L23 12" stroke-width="1"/>
+                </svg>
+              </div>
+              <span class="cap-number">03</span>
+              <h3 class="cap-title-card">PREDICTIVE ANALYTICS</h3>
+              <p class="cap-desc">Forecast demand, detect anomalies, and preempt failures before they happen — powered by time-series transformers.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Card 04: NLP PIPELINE -->
+          <div class="cap-card" data-cap="04">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <line x1="4" y1="8" x2="16" y2="8"/>
+                  <line x1="4" y1="8" x2="8" y2="8" stroke-width="3" opacity="0.3"/>
+                  <line x1="4" y1="14" x2="18" y2="14"/>
+                  <line x1="4" y1="14" x2="12" y2="14" stroke-width="3" opacity="0.3"/>
+                  <path d="M22 6 L26 14 L22 22" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="4" y1="20" x2="14" y2="20"/>
+                  <line x1="4" y1="20" x2="9" y2="20" stroke-width="3" opacity="0.3"/>
+                </svg>
+              </div>
+              <span class="cap-number">04</span>
+              <h3 class="cap-title-card">NLP PIPELINE</h3>
+              <p class="cap-desc">Parse, classify, and extract meaning from unstructured text at scale — tickets, emails, logs, contracts.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Card 05: WORKFLOW AUTOMATION -->
+          <div class="cap-card" data-cap="05">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <circle cx="6" cy="6" r="3"/>
+                  <circle cx="22" cy="6" r="3"/>
+                  <circle cx="14" cy="22" r="3"/>
+                  <line x1="8.5" y1="7.5" x2="12" y2="20"/>
+                  <line x1="19.5" y1="7.5" x2="16" y2="20"/>
+                </svg>
+              </div>
+              <span class="cap-number">05</span>
+              <h3 class="cap-title-card">WORKFLOW AUTOMATION</h3>
+              <p class="cap-desc">Orchestrate multi-step processes end-to-end — from intake to resolution — without a single human checkpoint.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Card 06: AUTONOMOUS AGENTS (pulse-dot hover) -->
+          <div class="cap-card" data-cap="06">
+            <div class="cap-card-inner">
+              <div class="cap-icon-wrap" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#00aaff" stroke-width="1.5" opacity="0.8">
+                  <circle cx="14" cy="14" r="3"/>
+                  <circle cx="14" cy="14" r="6" stroke-dasharray="2 3"/>
+                  <circle class="pulse-dot" cx="14" cy="14" r="1.5" fill="#00aaff" stroke="none"/>
+                  <circle cx="14" cy="4" r="1.5" fill="#00aaff" stroke="none"/>
+                  <circle cx="23.5" cy="19.5" r="1.5" fill="#00aaff" stroke="none"/>
+                  <circle cx="4.5" cy="19.5" r="1.5" fill="#00aaff" stroke="none"/>
+                </svg>
+              </div>
+              <span class="cap-number">06</span>
+              <h3 class="cap-title-card">AUTONOMOUS AGENTS</h3>
+              <p class="cap-desc">Self-directed AI agents that plan, execute, and course-correct — operating 24/7 without supervision or retry prompts.</p>
+              <div class="cap-accent-line" aria-hidden="true"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 3: AUTOMATION WORKFLOW
+    ════════════════════════════════════════════════ -->
+    <section id="automation-flow" class="section-workflow" aria-label="Automation Workflow">
+      <div class="flow-inner">
+        <div class="flow-header">
+          <p class="flow-eyebrow">THE AUTOMATION FLOW</p>
+          <h2 class="flow-title">ZERO HUMAN<br>IN THE LOOP.</h2>
+          <p class="flow-sub">End-to-end intelligence: from raw signal to resolved action.</p>
+        </div>
+
+        <div class="flow-track-wrapper">
+          <!-- Connecting line SVG -->
+          <svg class="flow-line-svg" viewBox="0 0 1000 2" preserveAspectRatio="none" aria-hidden="true">
+            <rect class="flow-line-bg" x="0" y="0" width="1000" height="2" rx="1"/>
+            <rect class="flow-line-fill" x="0" y="0" width="1000" height="2" rx="1"/>
+          </svg>
+
+          <!-- 5 nodes -->
+          <div class="flow-track">
+            <div class="flow-node">
+              <div class="flow-node-dot">01</div>
+              <div class="flow-node-label">DATA IN</div>
+            </div>
+            <div class="flow-node">
+              <div class="flow-node-dot">02</div>
+              <div class="flow-node-label">AI PARSE</div>
+            </div>
+            <div class="flow-node">
+              <div class="flow-node-dot">03</div>
+              <div class="flow-node-label">DECISION</div>
+            </div>
+            <div class="flow-node">
+              <div class="flow-node-dot">04</div>
+              <div class="flow-node-label">ACTION</div>
+            </div>
+            <div class="flow-node">
+              <div class="flow-node-dot">05</div>
+              <div class="flow-node-label">VERIFY</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 4: IMPACT METRICS
+    ════════════════════════════════════════════════ -->
+    <section id="impact-metrics" class="section-metrics" aria-label="Impact Metrics">
+      <div class="metrics-inner">
+        <div class="metrics-header">
+          <p class="metrics-eyebrow">MEASURED. PUBLISHED. GUARANTEED.</p>
+          <h2 class="metrics-title">THE NUMBERS<br>DON'T LIE.</h2>
+          <div class="metrics-divider"></div>
+        </div>
+
+        <div class="metric-grid" role="list">
+
+          <!-- Stat 1: 847M -->
+          <div class="metric-card" role="listitem" aria-label="847 million tasks automated daily">
+            <div class="drum-counter" data-target="847" data-suffix="M" data-decimals="0" data-display="847">
+              <span class="drum-digits"></span>
+            </div>
+            <div class="metric-label">TASKS AUTOMATED DAILY</div>
+          </div>
+
+          <!-- Stat 2: 0.3s -->
+          <div class="metric-card" role="listitem" aria-label="0.3 second average decision latency">
+            <div class="drum-counter" data-target="03" data-suffix="s" data-decimals="1" data-display="0.3">
+              <span class="drum-digits"></span>
+            </div>
+            <div class="metric-label">AVG DECISION LATENCY</div>
+          </div>
+
+          <!-- Stat 3: 97.3% -->
+          <div class="metric-card" role="listitem" aria-label="97.3 percent workflow accuracy">
+            <div class="drum-counter" data-target="973" data-suffix="%" data-decimals="1" data-display="97.3">
+              <span class="drum-digits"></span>
+            </div>
+            <div class="metric-label">WORKFLOW ACCURACY</div>
+          </div>
+
+          <!-- Stat 4: 83% -->
+          <div class="metric-card" role="listitem" aria-label="83 percent cost reduction">
+            <div class="drum-counter" data-target="83" data-suffix="%" data-decimals="0" data-display="83">
+              <span class="drum-digits"></span>
+            </div>
+            <div class="metric-label">COST REDUCTION</div>
+          </div>
+
+        </div>
+
+        <!-- Live activity chart -->
+        <div class="metrics-chart-block">
+          <div class="metrics-chart-header">
+            <span class="metrics-chart-title">LIVE ACTIVITY</span>
+            <div class="metrics-chart-legend">
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#00aaff;"></span>
+                INFERENCE
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#ff6b00;"></span>
+                TRAINING
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#ff2d55;"></span>
+                DEPLOYMENT
+              </div>
+            </div>
+          </div>
+          <canvas id="ai-activity-chart" aria-label="Live AI activity oscilloscope"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SECTION 5: CTA
+    ════════════════════════════════════════════════ -->
+    <section id="cta-ai" aria-labelledby="cta-ai-heading">
+      <div class="ambient-dots" aria-hidden="true"></div>
+
+      <div class="cta-header">
+                <div class="divider reveal-divider"></div>
+        <h2 id="cta-ai-heading" class="text-title reveal-clip">
+          READY TO<br>
+          <span style="color:var(--accent)">AUTOMATE</span>?
+        </h2>
+        <p class="text-body reveal-fade">
+          Tell us what to eliminate. We'll build the agent.
+        </p>
+      </div>
+
+      <div class="terminal reveal-fade" role="form" aria-labelledby="cta-ai-heading">
+        <div class="term-header">
+          <div class="term-header-label">CONTACT</div>
+          <div class="term-dots" aria-hidden="true">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="term-body">
+          <div class="term-field">
+            <label class="term-label" for="inp-name">
+              <span class="term-arrow">$</span> NAME:
+            </label>
+            <input class="term-input" id="inp-name" type="text" placeholder="Enter your name" autocomplete="name" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-email">
+              <span class="term-arrow">$</span> EMAIL:
+            </label>
+            <input class="term-input" id="inp-email" type="email" placeholder="Enter your email" autocomplete="email" aria-required="true">
+          </div>
+          <div class="term-field">
+            <label class="term-label" for="inp-issue">
+              <span class="term-arrow">$</span> MESSAGE:
+            </label>
+            <textarea class="term-input" id="inp-issue" rows="4" placeholder="Describe your use case" aria-required="true"></textarea>
+          </div>
+          <!-- Honeypot (anti-spam) -->
+          <input type="text" name="_honey" id="_honey" autocomplete="off" tabindex="-1" style="position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden;" aria-hidden="true">
+
+          <button class="btn btn-primary term-submit" type="button" aria-label="Deploy AI" data-page="ai-automation">
+            <span>DEPLOY AI</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div id="light-sweep" aria-hidden="true"></div>
+  </main>
+
+  <!-- footer injected by shared-layout.js -->
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+  <script type="module" src="../js/pages/ai-automation/page-main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* ── AI Automation — Impact Metrics ────────────────────────────
+   4 drum-counter stat cards + live oscilloscope activity chart.
+   Drum CSS mirrors it-support/sla-stats.css (1.1em digit height). */
+
+.section-metrics {
+  padding: var(--sp) 0;
+  position: relative;
+  background: var(--bg);
+}
+
+.metrics-inner {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+/* Section header */
+.metrics-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.metrics-eyebrow {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.metrics-title {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+}
+.metrics-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--bh);
+}
+
+/* ── Stat card grid ──────────────────────────────────────────── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.metric-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--bh);
+  padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  overflow: hidden;
+  transition: border-color 0.35s var(--ease-expo);
+}
+.metric-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Top accent hairline */
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-expo);
+}
+.metric-card.revealed::before {
+  transform: scaleX(1);
+}
+
+/* Drum counter */
+.drum-counter {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.1;
+  color: var(--t1);
+  letter-spacing: -0.02em;
+  display: flex;
+  overflow: hidden;
+  height: 1.1em;
+}
+.drum-digits {
+  display: flex;
+  align-items: flex-start;
+}
+.drum-place {
+  position: relative;
+  overflow: hidden;
+  height: 1.1em;
+  display: inline-block;
+}
+.drum-column {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+}
+.drum-digit-item {
+  display: block;
+  height: 1.1em;
+  line-height: 1.1;
+}
+.drum-suffix {
+  font-size: 0.45em;
+  color: var(--t2);
+  margin-left: 4px;
+  align-self: center;
+  font-weight: 600;
+}
+
+.metric-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--t3);
+  text-transform: uppercase;
+}
+
+/* ── Activity chart ──────────────────────────────────────────── */
+.metrics-chart-block {
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: clamp(24px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--bh);
+}
+.metrics-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.metrics-chart-title {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.metrics-chart-legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--t3);
+  text-transform: uppercase;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+#ai-activity-chart {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .metric-card { padding: 22px; }
+}

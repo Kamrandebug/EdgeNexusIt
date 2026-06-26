@@ -258,6 +258,7 @@ const SERVICE_PAGES = {
   2: 'services/cyber-security.html',
   3: 'services/it-support.html',
   4: 'services/staff-augmentation.html',
+  5: 'services/ai-automation.html',
 };
 
 function navigateToService(card) {

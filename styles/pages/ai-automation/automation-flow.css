@@ -1,0 +1,222 @@
+/* ── AI Automation — Workflow Pipeline ─────────────────────────
+   6-node horizontal track (scroll-scrubbed on desktop).
+   DATA IN → AI PARSE → DECISION → ACTION → VERIFY → LEARN */
+
+.section-workflow {
+  position: relative;
+  background: var(--bg);
+}
+
+.flow-inner {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: var(--sp) clamp(20px, 4vw, 60px);
+}
+
+/* Section header */
+.flow-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.flow-eyebrow {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.flow-title {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+}
+.flow-sub {
+  font-family: var(--fu);
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: var(--t2);
+  max-width: 60ch;
+}
+
+/* ── Track wrapper ───────────────────────────────────────────── */
+.flow-track-wrapper {
+  position: relative;
+  padding: clamp(30px, 4vw, 50px) 0;
+}
+
+/* Connecting line SVG (bg + fill) */
+.flow-line-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.flow-line-bg {
+  stroke: var(--bh);
+  stroke-width: 2;
+  fill: none;
+}
+.flow-line-fill {
+  stroke: var(--accent);
+  stroke-width: 2;
+  fill: none;
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* Nodes row */
+.flow-track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.flow-node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.flow-node-dot {
+  width: clamp(36px, 4vw, 52px);
+  height: clamp(36px, 4vw, 52px);
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--bc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t3);
+  transition: all 0.35s var(--ease-expo);
+}
+.flow-node-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--t3);
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.35s var(--ease-expo);
+}
+/* Active state */
+.flow-node.active .flow-node-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  box-shadow: 0 0 24px var(--accent-glow);
+  transform: scale(1.08);
+}
+.flow-node.active .flow-node-label {
+  color: var(--t1);
+}
+.flow-node.active .flow-node-dot {
+  animation: flow-node-pulse 1.6s ease-in-out infinite;
+}
+@keyframes flow-node-pulse {
+  0%, 100% { box-shadow: 0 0 24px var(--accent-glow); }
+  50%      { box-shadow: 0 0 36px var(--accent-strong); }
+}
+
+/* ── Detail panel area ───────────────────────────────────────── */
+.flow-detail {
+  margin-top: clamp(40px, 5vw, 64px);
+  position: relative;
+  min-height: 180px;
+}
+.flow-panel {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(24px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--bh);
+  border-left: 2px solid var(--accent);
+}
+.flow-panel[data-active="true"] {
+  display: flex;
+}
+.flow-panel-eyebrow {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.flow-panel-desc {
+  font-family: var(--fu);
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+/* Stat bars */
+.flow-stat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.flow-stat-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--t3);
+}
+.flow-stat-track {
+  height: 4px;
+  background: var(--bh);
+  overflow: hidden;
+}
+.flow-stat-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}
+
+/* Terminal line */
+.flow-terminal {
+  font-family: var(--fm);
+  font-size: 12px;
+  color: var(--t2);
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--bh);
+  letter-spacing: 0.02em;
+}
+.flow-terminal::before {
+  content: '> ';
+  color: var(--accent);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Kill horizontal track, show panels stacked vertically */
+  .flow-line-svg,
+  .flow-track {
+    display: none;
+  }
+  .flow-panel {
+    display: flex;
+    margin-bottom: 16px;
+  }
+  .flow-panel[data-active="false"] {
+    display: flex;
+  }
+  .flow-panel { border-left-width: 2px; }
+}

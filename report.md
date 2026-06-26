@@ -1,7 +1,7 @@
 # EdgeNexus IT — Complete System Architecture & UI Report
 
 > **Generated:** 2026-06-13
-> **Last Updated:** 2026-06-20 (batch 16 — Form validation & favicon fixes)
+> **Last Updated:** 2026-06-24 (batch 17 — AI Automation page + nav fixes)
 > **Purpose:** A complete reference so any LLM or developer can understand the full project — structure, animations, UI flow, design system, and backend.
 >
 > **⚠️ CORRECTED:** DevOps page sections (3.4, 4.12, 11, Appendix A) now document the **actual implementation** from files on disk, NOT the earlier prompt.md specification. Several previously-listed bugs were already fixed in code (boot event, scanline, Three.js, pipeline node count, preloader import). The report now reflects what is actually built.
@@ -12,6 +12,10 @@
 
 | Date | Change |
 |------|--------|
+| 2026-06-24 | **AI Automation Page Built (batch 17)** — New 7th service page `services/ai-automation.html` with 4 sections + shared CTA. Hero: "THINK. AUTOMATE. EVOLVE." headline with neural brain canvas (55 tier-gated firing neurons, synaptic pulse propagation, cascade re-fire at 30%, mouse parallax, ghosting trail) + automation wheel canvas (5 concentric counter-rotating gear rings with orbit packets, HUD overlay showing live PROCESSES/UPTIME/AGENTS/LOAD, center "AI" glow node) + convergence sync pulse tying brain+wheel every 3–4s (high tier only, GSAP ray flash). Entry: scanline → brain materialize → wheel spin → neuron burst → eyebrow clip → 3-word headline slam (expo.out) → accent underline draw → body → CTAs → panel labels. Hero pin: 120% scrub exit (80% mobile). Capabilities: 6-card 3×2 grid (LLM Integration, Computer Vision, Predictive Analytics, NLP Pipeline, Workflow Automation, Autonomous Agents) with per-card SVG icons, GSAP ScrollTrigger batch reveal (stagger 0.08s), magnetic hover on cards 01/02/06 (elastic.out quickTo, 380px falloff, 0.14 strength), CSS hover micro-animations (card 03 sparkline draw, card 02 conic-gradient iris expand, card 06 pulsing dot ring). Automation Flow: 5-node horizontal track (DATA IN → AI PARSE → DECISION → ACTION → VERIFY) with SVG connecting line fill animation, sequential node activation (300ms stagger), pulse glow active state. Impact Metrics: 4 drum-counter stat cards (847M tasks, 0.3s latency, 97.3% accuracy, 83% cost reduction) with cascading digit roll animation + live oscilloscope activity chart (3 stacked quadratic-bezier random-walk lines for INFERENCE/TRAINING/DEPLOYMENT, 60-point sliding window, 800ms tick). 5 new JS files, 4 new CSS files. `PAGE_ID = 'ai-automation'`. No Three.js/D3 loaded. |
+| 2026-06-24 | **AI Automation Wired Into Full System** — `index.html`: services heading changed "FIVE STREAMS" → "SIX STREAMS", added 6th service card (AI Automation, card 06, neural-network SVG icon with center node + 4 corner satellite nodes + dashed connecting lines). `js/sections/services.js`: SERVICE_PAGES mapping updated (card 5 → `services/ai-automation.html`). `js/components/shared-layout.js`: AI AUTOMATION added to both desktop dropdown and mobile menu. `js/components/nav.js`: `#cta-ai` added to CTA selector array. `js/sections/cta.js`: `#cta-ai` CTA element detection + `isAiPage` flag + AI-specific deploy-sequence typewriter (5 lines: WORKFLOW_INITIATING → NEURAL_HANDSHAKE_COMPLETE → AUTOMATION_QUEUED → AGENT_ASSIGNED → DEPLOYMENT_SCHEDULED) + "DEPLOY AI" submit button text + re-enable label. `api/validator.php`: `'ai-automation'` added to allowed page list. `api/mailer.php`: `'ai-automation'` → `'AI Automation Inquiry'` email label. `styles/components/nav.css`: dropdown close delay increased 200ms → 350ms; invisible CSS bridge enlarged (height 16px→24px, top -16px→-24px, left/right -20px padding); `nav-item--dropdown::after` repositioned from `bottom:0 height:8px` to `top:100% height:24px left/right -10px` for better hover bridge coverage. |
+| 2026-06-23 | **Nav Link Font Size Increased** — `.nav-link` font-size bumped from 11px → 13px in `styles/components/nav.css`. Single-property change. No JS, layout, or token changes. Propagates to all 7 pages via shared-layout.js. |
+| 2026-06-23 | **Nav Link Font Size Increased Further** — `.nav-link` font-size bumped from 13px → 15px in `styles/components/nav.css`. |
 | 2026-06-17 | **Nav Brand Redesign** — Removed `EDGE[NEXUS IT]` bracket format. New structure: `.nav-logo-wrap` (40px circle) containing `.nav-logo-img` (32px brand-icon.png) + `.nav-wordmark` with `.nav-wordmark-edge` (#00aaff blue, 700 weight) and `.nav-wordmark-nexus` (white). Applied via `shared-layout.js` HTML update + `nav.css` brand rules. Fix applies to all 7 pages via shared layout injection. **Later fixed to match footer:** logo now uses `brand-icon@2x.png`, `object-fit: cover`, no accent border/glow — wordmark uses `--brand-blue` (#00B0E0), `font-weight: 900`, `letter-spacing: -0.01em`. |
 | 2026-06-17 | **Cyber Security Hero Canvas Fix** — Fixed Attack Surface Map canvas disappearing on mobile (iOS/Android) and intermittently on desktop. Root causes: canvas sized while GSAP had set panel opacity:0 → offsetWidth:0; IntersectionObserver firing before first draw; missing DPR scaling. Fixes: (1) sizeCanvas() runs before GSAP timeline with getBoundingClientRect fallback, (2) RAF starts immediately with hasDrawnOnce guard delaying IntersectionObserver, (3) DPR scaling capped at 2×, (4) debounced resize handler for orientation changes, (5) removed CSS `!important` rule that broke GSAP panel fade-in. |
 | 2026-06-17 | **Shared Layout System** — Created `js/components/shared-layout.js` that injects nav + footer into ALL pages via JS. Removed static nav/footer HTML from `index.html` and all 5 service pages (`msp.html`, `devops.html`, `cyber-security.html`, `it-support.html`, `staff-augmentation.html`). All now use `<!-- nav/footer injected by shared-layout.js -->` placeholder comments. |
@@ -56,7 +60,7 @@
 
 ## 1. Project Identity
 
-EdgeNexus IT is a **high-performance, cinematic corporate landing page** for an enterprise IT infrastructure provider, complete with dedicated service subpages (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation) and a **PHP backend** for contact form lead capture via Hostinger SMTP.
+EdgeNexus IT is a **high-performance, cinematic corporate landing page** for an enterprise IT infrastructure provider, complete with dedicated service subpages (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation, AI Automation) and a **PHP backend** for contact form lead capture via Hostinger SMTP.
 
 ### Tech Stack
 | Layer | Technology |
@@ -80,7 +84,7 @@ EdgeNexus IT is a **high-performance, cinematic corporate landing page** for an 
 
 ```
 K:\EdgeNexusIt\
-├── index.html                         ← Main landing page (6 sections + preloader + nav + footer)
+├── index.html                         ← Main landing page (6 sections + preloader + nav + footer, 6 service cards)
 ├── report.md                          ← THIS FILE
 │
 ├── assets/
@@ -99,7 +103,8 @@ K:\EdgeNexusIt\
 │   ├── devops.html                     ← DevOps & Cloud Automation subpage (5 sections) [TRACKED]
 │   ├── cyber-security.html             ← Cyber Security subpage (5 sections)
 │   ├── it-support.html                 ← IT Support subpage (5 sections)
-│   └── staff-augmentation.html         ← Staff Augmentation subpage
+│   ├── staff-augmentation.html         ← Staff Augmentation subpage
+│   └── ai-automation.html              ← AI Automation subpage (4 sections + CTA) [NEW]
 │
 ├── api/                                ← Backend — contact form lead capture [NEW]
 │   ├── contact.php                    ← Main endpoint (CORS, routing, orchestration)
@@ -167,6 +172,11 @@ K:\EdgeNexusIt\
 │       ├── staff-augmentation/
 │       │   ├── hero-staffaug.css      ← Staff Augmentation hero & talent section
 │       │   └── page-transitions-staffaug.css
+│       ├── ai-automation/             [NEW]
+│       │   ├── hero-ai.css            ← Hero: 3-col grid (brain canvas | copy | wheel canvas), convergence ray, atmosphere glow
+│       │   ├── capabilities.css        ← Capabilities: 6-card 3×2 grid, magnetic hover, per-card SVG icons, hover micro-animations
+│       │   ├── automation-flow.css    ← Workflow: 5-node horizontal track, SVG connecting line, pulse glow active state
+│       │   └── impact-metrics.css     ← Metrics: 4 drum-counter cards, live oscilloscope activity chart
 │       └── about.css                  ← About page cinematic styles [NEW]
 ├── js/
 │   ├── main.js                        ← Main homepage entry point & orchestrator
@@ -184,17 +194,17 @@ K:\EdgeNexusIt\
 │   ├── components/
 │   │   ├── preloader.js               ← SVG network assembly → progress bar → node pulse → implosion → flash
 │   │   ├── nav.js                     ← Nav: active link, dropdown, mobile toggle/hamburger, smooth scroll [REWRITTEN]
-│   │   ├── shared-layout.js           ← Injects navbar + footer HTML into any page [NEW]
+│   │   ├── shared-layout.js           ← Injects navbar + footer HTML into any page [NEW — now 6 services in dropdown]
 │   │   ├── clock.js                   ← Live SYS clock (supports multiple pages, selects all [id*="clock"])
 │   │   ├── status-bar.js              ← Status bar: live clock, entry slide-down, scroll collapse [NEW]
 │   │   └── buttons.js                 ← Ghost button SVG border-trace perimeter injection
 │   │
 │   ├── sections/
 │   │   ├── hero.js                    ← Cinematic V2 Globe: 3D wireframe, node halos, comet packets, z-depth fade, background particles + bridge transition (metric bar removed; tier-gated rendering added)
-│   │   ├── services.js                ← Horizontal scroll pin + depth carousel + mouse glow + sibling reactions + card navigation to subpages (all 5 cards linked)
+│   │   ├── services.js                ← Horizontal scroll pin + depth carousel + mouse glow + sibling reactions + card navigation to subpages (all 6 cards linked)
 │   │   ├── process.js                 ← SVG pipeline draw (scrub) + ScrollTrigger node activation + ripple effects
 │   │   ├── soc.js                     ← SOC dashboard: D3 world map, Canvas donut, sparkline, vuln counter, incidents (off-screen pause simplified, no busy-wait)
-│   │   ├── cta.js                     ← Ambient dots (60 particles, drift, focus convergence, submit explode); shared with DevOps page
+│   │   ├── cta.js                     ← Ambient dots (60 particles, drift, focus convergence, submit explode); shared with all service pages; AI-specific deploy sequence
 │   │   └── footer.js                  ← Enhances existing footer: sparkline SVG, uptime ticker, NOC message rotator
 │   │
 │   └── pages/
@@ -225,6 +235,12 @@ K:\EdgeNexusIt\
 │       ├── staff-augmentation/
 │       │   ├── page-main.js           ← Staff Augmentation entry point
 │       │   └── hero-staffaug.js       ← Staff Augmentation hero animations
+│       ├── ai-automation/             [NEW]
+│       │   ├── page-main.js           ← AI Automation entry point (PAGE_ID='ai-automation'), boots identical to devops pattern
+│       │   ├── hero-ai.js             ← Brain canvas (55 neurons, synaptic pulses, cascade re-fire, parallax) + wheel canvas (5 gear rings, orbit packets, HUD, convergence sync) + entry choreography + hero pin
+│       │   ├── capabilities.js        ← 6-card batch scroll reveal + magnetic hover on cards 01/02/06
+│       │   ├── automation-flow.js     ← 5-node sequential activation (300ms stagger) + SVG line fill
+│       │   └── impact-metrics.js      ← Drum counters (cascading digit roll) + live 3-line oscilloscope chart
 │
 │   ├── about.js                       ← About page entry: particle canvas, stat counters, scroll reveals [NEW]
 │
@@ -289,9 +305,9 @@ The main page is a single-scroll vertical layout with **6 sections** + preloader
 │  2. SERVICES SECTION (horizontal scroll pin)                         │
 │     OUR SERVICES (eyebrow)                                           │
 │     ─────── (divider)                                                │
-│     FIVE STREAMS. ONE NEXUS. (heading)                              │
+│     SIX STREAMS. ONE NEXUS. (heading)                                │
 │                                                                      │
-│     ←─── 5 service cards in horizontal scroll (GSAP pin + x───→     │
+│     ←─── 6 service cards in horizontal scroll (GSAP pin + x───→     │
 │         translate, SCROLL VERTICALLY to move horizontally)           │
 │                                                                      │
 │     ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐                   │
@@ -752,7 +768,174 @@ The IT Support page is the final service page, completing all 6 service offering
 │     ENGINEER_NOTIFIED → MESSAGE_RECEIVED.                           │
 └──────────────────────────────────────────────────────────────────────┘
 
-### 3.7 — About Page (`about.html`)  [NEW]
+### 3.7 — AI Automation Page (`services/ai-automation.html`) [NEW — batch 17]
+
+The AI Automation page is the newest service page, featuring a **Neural Vortex Engine** hero with dual canvas panels (firing brain + gear wheel), a 6-card **Capabilities** grid with magnetic hover, a 5-node **Automation Flow** pipeline, and **Impact Metrics** with drum counters + live oscilloscope chart. No Three.js or D3 loaded — pure Canvas 2D.
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                        NAVBAR (glass overlay)                        │
+│  EDGE[NEXUS IT]   [HOME] [SERVICES ▾] [CAPABILITIES] [CONTACT]    │
+│     ┌─ Dropdown ──────────────────────────────┐                      │
+│     │  MSP → msp.html                         │                      │
+│     │  DEVOPS → devops.html                   │                      │
+│     │  CYBER SECURITY → cyber-security.html   │                      │
+│     │  IT SUPPORT → it-support.html           │                      │
+│     │  STAFF AUGMENTATION → staff-augmentation.html                │
+│     │  AI AUTOMATION → #hero-ai (active)     │                      │
+│     └─────────────────────────────────────────┘                      │
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  1. HERO — "THINK. AUTOMATE. EVOLVE."                                │
+│     ┌──────────────────────────────────────────────────────────────┐ │
+│     │  3-column CSS grid: brain | copy | wheel                      │ │
+│     │                                                               │ │
+│     │  ┌─ BRAIN CANVAS ──┐  ┌─ COPY ──────────┐  ┌─ WHEEL CANVAS┐ │ │
+│     │  │ 55 firing        │  │                  │  │ 5 concentric   │ │ │
+│     │  │ neurons with     │  │ THINK.          │  │ counter-rotat. │ │ │
+│     │  │ synaptic pulse   │  │ AUTOMATE.       │  │ gear rings +   │ │ │
+│     │  │ propagation.    │  │ EVOLVE. ★       │  │ orbit packets  │ │ │
+│     │  │ Ghosting trail    │  │ (accent glow)   │  │ + center "AI"  │ │ │
+│     │  │ (alpha 0.15).     │  │                  │  │ glow node      │ │ │
+│     │  │ 30% cascade      │  │ Intelligent      │  │ + HUD overlay  │ │ │
+│     │  │ re-fire on       │  │ automation...   │  │ (PROCESSES,    │ │ │
+│     │  │ arriving pulse.   │  │                  │  │ UPTIME, AGENTS,│ │ │
+│     │  │ Mouse parallax   │  │ [DEPLOY AI]      │  │ LOAD)          │ │ │
+│     │  │ (±16px lerp).    │  │ [./view_stack]   │  │               │ │ │
+│     │  │ Radial entry     │  │                  │  │ Mouse proximity│ │ │
+│     │  │ reveal (order    │  │                  │  │ → speed boost  │ │ │
+│     │  │ based).          │  │                  │  │ (1.8× if <200) │ │ │
+│     │  │                  │  │                  │  │               │ │ │
+│     │  │ "NEURAL ·        │  │                  │  │ "AUTOMATION · │ │ │
+│     │  │  INTELLIGENCE"   │  │                  │  │  ENGINE"      │ │ │
+│     │  └──────────────────┘  └──────────────────┘  └───────────────┘ │ │
+│     │                                                               │ │
+│     │  ═══ convergence ray (brain ↔ wheel signal flash) ═══         │ │
+│     │  (high tier: GSAP opacity flash every 3–4s, ties both panels) │ │
+│     │                                                               │ │
+│     │  ★ Tier gating:                                                │ │
+│     │    high: 55 neurons, 5 rings, orbit packets, HUD, convergence│ │
+│     │    mid:  35 neurons, 5 rings, HUD, no convergence             │ │
+│     │    low:  20 neurons, 3 rings (inner only), no extras           │ │
+│     │  ★ Entry: scanline → brain materialize (RAF wave) → wheel    │ │
+│     │    spin → neuron burst → eyebrow clip → 3-word slam           │ │
+│     │    (expo.out stagger 0.2s) → accent underline draw →           │ │
+│     │    body → CTAs → panel labels                                  │ │
+│     │  ★ Hero pin: 120% scrub exit (80% mobile), fade+translate     │ │
+│     │    after progress >0.7                                         │ │
+│     │  ★ Responsive: 3-col → stacked (768px), brain 220px/wheel     │ │
+│     │    200px mobile, convergence ray hidden mobile                 │ │
+│     │  ★ PAGE_ID = 'ai-automation', no Three.js/D3, no preloader     │ │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────┤
+│  2. CAPABILITIES — "THE INTELLIGENCE LAYER"                         │
+│                                                                      │
+│     Six systems. One orchestration layer. Zero manual intervention.  │
+│     ──────────────────────────────────────                           │
+│                                                                      │
+│     ┌──────────────┐ ┌──────────────┐ ┌──────────────┐             │
+│     │ 01 LLM        │ │ 02 COMPUTER   │ │ 03 PREDICTIVE │             │
+│     │ INTEGRATION   │ │ VISION        │ │ ANALYTICS     │             │
+│     │ [window SVG]  │ │ [eye SVG]     │ │ [sparkline    │             │
+│     │ GPT-4, Claude │ │ Real-time obj │ │  SVG, draw on │             │
+│     │ zero-latency  │ │ detection...  │ │  hover]       │             │
+│     │ API orch.     │ │               │ │ Forecast...   │             │
+│     │ [magnetic]    │ │ [magnetic]    │ │               │             │
+│     └──────────────┘ └──────────────┘ └──────────────┘             │
+│     ┌──────────────┐ ┌──────────────┐ ┌──────────────┐             │
+│     │ 04 NLP        │ │ 05 WORKFLOW   │ │ 06 AUTONOMOUS │             │
+│     │ PIPELINE      │ │ AUTOMATION    │ │ AGENTS        │             │
+│     │ [text SVG]    │ │ [triangle SVG]│ │ [pulse-dot    │             │
+│     │ Parse, class. │ │ Multi-step    │ │  SVG, ring    │             │
+│     │ extract...    │ │ end-to-end... │ │  expand hover]│             │
+│     │               │ │               │ │ Self-directed│             │
+│     │               │ │               │ │ [magnetic]    │             │
+│     └──────────────┘ └──────────────┘ └──────────────┘             │
+│                                                                      │
+│     ★ GSAP ScrollTrigger batch reveal (stagger 0.08s, scale 0.96)  │
+│     ★ Bidirectional onEnterBack (y:-20, stagger 0.05s)               │
+│     ★ Magnetic hover on cards 01, 02, 06:                            │
+│       gsap.quickTo (elastic.out 1,0.4), 380px falloff, 0.14 strength  │
+│     ★ CSS hover micro-animations:                                    │
+│       - Card 03: sparkline stroke-dashoffset draw (0.6s)             │
+│       - Card 02: conic-gradient iris expand (background-size)        │
+│       - Card 06: pulse-dot scale→2.4 @1.2s infinite ring            │
+│     ★ Top accent hairline (scaleX 0→1 on hover)                     │
+│     ★ Bottom accent line (width 0→100% on hover)                     │
+│     ★ 3×2 grid → 2×3 (900px) → 1×6 (480px) responsive             │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────┤
+│  3. AUTOMATION FLOW — "ZERO HUMAN IN THE LOOP."                      │
+│                                                                      │
+│     End-to-end intelligence: from raw signal to resolved action.    │
+│     ──────────────────────────────────────                           │
+│                                                                      │
+│     ┌──────────────────────────────────────────────────────────────┐ │
+│     │  ══════════════ SVG connecting line (scaleX 0→1) ═══════════ │ │
+│     │                                                              │ │
+│     │   (01)──────(02)──────(03)──────(04)──────(05)               │ │
+│     │   DATA IN   AI PARSE  DECISION  ACTION   VERIFY              │ │
+│     │                                                              │ │
+│     │   ★ Sequential node activation on scroll enter (300ms each) │ │
+│     │   ★ Active state: accent fill + box-shadow glow pulse       │ │
+│     │     (1.6s ease-in-out infinite, 24px→36px shadow)           │ │
+│     │   ★ Not pinned — one-shot entrance trigger (once:true)       │ │
+│     │   ★ Mobile (≤640px): horizontal track hidden, fallback       │ │
+│     └──────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────┤
+│  4. IMPACT METRICS — "THE NUMBERS DON'T LIE."                       │
+│                                                                      │
+│     MEASURED. PUBLISHED. GUARANTEED.                                 │
+│     ──────────────────────────────────────                           │
+│                                                                      │
+│     ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐             │
+│     │ 847M    │ │ 0.3s    │ │ 97.3%   │ │ 83%     │             │
+│     │ TASKS   │ │ AVG DEC │ │ WORKFLOW │ │ COST    │             │
+│     │ AUTO.   │ │ LATENCY │ │ ACCURACY │ │ REDUCT. │             │
+│     │ DAILY   │ │         │ │         │ │         │             │
+│     └──────────┘ └──────────┘ └──────────┘ └──────────┘             │
+│                                                                      │
+│     ★ Rolling drum counters (matches IT Support SLA pattern):        │
+│       Cascading digit animation L→R, 1.1em digit height               │
+│       Duration: 0.55s(ones) + 0.2s per digit, power3.out            │
+│       data-target/data-decimals/data-display per counter              │
+│     ★ Scroll-triggered: top 70%, stagger 0.1s per card              │
+│     ★ Top accent hairline draws on reveal                            │
+│                                                                      │
+│     ┌──────────────────────────────────────────────────────────────┐ │
+│     │ LIVE ACTIVITY                                                │ │
+│     │ ● INFERENCE  ● TRAINING  ● DEPLOYMENT                       │ │
+│     │ ┌────────────────────────────────────────────────────────────┐│ │
+│     │ │  ~~~ 3 stacked oscilloscope lines (canvas 2D) ~~~         ││ │
+│     │ │  INFERENCE  (blue #00aaff)  — band 0.35–0.53              ││ │
+│     │ │  TRAINING   (orange #ff6b00) — band 0.53–0.71            ││ │
+│     │ │  DEPLOYMENT (pink #ff2d55) — band 0.71–0.89              ││ │
+│     │ │                                                            ││ │
+│     │ │  60-point sliding window, 800ms tick                      ││ │
+│     │ │  Random walk with band-center reversion (0.05 factor)     ││ │
+│     │ │  Smooth quadratic bezier interpolation between points      ││ │
+│     │ │  Faint horizontal grid lines (0.06 alpha, h/4 spacing)    ││ │
+│     │ └────────────────────────────────────────────────────────────┘│ │
+│     │  ★ Off-screen pause via IntersectionObserver (100px margin)  │ │
+│     │  ★ Debounced resize handler (200ms)                           │ │
+│     │  ★ 4-col → 2-col (768px) → 1-col (480px) responsive        │ │
+│     └──────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────┤
+│  5. CTA — "READY TO AUTOMATE?" + FOOTER                               │
+│     "EDGENEXUS // AI-AUTOMATION-INTAKE"                              │
+│     "Tell us what to eliminate. We'll build the agent."               │
+│     Form: NAME, EMAIL, MESSAGE (terminal box, shared CTA)            │
+│     Submit: "DEPLOY AI" button (ai-specific deploy sequence)          │
+│     Deploy sequence: WORKFLOW_INITIATING → NEURAL_HANDSHAKE_COMPLETE  │
+│       → AUTOMATION_QUEUED → AGENT_ASSIGNED → DEPLOYMENT_SCHEDULED   │
+│     Re-enable label: "DEPLOY AI"                                      │
+│     Ambient dots: shared from cta.js                                  │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+### 3.8 — About Page (`services/about.html`)  [NEW]
 
 The About page is the newest page, completing the site's informational core. It follows the same cinematic design language with a particle canvas hero, scroll-triggered stat counters, and shared layout injection.
 

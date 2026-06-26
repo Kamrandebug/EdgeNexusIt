@@ -1,0 +1,199 @@
+/* ── AI Automation — Capabilities Section ──────────────────────
+   6 capability cards in a 3×2 grid (→ 2×3 at 900px → 1×6 at 480px). */
+
+.section-capabilities {
+  padding: var(--sp) 0;
+  position: relative;
+}
+
+.cap-inner {
+  width: 100%;
+  max-width: var(--cw);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+/* Section header */
+.cap-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.cap-eyebrow {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.cap-title {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--t1);
+}
+.cap-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--bh);
+}
+
+/* ── Card grid ───────────────────────────────────────────────── */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.5vw, 18px);
+  justify-content: center; /* Center the grid items */
+  align-items: start; /* Align items to the start of their grid area */
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.cap-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--bh);
+  transition: all 0.35s var(--ease-expo);
+  overflow: hidden;
+  cursor: default;
+}
+/* Top accent hairline */
+.cap-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-expo);
+}
+.cap-card:hover {
+  border-color: var(--accent-border);
+  background: var(--panel);
+}
+.cap-card:hover::before {
+  transform: scaleX(1);
+}
+
+.cap-card-inner {
+  padding: clamp(10px, 1.5vw, 18px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+/* Icon wrap */
+.cap-icon-wrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.cap-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.8;
+  transition: opacity 0.35s var(--ease-expo);
+}
+.cap-card:hover .cap-icon-wrap svg {
+  opacity: 1;
+}
+
+/* Number badge */
+.cap-number {
+  position: absolute;
+  top: clamp(16px, 2vw, 22px);
+  right: clamp(16px, 2vw, 22px);
+  font-family: var(--fm);
+  font-size: 11px;
+  color: var(--t3);
+  letter-spacing: 0.08em;
+}
+
+/* Title + desc */
+.cap-title-card {
+  font-family: var(--fd);
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--t1);
+  letter-spacing: -0.01em;
+}
+.cap-desc {
+  font-family: var(--fu);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+/* Bottom accent line — width animates 0→100% on hover */
+.cap-accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.4s var(--ease-expo);
+}
+.cap-card:hover .cap-accent-line {
+  width: 100%;
+}
+
+/* ── Hover micro-animations (CSS-driven) ─────────────────────── */
+/* Card 03 sparkline draw */
+.cap-card[data-cap="03"] .cap-icon-wrap svg path.spark {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.6s var(--ease-expo);
+}
+.cap-card[data-cap="03"]:hover .cap-icon-wrap svg path.spark {
+  stroke-dashoffset: 0;
+}
+/* Card 02 conic border (eye iris expanding) */
+.cap-card[data-cap="02"] .cap-icon-wrap {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-image: conic-gradient(from 0deg, var(--accent) 0deg, transparent 90deg, transparent 360deg);
+  background-size: 0% 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s var(--ease-expo);
+}
+.cap-card[data-cap="02"]:hover .cap-icon-wrap {
+  background-size: 200% 200%;
+}
+/* Card 06 pulsing dot expands into ring */
+.cap-card[data-cap="06"] .cap-icon-wrap svg circle.pulse-dot {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: none;
+}
+.cap-card[data-cap="06"]:hover .cap-icon-wrap svg circle.pulse-dot {
+  animation: cap-pulse 1.2s var(--ease-expo) infinite;
+}
+@keyframes cap-pulse {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cap-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cap-grid {
+    grid-template-columns: 1fr;
+  }
+  .cap-card-inner { padding: 22px; }
+}
