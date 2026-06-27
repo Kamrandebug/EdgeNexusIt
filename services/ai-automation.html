@@ -72,19 +72,20 @@
 
         <!-- LEFT: Copy block -->
         <div class="hero-ai-copy">
-        
+          <span class="hero-ai-eyebrow">EDGENEXUS AI</span>
+
           <h1 class="hero-ai-headline">
-            <span class="headline-word word-1">THINK.</span>
-            <span class="headline-word word-2">AUTOMATE.</span>
-            <span class="headline-word word-3 headline-accent" style="color: #00aaff; text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff;">EVOLVE.</span>
+            <span class="headline-word">THINK.</span>
+            <span class="headline-word">AUTOMATE.</span>
+            <span class="headline-word headline-accent">EVOLVE.</span>
           </h1>
+
+          <div class="hero-ai-accent-line" aria-hidden="true"></div>
 
           <p class="hero-ai-body">
             Intelligent automation that learns, adapts, and compounds.
             No scripts, no rigid rules — living AI systems that improve every cycle.
           </p>
-
-          <!-- Inline stat strip removed by request -->
 
           <div class="hero-ai-ctas">
             <button class="btn btn-primary" onclick="document.querySelector('#cta-ai').scrollIntoView({behavior:'smooth'})">
@@ -96,24 +97,10 @@
           </div>
         </div>
 
-        <!-- RIGHT: Hologram Brain Panel — NEW -->
-        <div class="hero-ai-hologram-panel" aria-hidden="true">
-
-          <!-- LAYER 1: The actual Brain.png image (base layer) -->
-          <img
-            id="brain-img"
-            src="../assets/images/brain-hologram.png"
-            class="brain-hologram-img"
-            alt=""
-            draggable="false"
-          >
-
-          <!-- LAYER 2: Canvas overlay — ambient FX only (stars, particles, sweep line) -->
-          <canvas id="canvas-ambient" aria-hidden="true"></canvas>
-
-          <!-- LAYER 3: Panel label -->
-          <span class="hero-ai-panel-label hero-ai-hologram-label">NEURAL · HOLOGRAM</span>
-
+        <!-- RIGHT: Single particle brain panel -->
+        <div class="hero-ai-visual" aria-hidden="true">
+          <canvas id="canvas-brain-particle"></canvas>
+          <span class="hero-ai-panel-label">NEURAL · HOLOGRAM</span>
         </div>
 
       </div>

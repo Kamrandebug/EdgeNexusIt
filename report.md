@@ -1,7 +1,7 @@
 # EdgeNexus IT — Complete System Architecture & UI Report
 
 > **Generated:** 2026-06-13
-> **Last Updated:** 2026-06-24 (batch 17 — AI Automation page + nav fixes)
+> **Last Updated:** 2026-06-27 (batch 22 — AI Automation 3D Brain Hologram)
 > **Purpose:** A complete reference so any LLM or developer can understand the full project — structure, animations, UI flow, design system, and backend.
 >
 > **⚠️ CORRECTED:** DevOps page sections (3.4, 4.12, 11, Appendix A) now document the **actual implementation** from files on disk, NOT the earlier prompt.md specification. Several previously-listed bugs were already fixed in code (boot event, scanline, Three.js, pipeline node count, preloader import). The report now reflects what is actually built.
@@ -12,6 +12,7 @@
 
 | Date | Change |
 |------|--------|
+| 2026-06-27 | **Batch 22 — 3D Brain Hologram Rewrite** — Replaced previous brain implementations with a fully rotating, anatomically accurate 3D Hologram in `hero-ai.js`. Uses a 26-point 2D `BRAIN_SILHOUETTE` bezier polygon with ray-casting point-in-polygon logic, combined with spherical depth mapping to create 3D volume. Incorporates central longitudinal fissure to divide hemispheres and a scatter halo for atmospheric edge particles. Mapped vertical depth to color gradients (bright white-blue to deep navy blue). Z-depth sorting optimized via `Float32Array`. Added continuous Y-axis rotation with mouse parallax. Brain rests on a complex hologram projection base consisting of 3 concentric pulsing rings, an outer glow cone, an inner bright cone, and a scanning ring rising vertically. Includes a `riseProgress` entry animation that smoothly interpolates particles floating up from the projection base into their target neural positions. |
 | 2026-06-24 | **AI Automation Page Built (batch 17)** — New 7th service page `services/ai-automation.html` with 4 sections + shared CTA. Hero: "THINK. AUTOMATE. EVOLVE." headline with neural brain canvas (55 tier-gated firing neurons, synaptic pulse propagation, cascade re-fire at 30%, mouse parallax, ghosting trail) + automation wheel canvas (5 concentric counter-rotating gear rings with orbit packets, HUD overlay showing live PROCESSES/UPTIME/AGENTS/LOAD, center "AI" glow node) + convergence sync pulse tying brain+wheel every 3–4s (high tier only, GSAP ray flash). Entry: scanline → brain materialize → wheel spin → neuron burst → eyebrow clip → 3-word headline slam (expo.out) → accent underline draw → body → CTAs → panel labels. Hero pin: 120% scrub exit (80% mobile). Capabilities: 6-card 3×2 grid (LLM Integration, Computer Vision, Predictive Analytics, NLP Pipeline, Workflow Automation, Autonomous Agents) with per-card SVG icons, GSAP ScrollTrigger batch reveal (stagger 0.08s), magnetic hover on cards 01/02/06 (elastic.out quickTo, 380px falloff, 0.14 strength), CSS hover micro-animations (card 03 sparkline draw, card 02 conic-gradient iris expand, card 06 pulsing dot ring). Automation Flow: 5-node horizontal track (DATA IN → AI PARSE → DECISION → ACTION → VERIFY) with SVG connecting line fill animation, sequential node activation (300ms stagger), pulse glow active state. Impact Metrics: 4 drum-counter stat cards (847M tasks, 0.3s latency, 97.3% accuracy, 83% cost reduction) with cascading digit roll animation + live oscilloscope activity chart (3 stacked quadratic-bezier random-walk lines for INFERENCE/TRAINING/DEPLOYMENT, 60-point sliding window, 800ms tick). 5 new JS files, 4 new CSS files. `PAGE_ID = 'ai-automation'`. No Three.js/D3 loaded. |
 | 2026-06-24 | **AI Automation Wired Into Full System** — `index.html`: services heading changed "FIVE STREAMS" → "SIX STREAMS", added 6th service card (AI Automation, card 06, neural-network SVG icon with center node + 4 corner satellite nodes + dashed connecting lines). `js/sections/services.js`: SERVICE_PAGES mapping updated (card 5 → `services/ai-automation.html`). `js/components/shared-layout.js`: AI AUTOMATION added to both desktop dropdown and mobile menu. `js/components/nav.js`: `#cta-ai` added to CTA selector array. `js/sections/cta.js`: `#cta-ai` CTA element detection + `isAiPage` flag + AI-specific deploy-sequence typewriter (5 lines: WORKFLOW_INITIATING → NEURAL_HANDSHAKE_COMPLETE → AUTOMATION_QUEUED → AGENT_ASSIGNED → DEPLOYMENT_SCHEDULED) + "DEPLOY AI" submit button text + re-enable label. `api/validator.php`: `'ai-automation'` added to allowed page list. `api/mailer.php`: `'ai-automation'` → `'AI Automation Inquiry'` email label. `styles/components/nav.css`: dropdown close delay increased 200ms → 350ms; invisible CSS bridge enlarged (height 16px→24px, top -16px→-24px, left/right -20px padding); `nav-item--dropdown::after` repositioned from `bottom:0 height:8px` to `top:100% height:24px left/right -10px` for better hover bridge coverage. |
 | 2026-06-23 | **Nav Link Font Size Increased** — `.nav-link` font-size bumped from 11px → 13px in `styles/components/nav.css`. Single-property change. No JS, layout, or token changes. Propagates to all 7 pages via shared-layout.js. |
@@ -173,7 +174,7 @@ K:\EdgeNexusIt\
 │       │   ├── hero-staffaug.css      ← Staff Augmentation hero & talent section
 │       │   └── page-transitions-staffaug.css
 │       ├── ai-automation/             [NEW]
-│       │   ├── hero-ai.css            ← Hero: 3-col grid (brain canvas | copy | wheel canvas), convergence ray, atmosphere glow
+│       │   ├── hero-ai.css            ← Hero: 2-col grid (copy | 3D brain hologram panel), brain silhouette canvas, projection base rings, light beam
 │       │   ├── capabilities.css        ← Capabilities: 6-card 3×2 grid, magnetic hover, per-card SVG icons, hover micro-animations
 │       │   ├── automation-flow.css    ← Workflow: 5-node horizontal track, SVG connecting line, pulse glow active state
 │       │   └── impact-metrics.css     ← Metrics: 4 drum-counter cards, live oscilloscope activity chart
@@ -237,7 +238,7 @@ K:\EdgeNexusIt\
 │       │   └── hero-staffaug.js       ← Staff Augmentation hero animations
 │       ├── ai-automation/             [NEW]
 │       │   ├── page-main.js           ← AI Automation entry point (PAGE_ID='ai-automation'), boots identical to devops pattern
-│       │   ├── hero-ai.js             ← Brain canvas (55 neurons, synaptic pulses, cascade re-fire, parallax) + wheel canvas (5 gear rings, orbit packets, HUD, convergence sync) + entry choreography + hero pin
+│       │   ├── hero-ai.js             ← Particle brain (silhouette-masked, 27-point polygon, 6000/4000/2200 tier-gated squares, vertical gradient, Y-axis rotation, entry fly-in) + platform rings + light beam + GSAP choreography + hero pin
 │       │   ├── capabilities.js        ← 6-card batch scroll reveal + magnetic hover on cards 01/02/06
 │       │   ├── automation-flow.js     ← 5-node sequential activation (300ms stagger) + SVG line fill
 │       │   └── impact-metrics.js      ← Drum counters (cascading digit roll) + live 3-line oscilloscope chart
@@ -768,9 +769,9 @@ The IT Support page is the final service page, completing all 6 service offering
 │     ENGINEER_NOTIFIED → MESSAGE_RECEIVED.                           │
 └──────────────────────────────────────────────────────────────────────┘
 
-### 3.7 — AI Automation Page (`services/ai-automation.html`) [NEW — batch 17]
+### 3.7 -- AI Automation Page (`services/ai-automation.html`)
 
-The AI Automation page is the newest service page, featuring a **Neural Vortex Engine** hero with dual canvas panels (firing brain + gear wheel), a 6-card **Capabilities** grid with magnetic hover, a 5-node **Automation Flow** pipeline, and **Impact Metrics** with drum counters + live oscilloscope chart. No Three.js or D3 loaded — pure Canvas 2D.
+The AI Automation page features a **3D Brain Hologram** hero with a single canvas rendering a fully rotating, anatomically accurate brain (via a 26-point polygon mask and spherical depth sorting) resting on a pulsing hologram projection base. It also includes a 6-card **Capabilities** grid with magnetic hover, a 5-node **Automation Flow** pipeline, and **Impact Metrics** with drum counters + live oscilloscope chart. No Three.js or D3 loaded -- pure Canvas 2D.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -786,46 +787,52 @@ The AI Automation page is the newest service page, featuring a **Neural Vortex E
 │     └─────────────────────────────────────────┘                      │
 ├──────────────────────────────────────────────────────────────────────┤
 │                                                                      │
-│  1. HERO — "THINK. AUTOMATE. EVOLVE."                                │
-│     ┌──────────────────────────────────────────────────────────────┐ │
-│     │  3-column CSS grid: brain | copy | wheel                      │ │
+│  1. HERO — "THINK. AUTOMATE. EVOLVE."   (2-column: copy | brain)    │
+│     ┌─────────────────────────────────────────────────────────────────┐ │
+│     │  2-column CSS grid: 40fr copy | 60fr particle brain panel     │ │
 │     │                                                               │ │
-│     │  ┌─ BRAIN CANVAS ──┐  ┌─ COPY ──────────┐  ┌─ WHEEL CANVAS┐ │ │
-│     │  │ 55 firing        │  │                  │  │ 5 concentric   │ │ │
-│     │  │ neurons with     │  │ THINK.          │  │ counter-rotat. │ │ │
-│     │  │ synaptic pulse   │  │ AUTOMATE.       │  │ gear rings +   │ │ │
-│     │  │ propagation.    │  │ EVOLVE. ★       │  │ orbit packets  │ │ │
-│     │  │ Ghosting trail    │  │ (accent glow)   │  │ + center "AI"  │ │ │
-│     │  │ (alpha 0.15).     │  │                  │  │ glow node      │ │ │
-│     │  │ 30% cascade      │  │ Intelligent      │  │ + HUD overlay  │ │ │
-│     │  │ re-fire on       │  │ automation...   │  │ (PROCESSES,    │ │ │
-│     │  │ arriving pulse.   │  │                  │  │ UPTIME, AGENTS,│ │ │
-│     │  │ Mouse parallax   │  │ [DEPLOY AI]      │  │ LOAD)          │ │ │
-│     │  │ (±16px lerp).    │  │ [./view_stack]   │  │               │ │ │
-│     │  │ Radial entry     │  │                  │  │ Mouse proximity│ │ │
-│     │  │ reveal (order    │  │                  │  │ → speed boost  │ │ │
-│     │  │ based).          │  │                  │  │ (1.8× if <200) │ │ │
-│     │  │                  │  │                  │  │               │ │ │
-│     │  │ "NEURAL ·        │  │                  │  │ "AUTOMATION · │ │ │
-│     │  │  INTELLIGENCE"   │  │                  │  │  ENGINE"      │ │ │
-│     │  └──────────────────┘  └──────────────────┘  └───────────────┘ │ │
-│     │                                                               │ │
-│     │  ═══ convergence ray (brain ↔ wheel signal flash) ═══         │ │
-│     │  (high tier: GSAP opacity flash every 3–4s, ties both panels) │ │
-│     │                                                               │ │
+│     │  ┌─ COPY ─────────────────┐  ┌─ BRAIN CANVAS ───────────────┐ │
+│     │  │                          │  │                             │ │
+│     │  │ EDGENEXUS AI             │  │   ★ 6000/4000/2200 tier-   │ │
+│     │  │   (eyebrow)              │  │     gated square particles │ │
+│     │  │                          │  │                             │ │
+│     │  │ THINK.                   │  │   ★ Brain shape enforced    │ │
+│     │  │ AUTOMATE.                │  │     by 27-point silhouette  │ │
+│     │  │ EVOLVE. ★                │  │     polygon (rejection      │ │
+│     │  │   (accent glow)          │  │     sampling + ray casting) │ │
+│     │  │                          │  │                             │ │
+│     │  │ ─────── (underline)      │  │   ★ Vertical color gradient │ │
+│     │  │                          │  │     top white → bottom blue │ │
+│     │  │ Intelligent automation   │  │                             │ │
+│     │  │ that learns, adapts...   │  │   ★ Y-axis rotation + float │ │
+│     │  │                          │  │     (sin wave, 8-10px amp)  │ │
+│     │  │ [DEPLOY AI]              │  │                             │ │
+│     │  │ [./view_stack]           │  │   ★ Central fissure density │ │
+│     │  │                          │  │     reduction for 2-hemi-  │ │
+│     │  │                          │  │     sphere look             │ │
+│     │  │                          │  │                             │ │
+│     │  │                          │  │   ┌─ PLATFORM ──────────┐  │ │
+│     │  │                          │  │   │  ~~~~3 ellipse rings │  │ │
+│     │  │                          │  │   │  • ticks • glow dot  │  │ │
+│     │  │                          │  │   └──────────────────────┘  │ │
+│     │  │                          │  │     ↑ light beam (two-      │ │
+│     │  │                          │  │     layer cone + core line) │ │
+│     │  │                          │  │                             │ │
+│     │  │                          │  │   "NEURAL · HOLOGRAM"       │ │
+│     │  │                          │  └──────────────────────────────────┘ │
+│     │                                                               │
 │     │  ★ Tier gating:                                                │ │
-│     │    high: 55 neurons, 5 rings, orbit packets, HUD, convergence│ │
-│     │    mid:  35 neurons, 5 rings, HUD, no convergence             │ │
-│     │    low:  20 neurons, 3 rings (inner only), no extras           │ │
-│     │  ★ Entry: scanline → brain materialize (RAF wave) → wheel    │ │
-│     │    spin → neuron burst → eyebrow clip → 3-word slam           │ │
-│     │    (expo.out stagger 0.2s) → accent underline draw →           │ │
-│     │    body → CTAs → panel labels                                  │ │
+│     │    high: 6000 particles, 0.005 rad/frame rotation, 10px float │ │
+│     │    mid:  4000 particles, 0.004 rad/frame, 9px float           │ │
+│     │    low:  2200 particles, 0.003 rad/frame, 8px float           │ │
+│     │  ★ Entry: scanline → panel fade → particles fly in from       │ │
+│     │    spawn points → eyebrow clip → 3-word headline slam         │ │
+│     │    (expo.out stagger 0.20s) → underline → body → CTAs → label │ │
 │     │  ★ Hero pin: 120% scrub exit (80% mobile), fade+translate     │ │
-│     │    after progress >0.7                                         │ │
-│     │  ★ Responsive: 3-col → stacked (768px), brain 220px/wheel     │ │
-│     │    200px mobile, convergence ray hidden mobile                 │ │
-│     │  ★ PAGE_ID = 'ai-automation', no Three.js/D3, no preloader     │ │
+│     │    inner after progress >0.7                                   │ │
+│     │  ★ Responsive: 2-col → stacked (≤900px), visual aspect-ratio  │ │
+│     │    1/1, max 60vw/80vw mobile                                   │ │
+│     │  ★ PAGE_ID = 'ai-automation', no Three.js/D3, no preloader    │ │
 │                                                                      │
 ├──────────────────────────────────────────────────────────────────────┤
 │  2. CAPABILITIES — "THE INTELLIGENCE LAYER"                         │

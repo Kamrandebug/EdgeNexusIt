@@ -5,7 +5,7 @@ const PAGE_ID = 'ai-automation';
 import { injectLayout } from '../../components/shared-layout.js';
 injectLayout();
 
-import { initHeroAI }          from './hero-ai.js';
+import { initHeroAi }          from './hero-ai.js';
 import { initCapabilities }    from './capabilities.js';
 import { initAutomationFlow }  from './automation-flow.js';
 import { initImpactMetrics }   from './impact-metrics.js';
@@ -68,7 +68,7 @@ window.addEventListener('load', () => {
   safe(initCursor, 'cursor');
   safe(initButtons, 'buttons');
 
-  safe(() => initHeroAI(tier, isMobile, PREFERS_REDUCED_MOTION), 'hero-ai');
+  safe(() => initHeroAi(tier, isMobile, PREFERS_REDUCED_MOTION), 'hero-ai');
 
   setTimeout(() => {
     safe(() => initCapabilities(PREFERS_REDUCED_MOTION), 'capabilities');
