@@ -86,9 +86,9 @@
 
 .hero-ai-headline {
   font-family: var(--font-display, 'Outfit', sans-serif);
-  font-size: clamp(40px, 6.5vw, 90px);
-  font-weight: 900;
-  line-height: 1.0;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.02;
   letter-spacing: -0.025em;
   color: var(--t1, #fff);
   display: flex;
@@ -117,17 +117,19 @@
 }
 
 .hero-ai-body {
-  font-size: clamp(13px, 1.3vw, 16px);
+  font-family: var(--fd);
+  font-size: clamp(14px, 1.4vw, 17px);
   line-height: 1.65;
   color: var(--t2, rgba(255,255,255,0.60));
-  max-width: 360px;
+  max-width: 480px;
   opacity: 0;
 }
 
 .hero-ai-ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
+  align-items: center;
   opacity: 0;
 }
 
@@ -152,6 +154,10 @@
   .hero-ai-inner { grid-template-columns: 42fr 58fr; }
 }
 
+@media (max-width: 1024px) {
+  .hero-ai-headline { font-size: clamp(36px, 5vw, 60px); }
+}
+
 @media (max-width: 900px) {
   .hero-ai-inner {
     grid-template-columns: 1fr;
@@ -169,6 +175,12 @@
   .hero-ai-inner  { padding: 0 20px; padding-top: 24px; padding-bottom: 40px; }
   .hero-ai-visual { max-height: 80vw; min-height: 240px; }
   .hero-ai-headline { font-size: clamp(34px, 9vw, 58px); }
+}
+
+@media (max-width: 480px) {
+  .hero-ai-headline { font-size: clamp(28px, 8vw, 40px); }
+  .hero-ai-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-ai-ctas .btn { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 380px) {

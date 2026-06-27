@@ -29,19 +29,19 @@
 }
 .about-eyebrow {
   font-family: var(--fm);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: clamp(10px, 1.1vw, 13px);
+  letter-spacing: 0.18em;
   color: var(--accent);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .about-headline {
   font-family: var(--fd);
-  font-weight: 900;
-  font-size: clamp(48px, 8vw, 96px);
-  line-height: 1.0;
+  font-weight: 800;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.02;
   color: var(--t1);
   margin-bottom: 24px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 .about-headline .headline-accent {
   color: var(--accent);
@@ -49,11 +49,11 @@
 }
 .about-sub {
   font-family: var(--fd);
-  font-size: clamp(16px, 2vw, 22px);
-  line-height: 1.6;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.65;
   color: var(--t2);
-  max-width: 680px;
-  margin: 0 auto 48px;
+  max-width: 560px;
+  margin: 0 auto 36px;
 }
 
 /* Stats */
@@ -313,7 +313,7 @@
 
 @media (max-width: 768px) {
   .about-hero { min-height: auto; padding: calc(var(--nh) + 60px) 0 80px; }
-  .about-headline { font-size: clamp(40px, 10vw, 64px); }
+  .about-headline { font-size: clamp(32px, 9vw, 48px); }
   .about-stat-value { font-size: 32px; }
   .about-hero-stats { gap: 24px; }
   .about-hero-scroll { display: none; }

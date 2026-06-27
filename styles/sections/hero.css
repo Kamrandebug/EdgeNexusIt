@@ -1,5 +1,5 @@
 #hero {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
   padding-top: var(--nh);
@@ -79,9 +79,9 @@
 }
 .hero-headline {
   font-family: var(--fd);
-  font-weight: 900;
-  font-size: clamp(36px, 5.5vw, 72px);
-  line-height: 1.05;
+  font-weight: 800;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.02;
   letter-spacing: -0.025em;
   margin: 16px 0;
   color: white;

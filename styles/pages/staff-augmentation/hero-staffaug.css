@@ -28,21 +28,21 @@
 }
 .hero-eyebrow {
   font-family: var(--fm);
-  font-size: 11px;
+  font-size: clamp(10px, 1.1vw, 13px);
   color: var(--accent);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   opacity: 0;
   transform: translateY(-10px);
 }
 .hero-headline { margin-bottom: 20px; }
 .hero-line {
   font-family: var(--fd);
-  font-weight: 900;
-  font-size: clamp(40px,5.5vw,80px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   color: #fff;
   display: block;
   clip-path: inset(0 100% 0 0);
@@ -53,18 +53,19 @@
                0 0 40px rgba(0, 170, 255, 0.15);
 }
 .hero-sub {
-  font-family: var(--fu);
-  font-size: clamp(14px,1.2vw,18px);
+  font-family: var(--fd);
+  font-size: clamp(14px, 1.4vw, 17px);
   color: var(--t2);
-  line-height: 1.7;
-  max-width: 520px;
-  margin-bottom: 28px;
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 36px;
   opacity: 0;
   transform: translateY(20px);
 }
 .hero-buttons {
   display: flex;
   gap: 16px;
+  align-items: center;
   flex-wrap: wrap;
   opacity: 0;
   transform: translateY(30px);
@@ -221,12 +222,18 @@
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .hero-foreground { padding-top: calc(var(--nh) + 20px); }
+  .hero-line { font-size: clamp(36px, 5vw, 60px); }
   .hero-metric-badge { bottom: 24px; right: clamp(12px,3vw,24px); padding: 12px 16px; }
   .section-header { max-width: 100%; }
 }
 
+/* ── 900px — Stack ─────────────────────── */
+@media (max-width: 900px) {
+  .hero-foreground { max-width: 100%; }
+}
+
 @media (max-width: 768px) {
-  #hero-staffaug { min-height: auto; padding-top: 80px; padding-bottom: 60px; }
+  #hero-staffaug { min-height: 100svh; padding-top: calc(var(--nh) + 8px); padding-bottom: 60px; }
   .hero-foreground { padding: 80px clamp(16px,4vw,40px) 40px; }
   .hero-line { font-size: clamp(32px,8vw,48px); }
   .hero-sub { font-size: 14px; max-width: 100%; }
