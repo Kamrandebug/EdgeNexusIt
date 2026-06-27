@@ -19,6 +19,7 @@ api/storage/*
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE
 .vscode/
@@ -26,3 +27,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Composer lock (optional — keeping it is fine for reproducibility)
+# composer.lock
