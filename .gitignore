@@ -19,6 +19,7 @@ api/storage/*
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE
 .vscode/
