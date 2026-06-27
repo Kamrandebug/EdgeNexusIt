@@ -413,9 +413,12 @@
   <!-- footer injected by shared-layout.js -->
 
   <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/gsap.min.js';document.body.appendChild(s)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/ScrollTrigger.min.js';document.body.appendChild(s)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/ScrollToPlugin.min.js';document.body.appendChild(s)"></script>
   <script type="module" src="../js/pages/ai-automation/page-main.js"></script>
 
 </body>

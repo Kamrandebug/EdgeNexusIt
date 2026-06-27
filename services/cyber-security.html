@@ -506,9 +506,12 @@
   <!-- footer injected by shared-layout.js -->
 
   <!-- SCRIPTS: CDN first, module last -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/gsap.min.js';document.body.appendChild(s)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/ScrollTrigger.min.js';document.body.appendChild(s)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"
+          onerror="var s=document.createElement('script');s.defer=!0;s.src='../js/vendor/ScrollToPlugin.min.js';document.body.appendChild(s)"></script>
   <script type="module" src="../js/pages/cyber-security/page-main.js"></script>
 
 </body>

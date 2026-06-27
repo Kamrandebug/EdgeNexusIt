@@ -20,6 +20,24 @@ require_once __DIR__ . '/validator.php';
 require_once __DIR__ . '/rate-limiter.php';
 require_once __DIR__ . '/mailer.php';
 
+// ── Rate-limit storage auto-cleanup ──────────────────────────────────
+// Runs on ~2% of requests (mt_rand 1-in-50) to prune stale IP files
+// that haven't been touched in 2× the rate window (30 minutes).
+function cleanup_rate_limit_files(string $dir, int $ttl = 900): void {
+    if (mt_rand(1, 50) !== 1) return;
+    if (!is_dir($dir)) return;
+    $now = time();
+    $files = glob($dir . '/*');
+    if ($files === false) return;
+    foreach ($files as $file) {
+        $basename = basename($file);
+        if ($basename[0] === '.') continue;            // skip .htaccess, .gitkeep
+        if (is_file($file) && ($now - filemtime($file)) > ($ttl * 2)) {
+            @unlink($file);
+        }
+    }
+}
+
 // ── CORS & Content-Type headers ──────────────────────────────────────────
 $allowedOrigins = [
     'https://edgenexus.io',
@@ -100,6 +118,9 @@ if (!check_rate_limit()) {
     exit;
 }
 
+// Stale rate-limit file cleanup (runs ~1-in-50 requests, skips if rate-limited)
+cleanup_rate_limit_files(__DIR__ . '/storage/rate-limits');
+
 // ── Honeypot check (silent pass — don't alert the bot) ────────────────
 if (!empty($data['_honey'])) {
     http_response_code(200);
@@ -162,10 +183,14 @@ try {
     ], JSON_UNESCAPED_UNICODE) . PHP_EOL;
     @file_put_contents($failedFile, $failedLead, FILE_APPEND | LOCK_EX);
 
+    // Load config for fallback contact email shown to the user
+    $alertConfig = require __DIR__ . '/config.php';
+    $fallbackEmail = $alertConfig['recipient']['email'] ?? 'sales@edgenexusit.com';
+
     http_response_code(500);
     echo json_encode([
         'success' => false,
         'error' => 'server_error',
-        'message' => 'Could not send message. Please try again later.'
+        'message' => 'Failed to send message. Please email us directly at ' . $fallbackEmail
     ]);
 }

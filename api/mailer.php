@@ -76,6 +76,22 @@ function send_lead_email(array $clean): void {
 
         $mail->send();
     } catch (\Exception $e) {
+        // ── Native mail() fallback: try PHP's built-in mail if SMTP fails ──
+        try {
+            $alertTo    = $config['recipient']['email'];
+            $alertSubj  = '[EdgeNexus SMTP FAILURE] Lead Lost — ' . ($clean['name'] ?? 'Unknown');
+            $alertBody  = "SMTP FAILURE at " . date('Y-m-d H:i:s T') . "\n\n"
+                        . "Lead Name:    " . ($clean['name']    ?? 'N/A') . "\n"
+                        . "Lead Email:   " . ($clean['email']   ?? 'N/A') . "\n"
+                        . "Page:         " . ($clean['page']    ?? 'N/A') . "\n"
+                        . "SMTP Error:   " . $e->getMessage()            . "\n\n"
+                        . "Message:\n"     . ($clean['message'] ?? 'N/A') . "\n";
+            $alertHdrs  = "Content-Type: text/plain\r\nFrom: noreply@" . gethostname();
+            mail($alertTo, $alertSubj, $alertBody, $alertHdrs);
+        } catch (\Throwable $mailErr) {
+            // native mail() also failed — silently ignore
+        }
+
         // Wrap PHPMailer exceptions in a generic RuntimeException
         // so contact.php doesn't need to know PHPMailer internals
         throw new \RuntimeException(
