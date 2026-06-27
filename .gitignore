@@ -27,6 +27,3 @@ desktop.ini
 
 # Logs
 *.log
-
-# Composer lock (optional — keeping it is fine for reproducibility)
-# composer.lock
