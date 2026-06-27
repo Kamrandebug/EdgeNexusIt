@@ -1,7 +1,7 @@
-# EdgeNexus IT — Complete System Architecture & UI Report
+﻿# EdgeNexus IT — Complete System Architecture & UI Report
 
 > **Generated:** 2026-06-13
-> **Last Updated:** 2026-06-27 (batch 22 — AI Automation 3D Brain Hologram)
+> **Last Updated:** 2026-06-27 (batch 23 — Factual alignment with codebase)
 > **Purpose:** A complete reference so any LLM or developer can understand the full project — structure, animations, UI flow, design system, and backend.
 >
 > **⚠️ CORRECTED:** DevOps page sections (3.4, 4.12, 11, Appendix A) now document the **actual implementation** from files on disk, NOT the earlier prompt.md specification. Several previously-listed bugs were already fixed in code (boot event, scanline, Three.js, pipeline node count, preloader import). The report now reflects what is actually built.
@@ -12,7 +12,7 @@
 
 | Date | Change |
 |------|--------|
-| 2026-06-27 | **Batch 22 — 3D Brain Hologram Rewrite** — Replaced previous brain implementations with a fully rotating, anatomically accurate 3D Hologram in `hero-ai.js`. Uses a 26-point 2D `BRAIN_SILHOUETTE` bezier polygon with ray-casting point-in-polygon logic, combined with spherical depth mapping to create 3D volume. Incorporates central longitudinal fissure to divide hemispheres and a scatter halo for atmospheric edge particles. Mapped vertical depth to color gradients (bright white-blue to deep navy blue). Z-depth sorting optimized via `Float32Array`. Added continuous Y-axis rotation with mouse parallax. Brain rests on a complex hologram projection base consisting of 3 concentric pulsing rings, an outer glow cone, an inner bright cone, and a scanning ring rising vertically. Includes a `riseProgress` entry animation that smoothly interpolates particles floating up from the projection base into their target neural positions. |
+| 2026-06-27 | **Batch 22 — 3D Brain Hologram Rewrite** — Replaced previous brain implementations with a fully rotating, anatomically accurate 3D Hologram in `hero-ai.js`. Uses a 28-point 2D `BRAIN_SILHOUETTE` polygon with ray-casting point-in-polygon logic, combined with spherical depth mapping to create 3D volume. Incorporates central longitudinal fissure to divide hemispheres and a scatter halo for atmospheric edge particles. Mapped vertical depth to color gradients (bright white-blue to deep navy blue). Z-depth sorting optimized via `Float32Array`. Added continuous Y-axis rotation with mouse parallax. Brain rests on a complex hologram projection base consisting of 3 concentric pulsing rings, an outer glow cone, an inner bright cone, and a scanning ring rising vertically. Includes a `riseProgress` entry animation that smoothly interpolates particles floating up from the projection base into their target neural positions. |
 | 2026-06-24 | **AI Automation Page Built (batch 17)** — New 7th service page `services/ai-automation.html` with 4 sections + shared CTA. Hero: "THINK. AUTOMATE. EVOLVE." headline with neural brain canvas (55 tier-gated firing neurons, synaptic pulse propagation, cascade re-fire at 30%, mouse parallax, ghosting trail) + automation wheel canvas (5 concentric counter-rotating gear rings with orbit packets, HUD overlay showing live PROCESSES/UPTIME/AGENTS/LOAD, center "AI" glow node) + convergence sync pulse tying brain+wheel every 3–4s (high tier only, GSAP ray flash). Entry: scanline → brain materialize → wheel spin → neuron burst → eyebrow clip → 3-word headline slam (expo.out) → accent underline draw → body → CTAs → panel labels. Hero pin: 120% scrub exit (80% mobile). Capabilities: 6-card 3×2 grid (LLM Integration, Computer Vision, Predictive Analytics, NLP Pipeline, Workflow Automation, Autonomous Agents) with per-card SVG icons, GSAP ScrollTrigger batch reveal (stagger 0.08s), magnetic hover on cards 01/02/06 (elastic.out quickTo, 380px falloff, 0.14 strength), CSS hover micro-animations (card 03 sparkline draw, card 02 conic-gradient iris expand, card 06 pulsing dot ring). Automation Flow: 5-node horizontal track (DATA IN → AI PARSE → DECISION → ACTION → VERIFY) with SVG connecting line fill animation, sequential node activation (300ms stagger), pulse glow active state. Impact Metrics: 4 drum-counter stat cards (847M tasks, 0.3s latency, 97.3% accuracy, 83% cost reduction) with cascading digit roll animation + live oscilloscope activity chart (3 stacked quadratic-bezier random-walk lines for INFERENCE/TRAINING/DEPLOYMENT, 60-point sliding window, 800ms tick). 5 new JS files, 4 new CSS files. `PAGE_ID = 'ai-automation'`. No Three.js/D3 loaded. |
 | 2026-06-24 | **AI Automation Wired Into Full System** — `index.html`: services heading changed "FIVE STREAMS" → "SIX STREAMS", added 6th service card (AI Automation, card 06, neural-network SVG icon with center node + 4 corner satellite nodes + dashed connecting lines). `js/sections/services.js`: SERVICE_PAGES mapping updated (card 5 → `services/ai-automation.html`). `js/components/shared-layout.js`: AI AUTOMATION added to both desktop dropdown and mobile menu. `js/components/nav.js`: `#cta-ai` added to CTA selector array. `js/sections/cta.js`: `#cta-ai` CTA element detection + `isAiPage` flag + AI-specific deploy-sequence typewriter (5 lines: WORKFLOW_INITIATING → NEURAL_HANDSHAKE_COMPLETE → AUTOMATION_QUEUED → AGENT_ASSIGNED → DEPLOYMENT_SCHEDULED) + "DEPLOY AI" submit button text + re-enable label. `api/validator.php`: `'ai-automation'` added to allowed page list. `api/mailer.php`: `'ai-automation'` → `'AI Automation Inquiry'` email label. `styles/components/nav.css`: dropdown close delay increased 200ms → 350ms; invisible CSS bridge enlarged (height 16px→24px, top -16px→-24px, left/right -20px padding); `nav-item--dropdown::after` repositioned from `bottom:0 height:8px` to `top:100% height:24px left/right -10px` for better hover bridge coverage. |
 | 2026-06-23 | **Nav Link Font Size Increased** — `.nav-link` font-size bumped from 11px → 13px in `styles/components/nav.css`. Single-property change. No JS, layout, or token changes. Propagates to all 7 pages via shared-layout.js. |
@@ -238,7 +238,7 @@ K:\EdgeNexusIt\
 │       │   └── hero-staffaug.js       ← Staff Augmentation hero animations
 │       ├── ai-automation/             [NEW]
 │       │   ├── page-main.js           ← AI Automation entry point (PAGE_ID='ai-automation'), boots identical to devops pattern
-│       │   ├── hero-ai.js             ← Particle brain (silhouette-masked, 27-point polygon, 6000/4000/2200 tier-gated squares, vertical gradient, Y-axis rotation, entry fly-in) + platform rings + light beam + GSAP choreography + hero pin
+│       │   ├── hero-ai.js             ← Particle brain (silhouette-masked, 28-point polygon, 3200/2000/1200 tier-gated squares, vertical gradient, Y-axis rotation, entry fly-in) + platform rings + light beam + GSAP choreography + hero pin
 │       │   ├── capabilities.js        ← 6-card batch scroll reveal + magnetic hover on cards 01/02/06
 │       │   ├── automation-flow.js     ← 5-node sequential activation (300ms stagger) + SVG line fill
 │       │   └── impact-metrics.js      ← Drum counters (cascading digit roll) + live 3-line oscilloscope chart
@@ -264,14 +264,10 @@ K:\EdgeNexusIt\
 
 ### 3.1 — Homepage / Main Landing Page (`index.html`)
 
-The main page is a single-scroll vertical layout with **6 sections** + preloader + nav (injected via `shared-layout.js`) + status bar + footer:
+The main page is a single-scroll vertical layout with **6 sections** + preloader + nav (injected via `shared-layout.js`) + footer. Note: status-bar.js exists in the repo but is NOT initialized on the homepage — only on AI Automation and IT Support subpages.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                  STATUS BAR (fixed top, z-index: 2001)                │
-│  ● SYSTEM ONLINE        SYSTEM: NOMINAL          SYS 14:23:41         │
-│  (collapses to 0px height on scroll >200px)                           │
-├──────────────────────────────────────────────────────────────────────┤
 │                        NAVBAR (glass overlay)                        │
 │  EDGE[NEXUS IT]   [HOME] [SERVICES ▾] [PROCESS] [SOC] [CONTACT]     │
 │                                              SYS 14:23:41            │
@@ -290,16 +286,17 @@ The main page is a single-scroll vertical layout with **6 sections** + preloader
 │     │                                                           │     │
 │     │  EDGE INFRASTRUCTURE (eyebrow)                            │     │
 │     │  ─────── (divider)                                        │     │
-│     │  INFRASTRUCTURE THAT                                      │     │
-│     │  NEVER FAILS. (headline, clip-path reveal)                │     │
+│     │  PREDICTIVE IT MANAGEMENT.                                │     │
+│     │  TOTAL BUSINESS CONTINUITY. (headline, clip-path reveal)   │     │
 │     │                                                           │     │
-│     │  Enterprise-grade networks... (body text)                 │     │
+│     │  Enterprise-grade networks. Zero-downtime architecture. (body text)                 │     │
 │     │  [typewriter effect: "ping edgenexus.io..."]              │     │
 │     │                                                           │     │
 │     │  [DEPLOY NOW]  [VIEW INFRASTRUCTURE]                      │     │
 │     │                                                           │     │
-│     │  NOTE: Metric bar was REMOVED in 2026-06-14 update.       │     │
-│     │  replaced by the new status bar component.                │     │
+│     │  NOTE: Metric bar was REMOVED in 2026-06-14 update.                 │     │
+│     │  Status bar component (status-bar.*) exists but is NOT wired into   │     │
+│     │  main.js — only used on AI Automation and IT Support subpages.      │     │
 │     └──────────────────────────────────────────────────────────┘     │
 ├───── SCROLL → hairline rule sweeps viewport ─────────────────────────┤
 │                                                                      │
@@ -311,18 +308,20 @@ The main page is a single-scroll vertical layout with **6 sections** + preloader
 │     ←─── 6 service cards in horizontal scroll (GSAP pin + x───→     │
 │         translate, SCROLL VERTICALLY to move horizontally)           │
 │                                                                      │
-│     ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐                   │
-│     │MSP   │ │DEVOPS│ │CYBER │ │IT    │ │STAFF │                   │
-│     │[icon]│ │[icon]│ │SEC.  │ │SUPP. │ │AUG.  │                   │
-│     │01    │ │02    │ │[icon]│ │[icon]│ │[icon]│                   │
-│     └──────┘ └──────┘ └──────┘ └──────┘ └──────┘                   │
+│     ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐          │
+│     │MSP   │ │DEVOPS│ │CYBER │ │IT    │ │STAFF │ │AI    │          │
+│     │[icon]│ │[icon]│ │SEC.  │ │SUPP. │ │AUG.  │ │AUTO. │          │
+│     │01    │ │02    │ │[icon]│ │[icon]│ │[icon]│ │[icon]│          │
+│     │      │ │      │ │03    │ │04    │ │05    │ │06    │          │
+│     └──────┘ └──────┘ └──────┘ └──────┘ └──────┘ └──────┘          │
 │                                                                      │
 │     Card navigation to subpages:                                     │
-│     - MSP (card 0)  → services/msp.html ← NOW LINKED                │
-│     - DevOps (card 1) → services/devops.html ← NOW LINKED           │
-│     - Cyber Security (card 2) → services/cyber-security.html ← NEW   │
+│     - MSP (card 0)  → services/msp.html                               │
+│     - DevOps (card 1) → services/devops.html                         │
+│     - Cyber Security (card 2) → services/cyber-security.html          │
 │     - IT Support (card 3) → services/it-support.html                  │
 │     - Staff Augmentation (card 4) → services/staff-augmentation.html  │
+│     - AI Automation (card 5) → services/ai-automation.html [NEW]     │
 │                                                                      │
 ├───── SCROLL → electric blue scan line sweeps viewport ───────────────┤
 │                                                                      │
@@ -335,7 +334,7 @@ The main page is a single-scroll vertical layout with **6 sections** + preloader
 
 ### 3.2 — Web Development Service Page [REMOVED]
 
-The Web Development service page was removed from the project. The homepage now has **5 service cards** (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation).
+The Web Development service page was removed from the project. The homepage now has **6 service cards** (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation, AI Automation).
 
 ### 3.3 — Managed Service Provider Page (`services/msp.html`)
 
@@ -771,7 +770,7 @@ The IT Support page is the final service page, completing all 6 service offering
 
 ### 3.7 -- AI Automation Page (`services/ai-automation.html`)
 
-The AI Automation page features a **3D Brain Hologram** hero with a single canvas rendering a fully rotating, anatomically accurate brain (via a 26-point polygon mask and spherical depth sorting) resting on a pulsing hologram projection base. It also includes a 6-card **Capabilities** grid with magnetic hover, a 5-node **Automation Flow** pipeline, and **Impact Metrics** with drum counters + live oscilloscope chart. No Three.js or D3 loaded -- pure Canvas 2D.
+The AI Automation page features a **3D Brain Hologram** hero with a single canvas rendering a fully rotating, anatomically accurate brain (via a 28-point polygon mask and spherical depth sorting) resting on a pulsing hologram projection base. It also includes a 6-card **Capabilities** grid with magnetic hover, a 5-node **Automation Flow** pipeline, and **Impact Metrics** with drum counters + live oscilloscope chart. No Three.js or D3 loaded -- pure Canvas 2D.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -793,11 +792,11 @@ The AI Automation page features a **3D Brain Hologram** hero with a single canva
 │     │                                                               │ │
 │     │  ┌─ COPY ─────────────────┐  ┌─ BRAIN CANVAS ───────────────┐ │
 │     │  │                          │  │                             │ │
-│     │  │ EDGENEXUS AI             │  │   ★ 6000/4000/2200 tier-   │ │
+│     │  │ EDGENEXUS AI             │  │   ★ 3200/2000/1200 tier-   │ │
 │     │  │   (eyebrow)              │  │     gated square particles │ │
 │     │  │                          │  │                             │ │
 │     │  │ THINK.                   │  │   ★ Brain shape enforced    │ │
-│     │  │ AUTOMATE.                │  │     by 27-point silhouette  │ │
+│     │  │ AUTOMATE.                │  │     by 28-point silhouette  │ │
 │     │  │ EVOLVE. ★                │  │     polygon (rejection      │ │
 │     │  │   (accent glow)          │  │     sampling + ray casting) │ │
 │     │  │                          │  │                             │ │
@@ -990,11 +989,10 @@ The About page is the newest page, completing the site's informational core. It 
 │     4-column grid with numbered cards, hover lift + border glow      │
 │                                                                      │
 ├──────────────────────────────────────────────────────────────────────┤
-│  4. APPROACH — "FROM DETECTION TO RESOLUTION."                       │
-│     DETECT → TRIAGE → RESOLVE → OPTIMIZE                             │
-│     4 cards with SVG icons, dashed path line below, gradient top     │
-│     border accent per card                                            │
-│                                                                      │
+│  4. APPROACH [REMOVED from actual HTML]                               │
+│     The APPROACH section (4 cards: Detect, Triage, Resolve, Optimize  │
+│     + SVG path line) was removed from about.html. The page now jumps  │
+│     from VALUES directly to CINEMATIC DIVIDER.                        │
 ├──────────────────────────────────────────────────────────────────────┤
 │  CINEMATIC DIVIDER                                                    │
 │  "RELIABILITY IS NOT A FEATURE — IT'S THE FOUNDATION."               │
@@ -1426,7 +1424,7 @@ The CSS loading strategy and GSAP ticker configuration have been updated. Below 
    │   └── styles/components/preloader.css
    └── Non-critical CSS (deferred via media="print" onload="this.media='all'"):
        ├── styles/typography.css, utilities.css, scrollbar.css
-       ├── styles/components/nav.css, buttons.css, cards.css, terminal.css, cursor.css, status-bar.css
+       ├── styles/components/nav.css, buttons.css, cards.css, terminal.css, cursor.css
        ├── styles/sections/hero.css, services.css, process.css, soc.css, cta.css, footer.css
        └── <noscript> fallback with all non-critical CSS as normal <link> tags
    └── history.scrollRestoration = 'manual' + window.scrollTo(0,0)
@@ -1449,14 +1447,14 @@ The CSS loading strategy and GSAP ticker configuration have been updated. Below 
    │   │   ├── Return promise resolved → triggers post-preloader
    │   │   └── Preloader slides up (0.8s expo.in) → flash overlay
    │   │
-   │   ├── safe(initStatusBar, 'statusBar')
+   │   ├── safe(initStatusBar, 'statusBar') [NOT WIRED in main.js — see hero note]
    │   ├── safe(initGrid, 'grid') — proximity + breathing wave
    │   ├── safe(initNav, 'nav')
    │   ├── safe(initClock, 'clock')
    │   ├── safe(initCursor, 'cursor')
    │   ├── safe(initButtons, 'buttons')
    │   ├── safe(initHero, 'hero') — Three.js globe + entry + pin (tier-gated rendering)
-   │   ├── safe(initServices, 'services') — horizontal scroll + depth + all 5 cards linked
+   │   ├── safe(initServices, 'services') — horizontal scroll + depth + all 6 cards linked
    │   ├── safe(initSectionsProcess, 'process') — pipeline draw
    │   ├── safe(initSoc, 'soc') — D3 map + dashboard (no busy-wait pause)
    │   ├── safe(initCTA, 'cta') — ambient dots + form
@@ -1651,7 +1649,7 @@ All pages (including About) now have `injectLayout()` as the first import to inj
 | SEO-friendly | Static HTML with all content, JS enhances only |
 | Form validation | Client-side name+email required check, error shake animation |
 | Scroll-to-top on refresh | `history.scrollRestoration='manual'` + `window.scrollTo(0,0)` |
-| Services Navigation | "SERVICES" navbar item has hover dropdown listing all 5 services |
+| Services Navigation | "SERVICES" navbar item has hover dropdown listing all 6 services |
 | Card-to-Page Transition | Clicked service card coordinates saved to sessionStorage for clip-path expansion |
 | Full Responsiveness | Mobile-first CSS/JS across breakpoints (480px, 768px, 1024px, 1280px) |
 | Status bar aria | Role `region` with `aria-label="System status"`, `aria-live="polite"` on clock |
@@ -1680,19 +1678,20 @@ All pages (including About) now have `injectLayout()` as the first import to inj
 
 ### Services Dropdown Navigation — Cross-Page Links [FULLY RESOLVED — SHARED LAYOUT]
 
-All nav/dropdown links are now centrally managed in `js/components/shared-layout.js`. Every page uses the identical injected nav structure. The dropdown includes 5 services, plus the About link.
+All nav/dropdown links are now centrally managed in `js/components/shared-layout.js`. Every page uses the identical injected nav structure. The dropdown includes 6 services, plus the About link.
 
-| From Page | About | MSP | DevOps | Cyber Sec | IT Support | Staff Aug |
-|-----------|-------|-----|--------|-----------|-----------|----------|
-| index.html | **about.html** | services/msp.html | services/devops.html | services/cyber-security.html | services/it-support.html | services/staff-augmentation.html |
-| about.html | **active** | services/msp.html | services/devops.html | services/cyber-security.html | services/it-support.html | services/staff-augmentation.html |
-| msp.html | about.html | **active** | devops.html | cyber-security.html | it-support.html | staff-augmentation.html |
-| devops.html | about.html | msp.html | **active** | cyber-security.html | it-support.html | staff-augmentation.html |
-| cyber-security.html | about.html | msp.html | devops.html | **active** | it-support.html | staff-augmentation.html |
-| staff-augmentation.html | about.html | msp.html | devops.html | cyber-security.html | it-support.html | **active** |
-| it-support.html | about.html | msp.html | devops.html | cyber-security.html | **active** | staff-augmentation.html |
+| From Page | About | MSP | DevOps | Cyber Sec | IT Support | Staff Aug | AI Automation |
+|-----------|-------|-----|--------|-----------|-----------|----------|--------------|
+| index.html | **about.html** | services/msp.html | services/devops.html | services/cyber-security.html | services/it-support.html | services/staff-augmentation.html | services/ai-automation.html |
+| about.html | **active** | services/msp.html | services/devops.html | services/cyber-security.html | services/it-support.html | services/staff-augmentation.html | services/ai-automation.html |
+| msp.html | about.html | **active** | devops.html | cyber-security.html | it-support.html | staff-augmentation.html | ai-automation.html |
+| devops.html | about.html | msp.html | **active** | cyber-security.html | it-support.html | staff-augmentation.html | ai-automation.html |
+| cyber-security.html | about.html | msp.html | devops.html | **active** | it-support.html | staff-augmentation.html | ai-automation.html |
+| staff-augmentation.html | about.html | msp.html | devops.html | cyber-security.html | it-support.html | **active** | ai-automation.html |
+| it-support.html | about.html | msp.html | devops.html | cyber-security.html | **active** | staff-augmentation.html | ai-automation.html |
+| ai-automation.html | about.html | msp.html | devops.html | cyber-security.html | it-support.html | staff-augmentation.html | **active** |
 
-All cross-page navigation links now managed via shared-layout.js. Active state detected automatically via `data-navlink` path matching. All 5 service pages (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation) + About page live and linked.
+All cross-page navigation links now managed via shared-layout.js. Active state detected automatically via `data-navlink` path matching. All 6 service pages (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation, AI Automation) + About page live and linked.
 
 ---
 
@@ -1729,7 +1728,7 @@ All cross-page navigation links now managed via shared-layout.js. Active state d
 | M5 | **Missing page-transitions.css** | DevOps | `devops.html` | WebDev page includes `page-transitions.css` for entry transitions. DevOps page has no equivalent. |
 | M6 | **Services.js `getTrack()` returns dynamic value** | Homepage | `services.js:31` | `container.scrollWidth - section.clientWidth + 80` can change on resize but ScrollTrigger `end` is recalculated via `invalidateOnRefresh: true`. Minor — `onUpdate` calls `applyDepth` every frame. |
 | M7 | **Scanline texture always in DOM** | All pages | `styles/utilities.css` | The `body::before` scanline overlay is always present at z-index 9998. Invisible by default (`--scanline-opacity: 0`) but sits above most content, potentially blocking interaction if a JS error sets the variable. |
-| M8 | **Status bar scroll listener never cleaned up** | Homepage | `status-bar.js:29-35` | Scroll listener added in `initStatusBar` runs perpetually. No cleanup on section navigation. |
+| M8 | **Status bar scroll listener never cleaned up** | AI Automation, IT Support | `status-bar.js:29-35` | Scroll listener added in `initStatusBar` runs perpetually. No cleanup mechanism. Homepage does NOT wire in status-bar.js — see hero note. |
 | M9 | **Orbit canvas devicon CDN dependency** | DevOps | `stack-interop.js:76` | Devicons loaded from jsDelivr CDN. If CDN is slow/down, placeholder text shows (tool name truncated to 4 chars) — graceful but visually inconsistent. |
 | M10 | **Duplicate GSAP ticker config** | Homepage | `main.js` + `performance.js` | `gsap.ticker.lagSmoothing(0)` applied in both files. `gsap.ticker.fps(30)` in main.js for low-memory independently of tier system. Both run — performance.js's tier config overrides. |
 | M11 | ~~Cyber/IT Support pages not yet built~~ | **FIXED / SAFE** | `js/sections/services.js` | Map these subpage URLs to `null` so their homepage cards dynamically change to "COMING SOON" state and prevent 404 routing when clicked. |
@@ -1739,9 +1738,9 @@ All cross-page navigation links now managed via shared-layout.js. Active state d
 | # | Issue | Page(s) | File | Description |
 |---|-------|---------|------|-------------|
 | L1 | **MSP contact form label inconsistency** | MSP | `msp.html:436` | Form labels use "Name" and "Email" (sentence case) while WebDev uses "NAME" and "EMAIL" (uppercase). DevOps uses "Name" and "Email" like MSP. |
-| L2 | **Homepage metric bar completely removed** | Homepage | multiple | The metric bar (latency, threats, uptime, active nodes) was removed from hero.html/hero.js/index.html. Visual info replaced by status bar. |
+| L2 | **Homepage metric bar completely removed** | Homepage | multiple | The metric bar (latency, threats, uptime, active nodes) was removed from hero.html/hero.js/index.html. Status bar component exists but is NOT wired into the homepage. |
 | L3 | **Web Dev page metrics removed** | Web Dev | multiple | `hero-webdev-metrics` HTML+CSS+JS removed. "Avg Load Time / Lighthouse / CWV / Uptime" bar gone. |
-| L4 | **Status bar and nav clock overlap** | Homepage | `status-bar.js`, `clock.js` | Both show live clock: status bar = HH:MM:SS, nav = "SYS HH:MM:SS". Intentional but duplicative. |
+| L4 | **Status bar and nav clock overlap** | AI Automation, IT Support | `status-bar.js`, `clock.js` | Both show live clock: status bar = HH:MM:SS, nav = "SYS HH:MM:SS". Intentional but duplicative. Not an issue on homepage since status-bar.* is not wired into main.js. |
 | L5 | **DevOps pipeline scroll-scrub fixed to 5 stages** | DevOps | `pipeline.js` | Master ScrollTrigger end: `+=250%` → progress 0→1 maps to stage 0-4. Scroll distance is always 250% regardless of viewport height — may feel fast/tall on different screens. |
 | L6 | **Asset reorganization complete** | All pages | — | Root-level images moved to `assets/icons/` and `assets/images/`. Old files deleted from root. |
 | L7 | **Font loading moved from @import to <link>** | All pages | `typography.css`, all HTML | `@import` removed from typography.css. Now uses HTML `<link>` with preconnect/preload per Lighthouse recommendations. |
@@ -1750,7 +1749,7 @@ All cross-page navigation links now managed via shared-layout.js. Active state d
 
 ## 10. Web Development Subpage — Cinematic UI Features [REMOVED]
 
-The Web Development service page was removed from the project. The site now ships with 5 service pages.
+The Web Development service page was removed from the project. The site now ships with 6 service pages.
 
 ---
 
@@ -1853,11 +1852,11 @@ The tier system categorizes devices and adjusts rendering complexity:
 
 | Metric | Value |
 |--------|-------|
-| Total HTML files | **7** (index.html + about.html + 5 service subpages) |
+| Total HTML files | **8** (index.html + about.html + 6 service subpages) |
 | Total CSS files | **41** (1 tokens + 1 reset + 1 typography + 1 utilities + 1 scrollbar + **7 components** + 6 sections + 5 web-dev + 4 msp + 5 devops + **4 cyber-security + 4 it-support + 1 about**) |
 | Total JS modules | **46** (1 main + **7 core** + **6 components** + 6 homepage + 5 web-dev + 5 msp + 5 devops + **5 cyber-security + 5 it-support + 1 about**) |
-| Service cards | 5 (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation) |
-| Active service pages | **5** (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation) |
+| Service cards | 6 (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation, AI Automation) |
+| | Active service pages | **6** (MSP, DevOps, Cyber Security, IT Support, Staff Augmentation, AI Automation) |
 | **Asset files** | **7** (3 icons + 4 images in `assets/` subdirectories) |
 | Process nodes (Homepage) | 5 (Discover, Design, Deploy, Monitor, Optimize) |
 | Process nodes (Web Dev) | 6 (Discover, Architect, Build, Test, Deploy, Scale) |
@@ -1868,7 +1867,7 @@ The tier system categorizes devices and adjusts rendering complexity:
 | **Composer packages** | **1** (phpmailer/phpmailer v7.1.1) |
 | **Security layers** | **5** (honeypot, CSRF token, IP rate limiting, input sanitization, CORS) |
 | **Rate limit** | **3 requests per 15 minutes per IP** |
-| **Form pages integrated** | **7** (index + 5 services + about) — honeypot + PAGE_ID + CSRF fetch on all |
+| **Form pages integrated** | **8** (index + 6 services + about) — honeypot + PAGE_ID + CSRF fetch on all |
 | **New files created (backend)** | **12** (5 PHP + 2 .htaccess + .gitkeep + composer.json + composer.lock + .env.example + .gitignore) |
 | Three.js globe radius | 4.2 world units |
 | CTA ambient dots | 60 (shared between index and devops) |
@@ -2002,10 +2001,12 @@ Email includes: Name, Email, Page, Timestamp, IP, Message body. Plaintext format
 1. ~~**Fix cross-page DevOps links**~~ — **FIXED** Updated MSP and WebDev nav dropdowns to link DEVOPS directly to `devops.html` (and MSP to `msp.html`).
 2. **Clean up preloader CSS on subpages** — All 4 subpages load `preloader.css` but none use it. Minor 2KB bloat. `preloader.js` is imported on WebDev and MSP but never called.
 3. **Consider section transitions on subpages** — If transition atmosphere zones are desired on subpages, ID-matching logic in `transitions.js` needs updating (cyber-security page uses `#hero-cybersec`, `#perimeter`, `#killchain`, `#incident-response`, `#cta-cybersec`).
-4. **Status bar scroll listener cleanup** — `initStatusBar` adds a scroll listener with no cleanup mechanism. Should support a teardown/cleanup for SPA-style page transitions.
+4. **Status bar scroll listener cleanup** — `initStatusBar` adds a scroll listener with no cleanup mechanism. Should support a teardown/cleanup. Note: status-bar.js is NOT used on the homepage — only on AI Automation and IT Support subpages.
 5. **Resolve duplicate GSAP ticker config** — `main.js` and `performance.js` both call `gsap.ticker.lagSmoothing(0)`. `main.js` also applies `fps(30)` for low-memory independently of the tier system. Consolidate into one place.
-6. ~~**Create Cyber Security and IT Support pages**~~ — **BOTH PAGES ARE LIVE.** Cyber Security at `services/cyber-security.html` with 11 v3 animations. IT Support at `services/it-support.html` with 6 section animations (split-flap, flow field, drum counters, magnetic field, 3D flip cards). All 5 service cards now navigate to live pages. No "COMING SOON" states remain.
+6. ~~**Create Cyber Security and IT Support pages**~~ — **BOTH PAGES ARE LIVE.** Cyber Security at `services/cyber-security.html` with 11 v3 animations. IT Support at `services/it-support.html` with 6 section animations (split-flap, flow field, drum counters, magnetic field, 3D flip cards). All 6 service cards now navigate to live pages. No "COMING SOON" states remain.
 7. ~~**Nav/footer duplication across pages**~~ — **FIXED via shared-layout.js.** All 7 pages now inject nav + footer from a single source of truth. ~300+ lines of duplicated HTML removed per page. Nav system rewritten from `#navbar` ID-based to `.nav` class-based with CSS Grid layout.
 8. ~~**About page missing**~~ — **NOW LIVE.** `about.html` with full cinematic hero, mission/values/approach sections, particle canvas, stat counters, and shared CTA.
 9. ~~**Hero padding missing on service pages**~~ — **FIXED.** Added `padding-top: var(--nh)` to cyber-security, devops, and staff-augmentation hero sections.
 10. ~~**Terminal CSS selector inconsistency**~~ — **FIXED.** `.term-*` aliases added alongside legacy `.terminal-*` selectors for cross-page compatibility.
+
+

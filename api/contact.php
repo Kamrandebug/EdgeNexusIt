@@ -1,6 +1,12 @@
 <?php
 // /api/contact.php — Main entry point for EdgeNexus IT contact form submissions
 
+// ── Allow longer execution for slow SMTP handshakes ──────────────────
+// Hostinger SMTP can be slow from some networks; 60s prevents timeouts.
+if (function_exists('set_time_limit')) {
+    set_time_limit(60);
+}
+
 // ── Error reporting: log everything, display nothing ─────────────────────
 // These must run before anything else to prevent information leaks
 // regardless of php.ini settings.
